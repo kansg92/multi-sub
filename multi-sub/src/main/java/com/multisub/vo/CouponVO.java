@@ -14,10 +14,24 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class CouponVO {
+	
 	private int id;
 	private String name;
 	private double discount;
 	private Date regdate;
-	private Date expirDate;
+	private String expirDate;
 	private boolean expirYN;
+		
+	
+	public CouponVO(int id, String name, double discount, String expirDate, boolean expirYN) {
+	
+		this.id = id;
+		this.name = name;
+		this.discount = discount;
+		this.expirDate = expirDate;
+		this.expirYN = expirYN;
+	}
+
+	
+	
 }

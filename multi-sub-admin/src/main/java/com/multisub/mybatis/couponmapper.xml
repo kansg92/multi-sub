@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multisub.mapper.CouponMapper">
+	
+	<select id="select" parameterType="int" resultType="couponVO">
+		SELECT c.id, c.name, c.discount, c.regdate, c.expirDate, c.expirYN, cd.state AS cdstate, 
+		cd.useDate AS cdusedate, cd.userId AS cduserid
+		FROM coupon c
+		INNER JOIN coupondetail cd ON c.id = cd.id
+		WHERE c.id = #{id}
+	</select>
+	<select id="selectall" resultType="couponVO">
+		SELECT c.id, c.name, c.discount, c.regdate, c.expirDate, c.expirYN, cd.state AS cdstate, 
+		cd.useDate AS cdusedate, cd.userId AS cduserid
+		FROM coupon c
+		INNER JOIN coupondetail cd ON c.id = cd.id
+	</select>
+	<insert id="insert" parameterType="couponVO">
+		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, #{expirYN})
+	</insert>
+	<update id="update" parameterType="couponVO">
+		UPDATE COUPON SET NAME=#{name}, DISCOUNT=#{discount}, EXPIRDATE=#{expirDate}, EXPIRYN=#{expirYN} WHERE ID = #{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM COUPON WHERE ID=#{id}
+	</delete>
+	
+</mapper>

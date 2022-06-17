@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multisub.mapper.OrdersDetailMapper">
+
+	<select id="select" parameterType="int" resultType="OrdersDetailVO">
+		SELECT od.id, od.ordersId, od.amount, c.name as cateName, p.name as prodName,
+			o.regdate as paydate, o.payinfo as payInfo, o.payState as payState,
+		    o.udate as udate, od.odPrice as odPrice
+			FROM ordersDetail od
+			INNER JOIN orders o ON o.id = od.ordersId
+			INNER JOIN product p ON p.id = od.prodId
+			INNER JOIN category c ON p.cateid = c.id
+			WHERE od.ID=#{id}
+	</select>
+	<select id="selectAll" resultType="OrdersDetailVO">
+		SELECT od.id, od.ordersId, od.amount, c.name as cateName, p.name as prodName,
+			o.regdate as paydate, o.payinfo as payInfo, o.payState as payState,
+		    o.udate as udate, od.odPrice as odPrice
+			FROM ordersDetail od
+			INNER JOIN orders o ON o.id = od.ordersId
+			INNER JOIN product p ON p.id = od.prodId
+			INNER JOIN category c ON p.cateid = c.id
+	</select>
+	<insert id="insert" parameterType="OrdersDetailVO">
+		INSERT INTO ordersDetail VALUES (NULL,#{amount},#{odPrice},#{prodId},#{ordersId})
+	</insert>
+	<update id="update" parameterType="OrdersDetailVO">
+		UPDATE ordersDetail SET amount=#{amount},odprice=#{odPrice},PRODID=#{prodId},ordersId=#{ordersId} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM ordersDetail WHERE ID=#{id}
+	</delete>	
+</mapper>

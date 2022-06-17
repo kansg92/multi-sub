@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
     </style>
         <meta charset="utf-8" />
@@ -26,10 +26,18 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light" id="main-nav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="/">MULTISUB</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <a class="navbar-brand" href="/">
+                <span class="sub-green">MULTI</span><span class="sub-yellow" >SUB</span>
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi-cart-fill me-1"></i>
+                <span class="badge sub-green text-white ms-1 rounded-pill">3</span>
+                </button>
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -49,10 +57,9 @@
                     </ul>
                           
                     <form class="d-flex" id="cartForm">
-                        <button class="btn btn-outline-dark" type="submit">
+                        <button class="btn" id="cart-btn" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge text-white ms-1 rounded-pill" id="cart-cnt">0</span>
                         </button>
                     </form>
                     
@@ -61,32 +68,26 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="py-5" id="main-header">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">MULTISUB</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Fesh Make Your Time!</p>
+                    <h1 class="display-2 fw-bolder"><span>MULTI</span><span class="sub-yellow">SUB</span></h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Fresh Make Your Time!</p>
                 </div>
             </div>
         </header>
         
         <!-- Section-->
-        <section class="py-5">
-            	<div class="container px-4 px-lg-5 mt-5">
-				  <ul class="nav nav-pills ">
-				    <li class="active"><a href="#">promotion</a></li>
-				    <li><a href="#">Sandwitch</a></li>
-				    <li><a href="#">Salad</a></li>
-				    <li><a href="#">Oter/lab</a></li>
-				    <li><a href="#">Side/Drink</a></li>
-				  </ul>
-				</div>
-				  
-            <div class="container px-4 px-lg-5 mt-5" th:insert="${center} ? ${center} : center">	
-		<!-- center page -->
+        <section class="py-5" th:insert="${center} ? ${center} : center">
+        <!-- center page -->
 
-        <!-- center page -->                    
-            </div>
+				  
+         
+		
+
+                 
+            
+		<!-- center page -->   
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
@@ -96,5 +97,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        
+        <script src="js/multi-sub.js"></script>
     </body>
 </html>

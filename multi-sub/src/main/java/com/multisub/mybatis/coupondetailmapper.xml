@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multisub.mapper.CouponDetailMapper">
+	
+	<select id="select" parameterType="int" resultType="coupondetailVO">
+		SELECT * FROM COUPONDETAIL WHERE ID=#{id}
+	</select>
+	<select id="selectDetail" parameterType="int" resultType="coupondetailVO">
+		SELECT cd.id, cd.state, cd.useDate, cd.userId, cd.couponId, cd.ordersDId, 
+		c.name AS cname, c.discount AS cdiscount, 
+		c.regdate AS cregdate, c.expirDate AS cexpirDate, c.expirYN AS cexpirYN, us.name AS usname,
+		us.point AS uspoint, ord.odPrice AS ordprice, ord.ordersId AS ordersId
+		FROM coupondetail cd
+		INNER JOIN coupon c ON cd.id = c.id
+		INNER JOIN users us ON cd.userId = us.id
+		INNER JOIN ordersdetail ord ON cd.id = ord.id
+		WHERE cd.id = #{id}
+	</select>
+	<select id="selectAll" resultType="coupondetailVO">
+		SELECT * FROM COUPONDETAIL
+	</select>
+	<select id="selectDetailAll" resultType="coupondetailVO">
+		SELECT cd.id, cd.state, cd.useDate, cd.userId, cd.couponId, cd.ordersDId, c.name AS cname, c.discount AS cdiscount, 
+		c.regdate AS cregdate, c.expirDate AS cexpirDate, c.expirYN AS cexpirYN, us.name AS usname,
+		us.point AS uspoint, ord.odPrice AS ordprice, ord.ordersId AS ordersId
+		FROM coupondetail cd
+		INNER JOIN coupon c ON cd.id = c.id
+		INNER JOIN users us ON cd.userId = us.id
+		INNER JOIN ordersdetail ord ON cd.id = ord.id
+	</select>
+	<insert id="insert" parameterType="coupondetailVO">
+		INSERT INTO COUPONDETAIL VALUES (NULL, #{state}, #{useDate}, #{userId}, #{couponId}, #{ordersDId})
+	</insert>
+	<update id="update" parameterType="coupondetailVO">
+		UPDATE COUPONDETAIL SET STATE=#{state}, useDate=#{useDate}, userId=#{userId}, couponId=#{couponId}, ordersDId=#{ordersDId} WHERE ID = #{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM COUPONDETAIL WHERE ID=#{id}
+	</delete>
+	
+</mapper>

@@ -1,3 +1,32 @@
+:root{
+	--sub-yellow: #FFC20D;
+	--sub-green: #009223;
+	
+}
+
+#main-nav{
+	margin-bottom: 1px;
+}
+
+.sub-green{
+	color:var(--sub-green);
+	
+}
+
+.sub-yellow{
+	color:var(--sub-yellow)
+}
+
+#cartForm:hover{
+	color:var(--sub-yellow);
+}
+#cart-cnt{
+	background-color: var(--sub-yellow);
+}
+
+#cart-cnt:hover{
+	color:var(--sub-yellow);
+}
 
 .producta{
 	color: black; 
@@ -7,10 +36,33 @@
 
 .producta:hover, .producta:active {
 	text-decoration: none; 
-	color:green; 
+	color:var(--sub-green); 
 	background-color:#f59000;
 }
 
 #cartForm{
 	float:right;
+}
+
+
+#main-header{
+	background-color: #009223
+}
+
+.sub-active{
+	background-color: var(--sub-yellow);
+	border-radius: 5px;
+}
+
+.sub-menu{
+	font-weight: bold;
+}
+
+.sub-menu:hover{
+	text-decoration: none; 
+	color:var(--sub-yellow);
+}
+
+.sub-menu:visited{
+	color:var(--sub-green);
 }

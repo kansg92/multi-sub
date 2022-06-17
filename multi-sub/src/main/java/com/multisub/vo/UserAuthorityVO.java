@@ -17,4 +17,26 @@ public class UserAuthorityVO {
 	private int id;
 	private String userType;
 	private Date regdate ;
+	
+	private String usid;
+	private String usname;
+	private String usemail;
+	private String usaddr;
+	private String usphone;
+	
+	public UserAuthorityVO(int id, String userType) {
+		
+		this.id = id;
+		this.userType = userType;
+	}
+
+	public UserAuthorityVO(int id, String userType, Date regdate) {
+		
+		this.id = id;
+		this.userType = userType;
+		this.regdate = regdate;
+	}	
+	
+	
+	
 }

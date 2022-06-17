@@ -20,7 +20,8 @@ public class OrdersVO {
 	private Date regdate;
 	private String payState;
 	private Date udate;
-	private String userId;
-	private int couponDId;
+	private String usersId;
+	
 	
 }
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multisub.mapper.NutritionMapper">
+
+	<select id="select" parameterType="int" resultType="NutritionVO">
+		SELECT * FROM nutrition WHERE ID=#{id}
+	</select>
+	
+	<select id="selectAll" resultType="NutritionVO">
+		SELECT * FROM nutrition
+	</select>
+	
+	<insert id="insert" parameterType="NutritionVO">
+		INSERT INTO nutrition VALUES (null, #{kcal},#{gram},#{protein},#{fat},#{sugar},#{salt})
+	</insert>
+	
+	<update id="update" parameterType="NutritionVO">
+		UPDATE nutrition SET CAL=#{kcal},GRAM=#{gram},PROTEIN=#{protein},
+							FAT=#{fat},SUGAR=#{sugar},SALT=#{salt} 
+							WHERE ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM nutrition WHERE ID=#{id}
+	</delete>	
+	
+</mapper>
