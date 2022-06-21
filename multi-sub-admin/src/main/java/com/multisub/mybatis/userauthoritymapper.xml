@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multisub.mapper.UserAuthorityMapper">
+	
+	<select id="select" parameterType="int" resultType="userauthorityVO">
+		SELECT * FROM USERSTYPE WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="userauthorityVO">
+		SELECT * FROM USERSTYPE
+	</select>
+	<insert id="insert" parameterType="userauthorityVO">
+		INSERT INTO usersType VALUES (#{id},#{userType},CURDATE())
+	</insert>
+	<update id="update" parameterType="userauthorityVO">
+		UPDATE USERSTYPE SET USERTYPE=#{userType} WHERE ID = #{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM USERSTYPE WHERE ID=#{id}
+	</delete>
+	
+</mapper>

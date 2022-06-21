@@ -10,7 +10,7 @@ public class MainController {
 	@RequestMapping("/")
 	public String main(Model m) {
 		m.addAttribute("center","center");
-		return "main";
+		return "/main";
 	}
 	
 }

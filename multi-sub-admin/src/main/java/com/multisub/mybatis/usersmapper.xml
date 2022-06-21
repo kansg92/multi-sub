@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multisub.mapper.UsersMapper">
+	
+	<select id="select" parameterType="String" resultType="usersVO">
+		SELECT * FROM USERS WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="usersVO">
+		SELECT * FROM USERS
+	</select>
+	<insert id="insert" parameterType="usersVO">
+		INSERT INTO USERS VALUES (#{id}, #{pwd}, #{name}, #{email}, #{addr}, #{phone}, #{point}, #{membersip}, CURDATE(),#{couponId});
+	</insert>
+	<update id="update" parameterType="usersVO">
+		UPDATE USERS SET PWD=#{pwd}, NAME=#{name}, EMAIL=#{email}, ADDR=#{addr}, PHONE=#{phone}, POINT=500, MEMBERSIP=#{membersip}, couponId=#{couponId} WHERE ID = #{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM USERS WHERE ID=#{id}
+	</delete>
+	
+</mapper>

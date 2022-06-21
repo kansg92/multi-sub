@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multisub.mapper.ProductMapper">
+
+	<select id="select" parameterType="int" resultType="ProductVO">
+		SELECT * FROM product WHERE ID=#{id}
+	</select>
+	
+	<select id="selectAll" resultType="ProductVO">
+		SELECT * FROM product
+	</select>
+	<insert id="insert" parameterType="ProductVO">
+		INSERT INTO product VALUES (NULL,#{name},#{price},#{imgname},SYSDATE(),#{cateId},#{nutId})
+	</insert>
+	<update id="update" parameterType="ProductVO">
+		UPDATE product SET NAME=#{name},PRICE=#{price},IMGNAME=#{imgname},cateId=#{cateId},nutId=#{nutId} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM product WHERE ID=#{id}
+	</delete>	
+</mapper>
