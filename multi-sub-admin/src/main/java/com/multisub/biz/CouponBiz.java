@@ -40,5 +40,14 @@ public class CouponBiz implements Biz<Integer, CouponVO>{
 		return dao.selectall();
 	}
 	
+	/************************************/
+	
+	public CouponVO getlatest() throws Exception {
+		return dao.selectlatest();		
+	}
+	
+	
+	
+	
 	
 }

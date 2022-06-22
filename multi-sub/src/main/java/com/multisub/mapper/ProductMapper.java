@@ -15,4 +15,5 @@ public interface ProductMapper {
 	public void delete(int id) throws Exception;
 	public ProductVO select(int id) throws Exception;
 	public List<ProductVO> selectAll() throws Exception;
+	public List<ProductVO> selectMenu(int cid) throws Exception;
 }

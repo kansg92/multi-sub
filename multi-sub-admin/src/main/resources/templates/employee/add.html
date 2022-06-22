@@ -1,0 +1,79 @@
+<meta charset="UTF-8">
+ 
+  
+<script>
+$(document).ready(function(){
+	$('#add_bt').click(function(){		
+		$('#add_form').attr({
+			'method':'post',
+			'action':'addimpl' 
+		});
+		$('#add_form').submit();
+	});
+});
+</script>
+
+<form class="form-horizontal" id="add_form">
+<div class="form-group">
+    <h3 class="text-center">직원정보등록</h3>
+</div>
+<br>   <br>  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="id">ID</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="id">
+    </div>
+  </div> 
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">이름</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="name" value="박씨">
+    </div>
+  </div> 
+    
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">비밀번호</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" name="pwd" value="0123">
+    </div>
+  </div>  
+ 
+ <!-- 
+   <div class="form-group">
+    <label class="control-label col-sm-2" for="pwdc">비밀번호확인</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" id="pwdc">
+    </div>
+  </div>   
+  -->  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">이메일</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="email" value="bbb@abc.kr">
+    </div>
+  </div>  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="addr">주소</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="addr" value="부산">
+    </div>
+  </div>  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="phone">휴대폰번호</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="phone" value="010-5623-4512">
+    </div>
+  </div>
+     
+ <br>  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="add_bt" class="btn btn-default">등록</button>
+    </div>
+  </div>  
+  
+</form>

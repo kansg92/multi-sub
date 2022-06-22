@@ -21,15 +21,9 @@ public class CouponVO {
 	private Date regdate;
 	private String expirDate;
 	private boolean expirYN;
-	
-	private String cdstate;
-	private String cdusedate;
-	private String cduserid;
-	
-	
+		
 	
 	public CouponVO(int id, String name, double discount, String expirDate, boolean expirYN) {
-	
 		this.id = id;
 		this.name = name;
 		this.discount = discount;
@@ -37,18 +31,6 @@ public class CouponVO {
 		this.expirYN = expirYN;
 	}
 
-
-
-	public CouponVO(int id, String name, double discount, Date regdate, String expirDate, boolean expirYN) {
-		
-		this.id = id;
-		this.name = name;
-		this.discount = discount;
-		this.regdate = regdate;
-		this.expirDate = expirDate;
-		this.expirYN = expirYN;
-	}
-		
 	
 	
 }

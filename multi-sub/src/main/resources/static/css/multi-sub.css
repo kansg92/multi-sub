@@ -4,6 +4,10 @@
 	
 }
 
+.hidden{
+	display: none;
+}
+
 #main-nav{
 	margin-bottom: 1px;
 }
@@ -44,6 +48,11 @@
 	float:right;
 }
 
+#main-menu{
+	justify-content: space-around;
+	
+}
+
 
 #main-header{
 	background-color: #009223
@@ -56,13 +65,23 @@
 
 .sub-menu{
 	font-weight: bold;
+	margin-top: 0;
 }
 
-.sub-menu:hover{
-	text-decoration: none; 
-	color:var(--sub-yellow);
-}
+
 
 .sub-menu:visited{
 	color:var(--sub-green);
 }
+
+
+.productinfo--img {
+	width: inherit;
+	height: 180px;
+}
+
+.mealmethod--img{
+	height: 300px;
+}
+
+

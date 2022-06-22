@@ -15,7 +15,7 @@ class UsersInsertTests {
 	
 	@Test
 	void contextLoads() {
-		UsersVO users = new UsersVO("id04", "pwd04", "choi", "choi@daum.net","gyeongbuk","010-2222-3333", 700,"M-780-50489",null,4);
+		UsersVO users = new UsersVO("id03","pwd03","back","back@gmail.com","incheon","010-5462-4861",700,"M-101-12312",null,300);
 		
 		try {
 			ubiz.register(users);

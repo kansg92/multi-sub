@@ -15,4 +15,5 @@ public interface ToppingMapper {
 	public void delete(int id) throws Exception;
 	public ToppingVO select(int id) throws Exception;
 	public List<ToppingVO> selectAll() throws Exception;
+	public List<ToppingVO> selectMenu(int cateId) throws Exception;
 }

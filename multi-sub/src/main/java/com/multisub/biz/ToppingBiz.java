@@ -40,5 +40,10 @@ public class ToppingBiz implements Biz<Integer, ToppingVO> {
 		return dao.selectAll();
 				
 	}
+	
+	public List<ToppingVO> selectMenu(Integer k) throws Exception {		
+		return dao.selectMenu(k);
+				
+	}
 
 }

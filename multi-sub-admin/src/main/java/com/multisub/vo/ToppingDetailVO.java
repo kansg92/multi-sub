@@ -14,18 +14,21 @@ import lombok.ToString;
 public class ToppingDetailVO {
 	private int id;
 	private int amount;
+	private int tdPrice;
 	private int toppingId;
 	private int ordersDId;
 	
-	private int tdprice;
 	private String toppingName;
-	
-	public ToppingDetailVO(int id, int amount, int toppingId, int ordersDId) {
+
+	public ToppingDetailVO(int id, int amount, int tdPrice, int toppingId, int ordersDId) {
 		this.id = id;
 		this.amount = amount;
+		this.tdPrice = tdPrice;
 		this.toppingId = toppingId;
 		this.ordersDId = ordersDId;
 	}
+	
+	
 
 	
 	

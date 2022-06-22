@@ -1,0 +1,31 @@
+<meta charset="UTF-8">
+
+<div class="container col-sm-10">     
+<br>
+  <h2>직원 목록</h2>
+  <br>       
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>이메일</th>
+        <th>주소</th>
+        <th>등록일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="u : ${ulist}">
+        <td><a href="" th:text="${u.id}" th:href="@{detail(id=${u.id})}"></a></td>
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.phone}"></td>
+        <td th:text="${u.email}"></td>
+        <td th:text="${u.addr}"></td>
+        <td th:text="${#dates.format(u.regdate,'yyyy/MM/dd')}"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+ 

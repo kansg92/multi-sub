@@ -5,26 +5,26 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multisub.mapper.CouponMapper">
 	
 	<select id="select" parameterType="int" resultType="couponVO">
-		SELECT c.id, c.name, c.discount, c.regdate, c.expirDate, c.expirYN, cd.state AS cdstate, 
-		cd.useDate AS cdusedate, cd.userId AS cduserid
-		FROM coupon c
-		INNER JOIN coupondetail cd ON c.id = cd.id
-		WHERE c.id = #{id}
+		SELECT * FROM COUPON WHERE ID=#{id}
 	</select>
 	<select id="selectall" resultType="couponVO">
-		SELECT c.id, c.name, c.discount, c.regdate, c.expirDate, c.expirYN, cd.state AS cdstate, 
-		cd.useDate AS cdusedate, cd.userId AS cduserid
-		FROM coupon c
-		INNER JOIN coupondetail cd ON c.id = cd.id
+		SELECT * FROM COUPON ;
 	</select>
 	<insert id="insert" parameterType="couponVO">
-		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, #{expirYN})
+		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, 0)
 	</insert>
 	<update id="update" parameterType="couponVO">
-		UPDATE COUPON SET NAME=#{name}, DISCOUNT=#{discount}, EXPIRDATE=#{expirDate}, EXPIRYN=#{expirYN} WHERE ID = #{id}
+		UPDATE COUPON SET NAME=#{name}, DISCOUNT=#{discount}, EXPIRDATE=#{expirDate}, EXPIRYN=#{expirYN} 
+		WHERE ID = #{id}
 	</update>
 	<delete id="delete" parameterType="int">
 		DELETE FROM COUPON WHERE ID=#{id}
 	</delete>
+	
+	<!-- -->
+	
+	<select id="selectlatest" resultType="couponVO">
+		select * from coupon order by id desc limit 1;
+	</select>
 	
 </mapper>

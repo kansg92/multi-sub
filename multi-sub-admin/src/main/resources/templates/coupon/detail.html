@@ -1,0 +1,75 @@
+<meta charset="UTF-8">
+
+
+<script>
+function gettoday(){
+	var today=new Date(Date.now());
+	var year = today.getFullYear();
+	var month = ('0' + (today.getMonth() + 1)).slice(-2);
+	var day = ('0' + today.getDate()).slice(-2);
+	var dateString = year + '-' + month  + '-' + day;
+	return dateString;
+}
+
+$(document).ready(function(){
+	$('#expirDate').attr("min", gettoday());	
+	$('#updatebtn').click(function(){
+		$('#coupon_form').attr({
+			'method':'post',
+			'action':'update' 
+		});
+		$('#coupon_form').submit();
+	});
+	
+	$('#deletebtn').click(function(){
+		$('#coupon_form').attr({
+			'method':'post',
+			'action':'delete' 
+		});
+		$('#coupon_form').submit();
+	});			
+});
+</script>
+          
+<form class="form-horizontal" id="coupon_form">
+<div class="form-group">
+    <h3 class="text-center">쿠폰 상세정보</h3>
+</div>
+<br>   <br>  
+   <div class="form-group">
+    <label class="control-label col-sm-2" for="id"></label>
+    <div class="col-sm-4">
+      <input type="hidden" class="form-control" name="id" th:value="${cvo.id}">
+    </div>
+  </div> 
+   
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">쿠폰명</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="name" th:value="${cvo.name}">
+    </div>
+  </div> 
+ 
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="discount">할인율(%)</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="discount" th:value="${cvo.discount}">
+    </div>
+  </div>  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="expirDate">사용기한</label>
+    <div class="col-sm-4">
+      <!-- <input type="text" class="form-control" name="expirDate" th:value="${cvo.expirDate}">  -->
+      <input type="date" class="form-control" name="expirDate" id="expirDate" th:value="${cvo.expirDate}"> 
+    </div>
+  </div> 
+       
+ <br>  
+  <div class="form-group">                  
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="updatebtn" class="btn btn-default">수정</button>
+      <button id="deletebtn" class="btn btn-default">삭제</button>
+  </div>    </div>   
+  
+</form>

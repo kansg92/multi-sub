@@ -44,5 +44,10 @@ public class ProductBiz implements Biz<Integer, ProductVO> {
 		// TODO Auto-generated method stub
 		return dao.selectAll();
 	}
+	
+	public List<ProductVO> selectMenu(Integer k) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectMenu(k);
+	}
 
 }

@@ -7,8 +7,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="select" parameterType="int" resultType="userauthorityVO">
 		SELECT * FROM USERSTYPE WHERE ID=#{id}
 	</select>
-	<select id="selectall" resultType="userauthorityVO">
+	<select id="selectDetail" parameterType="int" resultType="userauthorityVO">
+		SELECT ut.id, ut.userType, ut.regdate, 
+		us.id AS usid , us.name AS usname, us.email AS usemail, us.addr AS usaddr, us.phone AS usphone 
+		FROM userstype ut
+		INNER JOIN users us ON ut.id = us.userTypeId
+		WHERE ut.id = #{id};
+	</select>
+	<select id="selectAll" resultType="userauthorityVO">
 		SELECT * FROM USERSTYPE
+	</select>
+	<select id="selectDetailAll" resultType="userauthorityVO">
+		SELECT ut.id, ut.userType, ut.regdate, 
+		us.id AS usid , us.name AS usname, us.email AS usemail, us.addr AS usaddr, us.phone AS usphone 
+		FROM userstype ut
+		INNER JOIN users us ON ut.id = us.userTypeId
 	</select>
 	<insert id="insert" parameterType="userauthorityVO">
 		INSERT INTO usersType VALUES (#{id},#{userType},CURDATE())

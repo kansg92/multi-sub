@@ -1,0 +1,32 @@
+<meta charset="UTF-8">
+
+<div class="container col-sm-8">    
+<br>
+  <h2>쿠폰 목록</h2>
+  <br>       
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>쿠폰명</th>
+        <th>할인율(%)</th>
+        <th>등록일</th>
+        <th>사용기한</th>-
+        <th>사용가능여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="c : ${clist}">
+        <td th:text="${c.id}"></td>
+        <td><a href="" th:text="${c.name}" th:href="@{detail(id=${c.id})}"></a></td>
+        <td th:text="${c.discount}"></td>
+        <td th:text="${#dates.format(c.regdate,'yyyy/MM/dd')}"></td>
+        <td th:text="${c.expirDate}"></td> 
+        <td th:if="${c.expirYN==false}">불가능</td> 
+        <td th:unless="${c.expirYN==false}">가능</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+ 

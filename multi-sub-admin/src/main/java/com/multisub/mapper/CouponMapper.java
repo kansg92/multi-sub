@@ -15,6 +15,10 @@ public interface CouponMapper {
 	public void update(CouponVO obj) throws Exception;
 	public CouponVO select(int obj) throws Exception;
 	public List<CouponVO> selectall() throws Exception;
+	
+	/************************************/
+	
+	public CouponVO selectlatest() throws Exception;
 }
 
 

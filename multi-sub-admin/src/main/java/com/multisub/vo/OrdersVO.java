@@ -21,17 +21,7 @@ public class OrdersVO {
 	private String payState;
 	private Date udate;
 	private String usersId;
-	private int couponDId;
 	
-	public OrdersVO(int id, int price, String payInfo, String payState, String usersId, int couponDId) {
-		
-		this.id = id;
-		this.price = price;
-		this.payInfo = payInfo;
-		this.payState = payState;
-		this.usersId = usersId;
-		this.couponDId = couponDId;
-	}
 	
 }
 

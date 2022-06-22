@@ -41,4 +41,14 @@ public class UsersBiz implements Biz<String, UsersVO>{
 	}
 	
 	
+	
+	
+	public List<UsersVO> getCustomer() throws Exception {
+		return dao.selectcustomer();
+	}
+	
+	
+	public List<UsersVO> getEmployee() throws Exception {
+		return dao.selectemployee();
+	}
 }

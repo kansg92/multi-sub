@@ -33,6 +33,14 @@ public class OrdersDetailVO {
 		this.prodId = prodId;
 		this.ordersId = ordersId;
 	}
+
+	public OrdersDetailVO(int amount, int odPrice, int prodId, int ordersId) {
+		this.amount = amount;
+		this.odPrice = odPrice;
+		this.prodId = prodId;
+		this.ordersId = ordersId;
+	}
+	
 	
 	
 }

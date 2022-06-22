@@ -12,6 +12,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectAll" resultType="ProductVO">
 		SELECT * FROM product
 	</select>
+	
+	<select id="selectMenu" resultType="ProductVO">
+		SELECT * FROM product WHERE cateid=#{cateId}
+	</select>
+	
 	<insert id="insert" parameterType="ProductVO">
 		INSERT INTO product VALUES (NULL,#{name},#{price},#{imgname},SYSDATE(),#{cateId},#{nutId})
 	</insert>

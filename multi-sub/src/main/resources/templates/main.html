@@ -23,6 +23,7 @@
         <!-- bootstrap js -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         
+        
     </head>
     <body>
         <!-- Navigation-->
@@ -78,16 +79,105 @@
         </header>
         
         <!-- Section-->
-        <section class="py-5" th:insert="${center} ? ${center} : center">
-        <!-- center page -->
+        <section class="py-5" >
+  
+			<div class="container px-4 px-lg-5 mt-1" >
+			  <ul class="nav nav-pills" id="main-menu" th:if="${#strings.isEmpty(empty)}">
+			    <li th:if="${#httpServletRequest.servletPath == '/promotion' }" th:class="sub-active">
+			    	<a href="/promotion" class="sub-green sub-menu">Promotion</a>
+		    	</li>
+			    <li th:unless="${#httpServletRequest.servletPath == '/promotion'}" >
+			    	<a href="/promotion" class="sub-green sub-menu">Promotion</a>
+		    	</li>		    	
 
-				  
+			    <li th:if="${#httpServletRequest.servletPath == '/sandwitch' }" th:class="sub-active">
+			    	<a href="/sandwitch" class="sub-green sub-menu">Sandwitch</a>
+		    	</li>
+  				    <li th:unless="${#httpServletRequest.servletPath == '/sandwitch' }">
+			    	<a href="/sandwitch" class="sub-green sub-menu">Sandwitch</a>
+		    	</li>
+		    	
+		    	</li>
+  				    <li th:if="${#httpServletRequest.servletPath == '/salad' }" th:class="sub-active">
+			    	<a href="/salad" class="sub-green sub-menu">Salad</a>
+		    	</li>
+		    	
+ 			    </li>
+  				    <li th:unless="${#httpServletRequest.servletPath == '/salad' }">
+			    	<a href="/salad" class="sub-green sub-menu">Salad</a>
+		    	</li>
+		    	
+   			    </li>
+  				    <li th:if="${#httpServletRequest.servletPath == '/lab' }" th:class="sub-active">
+			    	<a href="/lab" class="sub-green sub-menu">Lab</a>
+		    	</li>
+		    	
+ 			    </li>
+  				    <li th:unless="${#httpServletRequest.servletPath == '/lab' }">
+			    	<a href="/lab" class="sub-green sub-menu">Lab</a>
+		    	</li>
+		    	
+  	   			</li>
+  				    <li th:if="${#httpServletRequest.servletPath == '/side' }" th:class="sub-active">
+			    	<a href="/side" class="sub-green sub-menu">Side</a>
+		    	</li>
+		    	
+ 			    </li>
+  				    <li th:unless="${#httpServletRequest.servletPath == '/side' }">
+			    	<a href="/side" class="sub-green sub-menu">Side</a>
+		    	</li>
+
+			  </ul>
+  			  <ul class="nav nav-pills" id="main-menu" th:unless="${#strings.isEmpty(empty)}">
+  			  	<li><h2 class="sub-green sub-menu ">STEP1</h2></li>
+  			  	<li><h2 class="sub-green sub-menu ">STEP2</h2></li>
+  			  	<li><h2 class="sub-green sub-menu ">STEP3</h2></li>
+  			  	<li><h2 class="sub-green sub-menu ">STEP4</h2></li>
+  			  	<li><h2 class="sub-green sub-menu ">STEP5</h2></li>
+  			  	<li><h2 class="sub-green sub-menu ">STEP5</h2></li>
+  			  </ul>
+  			  
+			  
+			</div>
+		  	<div class="container px-4 px-lg-5 mt-5" th:insert="${center} ? ${center} : center">	
+		  	<!-- center page -->  
+		  	
+		  	
+		  	</div>
          
-		
+         	<!-- orders page -->  
+			<div class="container px-4 px-lg-5 mt-5" >
+				<h3>orders info</h3>
 
-                 
+				<div class="row gx-4 gx-lg-5 row-cols-3 row-cols-md-3 row-cols-xl-3 
+				justify-content-space-between ">
+					
+					<div class="order-box" th:each="cart:${session.cartList}">
+						<div class="col mb-5">
+					     <div class="card h-100">
+					         <!-- Product image-->
+					         <img class="card-img-top productinfo--img" 
+					         th:src="'/img/'+${cart.imgname}" alt="..." />
+					         <!-- Product details-->
+					         <div class="card-body p-4">
+					             <div class="text-left" >
+					                 <!-- Product name-->
+					                 <h5 class="fw-bolder" th:text="'제품명: '+${cart.name}"></h5>
+					                 <!-- Product price-->
+					                 	상품금액: <span  th:with="cnt=${cartStat.count}-1"
+					                 			th:text="${session.toppingPrice[cnt]}+${cart.price}"></span>원
+					             </div>
+					         </div>
+					     </div>
+						</div>
+					</div>
+					
+				</div>	
+				<button>주문하기</button>				
+			</div>
+        
             
-		<!-- center page -->   
+		 
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">

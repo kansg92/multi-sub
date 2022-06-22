@@ -1,0 +1,61 @@
+<meta charset="UTF-8">
+<script>
+
+function gettoday(){
+	var today=new Date(Date.now());
+	var year = today.getFullYear();
+	var month = ('0' + (today.getMonth() + 1)).slice(-2);
+	var day = ('0' + today.getDate()).slice(-2);
+	var dateString = year + '-' + month  + '-' + day;
+	return dateString;
+}
+
+$(document).ready(function(){
+	$('#expirDate').attr("min", gettoday());		
+	$('#add_bt').click(function(){	
+		$('#add_form').attr({
+			'method':'post',
+			'action':'addimpl' 
+		});
+		$('#add_form').submit();
+	});
+});
+
+</script>
+
+<form class="form-horizontal" id="add_form">
+<div class="form-group">
+    <h3 class="text-center">쿠폰 등록</h3>
+</div>
+<br>   <br>  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">쿠폰명</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="name" value="생일축하쿠폰">
+    </div>
+  </div> 
+ 
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="discount">할인율(%)</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="discount" value="10">
+    </div>
+  </div>  
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="expirDate">사용기한</label>
+    <div class="col-sm-4">
+      <input type="date" class="form-control" name="expirDate" id="expirDate">
+    </div>
+  </div>  
+     
+ <br>  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="add_bt" class="btn btn-default">등록</button>
+    </div>
+  </div>  
+  
+  
+</form>
