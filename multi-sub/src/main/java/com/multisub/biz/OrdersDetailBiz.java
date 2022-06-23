@@ -41,5 +41,13 @@ public class OrdersDetailBiz implements Biz<Integer, OrdersDetailVO> {
 	public List<OrdersDetailVO> get() throws Exception {
 		return dao.selectAll();
 	}
+	
+	public List<OrdersDetailVO> getsoba() throws Exception {
+		return dao.selectOrderBoxAll();
+	}
+	
+	public int getsobca() throws Exception {
+		return dao.selectOrderBoxCountAll();
+	}
 
 }

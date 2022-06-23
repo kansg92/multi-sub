@@ -36,6 +36,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			INNER JOIN product p ON p.id = od.prodId
 			INNER JOIN category c ON p.cateid = c.id
 	</select>
+	
+	<select id="selectOrderBoxAll" resultType="OrdersDetailVO">
+	SELECT o.usersID, p.name AS pname, p.imgname AS pimgname, o.price, od.amount , od.id
+	FROM ordersdetail od
+	INNER JOIN orders o ON  od.ordersId=o.id
+	INNER JOIN product p ON od.prodId = p.id
+	</select>
+	
+	<select id="selectOrderBoxCountAll" resultType="int">
+		SELECT count(*) AS pcount 
+		FROM ordersdetail od
+		INNER JOIN orders o ON  od.ordersId=o.id
+		INNER JOIN product p ON od.prodId = p.id
+	</select>
+	
 	<insert id="insert" parameterType="OrdersDetailVO"  useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO ordersDetail VALUES (NULL,#{amount},#{odPrice},#{prodId},#{ordersId})
 	</insert>

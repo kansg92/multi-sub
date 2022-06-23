@@ -1,15 +1,46 @@
 <meta charset="UTF-8">
 
-
 <script>
 $(document).ready(function(){
-	$('#updatebtn').click(function(){
-		$('#user_form').attr({
-			'method':'post',
-			'action':'update' 
-		});
-		$('#user_form').submit();
+ 	$('input[name="pwd"]').keyup(function(){
+		var pwd = $(this).val();
+		var pwdc = $('input[name="pwdc"]').val();		
+
+		if(!(pwdc==null||pwdc=='')){
+			if(pwd != pwdc){
+				$('#pwdcspan').text('비밀번호와 일치하지 않습니다.');
+			}else{
+				$('#pwdcspan').text('비밀번호와 일치합니다.');
+			} 	
+		}				
+	}); 	
+		
+	$('input[name="pwdc"]').keyup(function(){
+		var pwd = $('input[name="pwd"]').val();
+		var pwdc = $(this).val();
+		
+		if(!(pwd==null||pwd=='')){
+			if(pwd != pwdc){
+				$('#pwdcspan').text('비밀번호와 일치하지 않습니다.');
+			}else{
+				$('#pwdcspan').text('비밀번호와 일치합니다.');
+			} 	
+		}
 	});
+	
+	$('#updatebtn').click(function(){
+		var pwd = $('input[name="pwd"]').val();
+		var pwdc = $('input[name="pwdc"]').val();	
+		if(pwd==null||pwd==''||pwdc==null||pwdc==''){
+			alert('비밀번호를 입력해주십시오.');
+		}else{
+			$('#user_form').attr({
+				'method':'post',
+				'action':'update' 
+			});
+			$('#user_form').submit();
+		}
+	});	
 	
 	$('#deletebtn').click(function(){
 		$('#user_form').attr({
@@ -18,14 +49,10 @@ $(document).ready(function(){
 		});
 		$('#user_form').submit();
 	});	
-	
-	
-	
+		
 });
 
-</script>
-
-          
+</script>          
           <form class="form-horizontal" id="user_form">     
           <div class="form-group">
     		<h3 class="text-center">고객정보</h3>
@@ -33,53 +60,59 @@ $(document).ready(function(){
 		<br>   <br>                 
               <div class="form-group">
                   <label class="control-label col-sm-2" for="id">ID</label>   
-                  <div class="col-sm-4">          
+                  <div class="col-sm-8">          
                   <input type="text" class="form-control" name="id" th:value="${uvo.id}" readonly="readonly">
                   </div>
               </div>
               <div class="form-group">
                   <label class="control-label col-sm-2" for="pwd">비밀번호</label>
-                  <div class="col-sm-4">  
-                  <input type="text" class="form-control" name="pwd" th:value="${uvo.pwd}">
+                  <div class="col-sm-8">  
+                  <input type="password" class="form-control" name="pwd" th:value="${uvo.pwd}"><span id="pwdspan"></span>
+                  </div>    
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-sm-2" for="pwdc">비밀번호확인</label>
+                  <div class="col-sm-8">  
+                  <input type="password" class="form-control" name="pwdc" th:value="${uvo.pwd}"><span id="pwdcspan"></span>
                   </div>    
               </div>
               <div class="form-group">
                   <label class="control-label col-sm-2" for="name">이름</label>
-                  <div class="col-sm-4">
+                  <div class="col-sm-8">
                   <input type="text" class="form-control" name="name" th:value="${uvo.name}">
                   </div>    
               </div>
               <div class="form-group">
                   <label class="control-label col-sm-2" for="email">이메일</label>
-                  <div class="col-sm-4">              
-                  <input type="text" class="form-control" name="email" th:value="${uvo.email}">
+                  <div class="col-sm-8">              
+                  <input type="email" class="form-control" name="email" th:value="${uvo.email}">
                   </div>
               </div>
  
                <div class="form-group">
                   <label class="control-label col-sm-2" for="addr">주소</label>
-                  <div class="col-sm-4">               
+                  <div class="col-sm-8">               
                   <input type="text" class="form-control" name="addr" th:value="${uvo.addr}">
                   </div>
               </div>
               
               <div class="form-group">
                   <label class="control-label col-sm-2" for="phone">휴대폰번호</label>  
-                  <div class="col-sm-4">              
+                  <div class="col-sm-8">              
                   <input type="text" class="form-control" name="phone" th:value="${uvo.phone}">
                   </div>
               </div> 
                            
               <div class="form-group">
                   <label class="control-label col-sm-2" for="point">포인트</label>
-                  <div class="col-sm-4">              
+                  <div class="col-sm-8">              
                   <input type="text" class="form-control" name="point" th:value="${uvo.point}">
                   </div>
               </div>  
  
               <div class="form-group">
                   <label class="control-label col-sm-2" for="regdate">등록일</label>
-                  <div class="col-sm-4">              
+                  <div class="col-sm-8">              
                   <input type="text" class="form-control"
                       name="regdate" th:value="${#dates.format(uvo.regdate,'yyyy/MM/dd')}" 
                       readonly="readonly">
@@ -89,7 +122,7 @@ $(document).ready(function(){
          
               
   <div class="form-group">                  
-    <div class="col-sm-offset-2 col-sm-10">
+    <div class="col-sm-offset-2 col-sm-10"">
       <button id="updatebtn" class="btn btn-default">수정</button>
       <button id="deletebtn" class="btn btn-default">삭제</button>
   </div>    </div>         

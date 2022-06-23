@@ -32,7 +32,7 @@ public class CustomerController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:detail?id="+uvo.getId();
+		return "redirect:detail?id="+uvo.getId();		
 	}
 	
 	@RequestMapping("/list")

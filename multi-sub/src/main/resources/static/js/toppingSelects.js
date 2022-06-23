@@ -70,12 +70,7 @@ $(document).ready(function(){
 	
 	
 	
-	$('#sessionBtn').click(function(){
-		var result = confirm("장바구니를 비우겠습니까?");
-		if(result){
-		    session.invalidate();
-		}
-	});
+
 	
 	
 	$('#nextBtn').click(function(){

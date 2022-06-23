@@ -26,6 +26,11 @@ public class OrdersDetailVO {
 	private String udate;
 	private String paydate;
 	
+	private String usersID;
+	private String pname;
+	private String pimgname;
+	private int price;
+	
 	public OrdersDetailVO(int id, int amount, int odPrice, int prodId, int ordersId) {
 		this.id = id;
 		this.amount = amount;

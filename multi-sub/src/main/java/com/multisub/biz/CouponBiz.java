@@ -40,5 +40,13 @@ public class CouponBiz implements Biz<Integer, CouponVO>{
 		return dao.selectAll();
 	}
 	
+	public List<CouponVO> getba() throws Exception {
+		return dao.selectBoxAll();
+	}
+	
+	public int getCouponCnt() throws Exception {
+		return dao.selectBoxCount();
+	}
+	
 	
 }
