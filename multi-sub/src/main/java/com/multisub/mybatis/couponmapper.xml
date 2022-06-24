@@ -10,6 +10,18 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectAll" resultType="couponVO">
 		SELECT * FROM COUPON
 	</select>
+	<select id="selectBoxAll" resultType="couponVO">
+		SELECT c.name , cd.state AS cdstate, c.discount, 
+		c.regdate, c.expirdate, cd.useDate AS cduseDate 
+		FROM coupon c
+		INNER JOIN coupondetail cd ON c.id = cd.couponId
+	</select>
+	<select id="selectBoxCount" resultType="int">
+		SELECT count(*) AS ccdcount,c.name , cd.state AS cdstate, c.discount, c.regdate, c.expirdate, 
+		cd.useDate AS cduseDate
+		FROM coupon c
+		INNER JOIN coupondetail cd ON c.id = cd.couponId
+	</select>
 	<insert id="insert" parameterType="couponVO">
 		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, #{expirYN})
 	</insert>

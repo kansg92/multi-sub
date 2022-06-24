@@ -1,0 +1,185 @@
+.basketdiv {
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+    float: left;
+    font-size: 0.9375em;
+    margin-bottom: 20px;
+}
+    .basketdiv .row.head {
+        border-bottom: 2px solid #888;
+        box-sizing: border-box;
+        background-color: #f4f4f4;
+        font-weight: 500;
+    }
+    .basketdiv .data {
+        border-bottom: 1px dashed #888;
+        box-sizing: border-box;
+        cursor: pointer;
+        float: left;
+        width: 100%;
+    }
+    .basketdiv .data .empty{
+        text-align: center;
+        padding: 12px 0;
+    }
+    .basketdiv .row.head .subdiv {
+        background-color: #f4f4f4;
+    }
+    .basketdiv .row > .subdiv {
+        display: block;
+        float: left;
+    }
+    .basketdiv .row > .subdiv:nth-child(1) {
+        width: 50%;
+    }
+    .basketdiv .row > .subdiv:nth-child(2) {
+        width: 40%;
+    }
+    .basketdiv .row > .subdiv:nth-child(3) {
+        width: 10%;
+    }
+
+    .basketdiv .row > div > div {
+        display: block;
+        float: left;
+        text-align: center;
+        margin: 0;
+        padding: 12px 0;
+    }
+    .basketdiv .row.data > div > div {
+        height: 60px;
+        line-height: 60px;
+    }
+        .basketdiv .data .num .updown {
+            color: #0075ff;
+            font-size: 1.0em;
+            letter-spacing: 1px;
+        }
+        .basketdiv .seqnum {
+        text-align: center;
+    	width: 20%;
+    	font-size: 1.0em;
+            
+        }
+  
+    .basketdiv .img{
+        width: 30%;
+    }
+    .basketdiv .pname{
+        width: 40%;
+    }
+    
+
+    .basketdiv .basketprice {
+        width: 25%;
+    }
+    .basketdiv .num {
+        width: 30%;
+      min-width: 100px;
+    }
+    .basketdiv .sum {
+        width: 35%;
+      max-width: 300px;
+        color: #0000aa;
+    }
+    .basketdiv .point {
+        width: 50%;
+    }
+
+    .basketdiv .couponch{
+        width: 50%;
+    }
+    .basketdiv .basketcmd{
+        width: 50%;
+    }
+    .basketdiv .data .pname {
+        text-align: center !important;
+      line-height: 1.2 !important;
+    }
+    .basketdiv .data .price, .basketdiv .data .sum, .basketdiv .data .point {
+        text-align: center;
+    }
+    .baseform > tbody > tr > td:first-child {
+        width: 100px;
+    }
+
+.buttongroup {
+    padding: 11px 0;
+    margin: 50px 0;
+}
+.narrowbuttongroup{
+    margin: 15px 0;
+}
+    .buttongroup.center {
+        text-align: center;
+    }
+    .buttongroup input[type=text], .buttongroup input[type=password] {
+        height: 10px;
+    }
+    .buttongroup button, .buttongroup a {
+        margin-right: 8px;
+    }
+        .buttongroup button:last-child, .buttongroup a:last-child {
+            margin-right: 0;
+        }
+
+    .abutton, .abutton:link, .abutton:visited, .abutton:active, input[type=button] {
+        background-color: #383838;
+        border: 1px solid #888888;
+        color: #ffffff;
+        cursor: pointer;
+        letter-spacing: normal;
+        padding: 3px 5px;
+        margin: 2px 3px;
+        width: auto;
+        word-break: keep-all;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1.0em;
+    }
+
+.abutton-alt {
+    background-color: #d3e2c6;
+}
+
+.red {
+    color:#b00;
+}
+.blue {
+  color: #0075ff;
+}
+.sumcount, .summoney{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.sumcount, .summoney{
+  font-size: 1.5em;
+    font-weight: bold;
+}
+.buttongroup{
+  text-align: center;
+}
+.buttongroup a{
+  text-decoration: none;
+}
+.cmd a, .cmd span {
+    padding: 12px 30px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #000;
+    background-color: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+.cmd.small a, .cmd.small span {
+    padding: 6px 20px;
+    font-size: 0.8125em;
+}
+
+.orderform .p_num {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5em;
+}

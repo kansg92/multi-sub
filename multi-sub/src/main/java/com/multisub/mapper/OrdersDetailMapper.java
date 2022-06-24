@@ -15,6 +15,8 @@ public interface OrdersDetailMapper {
 	public void update(OrdersDetailVO obj) throws Exception;
 	public OrdersDetailVO select(int obj) throws Exception;
 	public List<OrdersDetailVO> selectAll() throws Exception;
+	public List<OrdersDetailVO> selectOrderBoxAll() throws Exception;
+	public int selectOrderBoxCountAll() throws Exception;
 }
 
 
