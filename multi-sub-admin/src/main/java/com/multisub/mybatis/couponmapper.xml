@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM COUPON ;
 	</select>
 	<insert id="insert" parameterType="couponVO">
-		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, 0)
+		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, 1)
 	</insert>
 	<update id="update" parameterType="couponVO">
 		UPDATE COUPON SET NAME=#{name}, DISCOUNT=#{discount}, EXPIRDATE=#{expirDate}, EXPIRYN=#{expirYN} 
@@ -26,5 +26,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectlatest" resultType="couponVO">
 		select * from coupon order by id desc limit 1;
 	</select>
-	
+	<select id="search" resultType="couponVO">
+		select * from coupon order by id desc limit 1;
+	</select>	
 </mapper>

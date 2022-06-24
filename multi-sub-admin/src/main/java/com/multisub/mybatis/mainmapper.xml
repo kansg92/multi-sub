@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multisub.mapper.MainMapper">
+
+	
+	<select id="searchcoupon" parameterType="String" resultType="CouponVO">
+		SELECT * FROM coupon WHERE name LIKE CONCAT('%',#{srchtext},'%')
+	</select>
+	
+	<select id="searchcustomer" parameterType="String" resultType="UsersVO">
+		SELECT * FROM users WHERE UserTypeId=200 and name LIKE CONCAT('%',#{srchtext},'%')
+	</select>
+	
+	<select id="searchemployee" parameterType="String" resultType="UsersVO">
+		SELECT * FROM users WHERE UserTypeId=300 and name LIKE CONCAT('%',#{srchtext},'%')
+	</select>
+	
+	<select id="searchproduct" parameterType="String" resultType="ProductVO">
+		SELECT * FROM product WHERE name LIKE CONCAT('%',#{srchtext},'%')
+	</select>
+	
+</mapper>

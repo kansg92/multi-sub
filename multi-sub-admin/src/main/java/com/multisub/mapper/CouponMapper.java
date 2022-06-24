@@ -19,6 +19,7 @@ public interface CouponMapper {
 	/************************************/
 	
 	public CouponVO selectlatest() throws Exception;
+	//public List<CouponVO> search(String searchtxt) throws Exception;
 }
 
 

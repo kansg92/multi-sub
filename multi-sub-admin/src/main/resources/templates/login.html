@@ -1,0 +1,90 @@
+<meta charset="utf-8" />
+
+<script>
+$(document).ready(function(){
+	$('#login_bt').click(function(){		
+		$('#login_form').attr({
+			'method':'post',
+			'action':'/loginimpl' 
+		});
+		$('#login_form').submit();
+	});//login_bt
+	
+});
+</script>
+
+<style>
+/* html, body {
+  margin: 0;
+  padding: 0;
+} */
+
+#wrap {
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-bottom: 45px;
+/* 	min-height: 100vh; */
+    position: relative;
+    width: 100%;
+}
+
+footer {
+	width: 100%;
+	height: 45px; /* 내용물에 따라 알맞는 값 설정 */
+	bottom: 0px;
+	position: absolute; 
+}
+
+</style>
+
+<body>
+<br><br><br> 
+
+<div class="row d-flex justify-content-center align-items-center" id="wrap">
+<div class="container-fluid">
+  <br> 
+   <div class="col-sm-offset-2 col-sm-10">
+  	<h2>Admin Login</h2>
+  </div>  
+  <br><br>   <br><br> 
+  <form class="form-horizontal" id="login_form">
+    <div class="form-group">
+      	<label class="control-label col-sm-2" for="id">ID</label>
+      	<div class="col-sm-6">
+        	<input type="text" class="form-control" id="id" name="id">
+      	</div>
+    </div>
+    <div class="form-group">
+    	<label class="control-label col-sm-2" for="pwd">비밀번호</label> 
+    	<div class="col-sm-6">       
+     		<input type="password" class="form-control" id="pwd" name="pwd">
+      	</div>
+    </div>
+  	<div class="form-group" th:if="${loginfail != null}">        
+      <div class="col-sm-offset-2 col-sm-10">
+         <p class="" th:text="${loginfail}" id="loginfail"></p>
+      </div>
+  	</div>
+  	<div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button id="login_bt" class="btn btn-dark">LOGIN</button>
+      </div>
+  	</div>
+  </form>  
+</div>  
+
+</div>
+
+     
+
+<footer class="bg-light text-center">
+  <!-- Copyright -->
+  <div class="text-center p-3 small container-fluid" style="background-color: rgba(0, 0, 0, 0.2)">
+		Copyright &copy; Multi-Sub Main Page 2022
+  </div>
+  <!-- Copyright -->
+</footer>
+        
+</body> 
+ 
+ 
