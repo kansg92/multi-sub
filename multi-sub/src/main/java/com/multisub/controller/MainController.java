@@ -52,7 +52,7 @@ public class MainController {
 		List<ProductVO> cartList = new ArrayList<>();
 		List<Integer> toppingSum = new ArrayList<>();
 		Integer num = 0;
-		
+		int sumprice = 0;
 		if(session.getAttribute("count") != null) {
 			
 			num = (int) session.getAttribute("count");
@@ -93,6 +93,7 @@ public class MainController {
 						product = pbiz.get(prod);
 						cartList.add(product);
 						toppingSum.add(topSumPrice);
+						sumprice += product.getPrice()+topSumPrice;
 						
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -105,8 +106,7 @@ public class MainController {
 		}
 		session.setAttribute("cartList",cartList);
 		session.setAttribute("toppingPrice",toppingSum);
-		m.addAttribute("toppingPrice",toppingSum);
-		m.addAttribute("cartList",cartList);
+		session.setAttribute("sumprice",sumprice);
 		// 토핑셀렉츠 정보 가져오기. -end
 		
 		m.addAttribute("center","center");
@@ -226,13 +226,7 @@ public class MainController {
 		
 		return "redirect:/";
 	}
-	@RequestMapping("/payment")
-	public String payment(Model m) {
-		
-		
-		m.addAttribute("center","payment");
-		return "/main";
-	}
+
 
 	@RequestMapping("orders")
 	public String orders(Model m, HttpSession session) {
@@ -242,15 +236,6 @@ public class MainController {
 	}
 	
 
-	@RequestMapping("/mtchoose")
-	public String mtchoose(Model m) {
-		
-		m.addAttribute("center","mtchoose");
-		
-		return "/main";
-	
-	}
-	
 	
 	
 }
