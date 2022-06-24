@@ -46,22 +46,21 @@ public class MainController {
 	private List<ProductVO> list;
 	
 	@RequestMapping("/")
-	public String main(Model m,HttpSession session) {
-		
+	public String main(String mapping, Model m,HttpSession session) {
+		System.out.println("main--------------Start"+mapping);
 		// 토핑셀렉츠 정보 가져오기.
 		List<ProductVO> cartList = new ArrayList<>();
 		List<Integer> toppingSum = new ArrayList<>();
 		Integer num = 0;
-		
 		if(session.getAttribute("count") != null) {
 			
 			num = (int) session.getAttribute("count");
-			System.out.println("numDATA::"+num.getClass());
+			System.out.println("num:: "+num);
 			
 			for (int i = 0; i < num; i++) {	
 				HashMap<String, Object> hashMap = 
 						(HashMap<String, Object>) session.getAttribute("topping"+Integer.valueOf(i+1));
-				System.out.println("num:: "+ num);
+				
 				if(hashMap != null) {
 					int bread = (int) hashMap.get("bread");
 					int toast = (int) hashMap.get("toast");
@@ -72,16 +71,21 @@ public class MainController {
 					List<Integer> sauce = (List<Integer>) hashMap.get("sauce");
 					List<Integer> others = (List<Integer>) hashMap.get("others");
 					
-					// 토핑 가격합산 가져오기
+					System.out.println("toppingList:: "+session.getAttribute("topping"+Integer.valueOf(i+1)));
+					// 토핑 추가 가격합산 가져오기
 					ToppingVO topping = null;
-					int topSumPrice = 0;
+					ToppingVO breadLength = null;
+					try {
+						breadLength = topbiz.get(cm);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					int topSumPrice = breadLength.getPrice();
 					for (int top : others) {
-						System.out.println(top);
 						try {
 							topping = topbiz.get(top);
-							System.out.println("토핑가격 ::"+topping.getPrice());
 							topSumPrice += topping.getPrice();
-							System.out.println("topSumPrice:: "+topSumPrice);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -91,6 +95,7 @@ public class MainController {
 					ProductVO product = null;
 					try {
 						product = pbiz.get(prod);
+						product.setSessionNum(i+1);
 						cartList.add(product);
 						toppingSum.add(topSumPrice);
 						
@@ -99,20 +104,29 @@ public class MainController {
 						e.printStackTrace();
 					}
 					System.out.println("toppingSum:: "+toppingSum);
-					System.out.println(cartList);
+					System.out.println("cartList:: "+cartList);
 				}
 			}
 		}
 		session.setAttribute("cartList",cartList);
 		session.setAttribute("toppingPrice",toppingSum);
-		m.addAttribute("toppingPrice",toppingSum);
-		m.addAttribute("cartList",cartList);
+		session.setAttribute("count",num);
 		// 토핑셀렉츠 정보 가져오기. -end
 		
-		m.addAttribute("center","center");
+		if("deleteSessionItem".equals(mapping)) {
+			m.addAttribute("center","orderproductprice");
+			
+			System.out.println("main-----orderproductprice---------End");
+			
+			return "/main";
+		}else {
+			m.addAttribute("center","center");
 
+			System.out.println("main--------------End");
+			
+			return "/main";
+		}
 		
-		return "/main";
 	}
 	
 	@RequestMapping("/promotion")
@@ -191,8 +205,6 @@ public class MainController {
 			list.addAll(pbiz.selectMenu(230));
 			list.addAll(pbiz.selectMenu(240));
 			
-			
-			System.out.println(list);
 			m.addAttribute("prodlist",list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -203,17 +215,8 @@ public class MainController {
 	}
 	
 	@RequestMapping("/orderproductprice")
-	public String orderproductprice(Model m) {
-		
-		List<OrdersDetailVO> list = null;
-		
-		try {
-			list = odbiz.getsoba();
-			m.addAttribute("odlist", list);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public String orderproductprice(HttpSession session,Model m) {
+	
 		m.addAttribute("center","orderproductprice");
 		
 		return "/main";
@@ -226,13 +229,7 @@ public class MainController {
 		
 		return "redirect:/";
 	}
-	@RequestMapping("/payment")
-	public String payment(Model m) {
-		
-		
-		m.addAttribute("center","payment");
-		return "/main";
-	}
+
 
 	@RequestMapping("orders")
 	public String orders(Model m, HttpSession session) {
@@ -242,15 +239,6 @@ public class MainController {
 	}
 	
 
-	@RequestMapping("/mtchoose")
-	public String mtchoose(Model m) {
-		
-		m.addAttribute("center","mtchoose");
-		
-		return "/main";
-	
-	}
-	
 	
 	
 }

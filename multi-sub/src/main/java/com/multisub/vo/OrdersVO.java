@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class OrdersVO {
 	private int id;
-	private int price;
+	private int sumprice;
 	private String payInfo;
 	private Date regdate;
 	private String payState;

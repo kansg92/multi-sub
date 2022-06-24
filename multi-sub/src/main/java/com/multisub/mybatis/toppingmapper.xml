@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM topping WHERE ID=#{id}
 	</select>
 	
+	<select id="getPrice" parameterType="int" resultType="int">
+		SELECT price FROM topping WHERE ID=#{id}
+	</select>
+	
 	<select id="selectAll" resultType="ToppingVO">
 		SELECT * FROM topping
 	</select>

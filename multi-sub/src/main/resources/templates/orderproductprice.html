@@ -7,140 +7,176 @@
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/cart.css" /> 
-<script th:inline="javascript">
-$(document).ready(function(){
-	
-});
+<script>
 
-
-Number.prototype.format = function(){
-	  if(this==0) return 0;
-
-	  var reg = /(^[+-]?\d+)(\d{3})/;
-	  var n = (this + '');
-
-	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
-
-	  return n;
-	};
-	 
-
-String.prototype.format = function(){
-	  var num = parseFloat(this);
-	  if( isNaN(num) ) return "0";
-
-	  return num.format();
-};
-	    
-	    
-	
-	
-
-function change_qty2(t){
-	  var price = parseInt($('input[name=p_price]').val());
-	
-	  var min_qty = 1;
-	  var this_qty = $("#ct_qty").val()*1;
-	  var max_qty = '200'; // 현재 재고
-	  if(t=="m"){
-	    this_qty -= 1;
-	    if(this_qty<min_qty){
-	      alert("수량은 1개 이상 입력해 주십시오.");
-	      return;
-	      }
-	    }
-	    else if(t=="p"){
-	      this_qty += 1;
-	      if(this_qty>max_qty){
-	        alert("죄송합니다. 재고가 부족합니다.");
-	        return;
-	        }
-	    }
-	
-	  var show_total_amount = price * this_qty;
-
-	  
-	  $("#ct_qty").val(this_qty);
-	  $("#it_pay").val(show_total_amount);
-	  $("#total_amount").text(show_total_amount.format());
-	  $("#total_amount").attr("value",show_total_amount);
-	}
-	
 </script>
 </head>
 <body>
 
-    <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
-    
-            <input type="hidden" name="cmd" value="order">
-            <div class="basketdiv" id="basket">
-                <div class="row head">
-                    <div class="subdiv">
-                        <div class="seqnum">상품번호</div>
-                        <div class="img">이미지</div>
-                        <div class="pname">상품명</div>
-                        
-                    </div>
-                    <div class="subdiv">
-                        <div class="basketprice">가격</div>
-                        <div class="num">수량</div>
-                        <div class="sum">합계</div>
-                    </div>
-                    <div class="subdiv">
-                     <div class="basketcmd">삭제</div>
-                    </div>
-                    <div class="split"></div>
-                </div>
-        
-        		<div class="row data" th:each="cart:${session.cartList}">
-                    <div class="subdiv">
-                   		<div class="seqnum"><input type="hidden" name="id" th:value="${cart.id}" th:text="${cartStat.count}" readonly="readonly"></div>
-                        <div class="img"><img th:src="'/img/'+${cart.imgname}" width="20"></div>
-                        <div class="pname">
-                            <p th:text="${cart.name}"></p>
-                        </div>
-                    </div>
-                    <div class="subdiv">
-                        <div class="basketprice"><input type="hidden" name="p_price" id="p_price" class="p_price"  th:with="cnt=${cartStat.count}-1"
-                        th:value="${session.toppingPrice[cnt]}+${cart.price}" th:text="${session.toppingPrice[cnt]}+${cart.price}"></div>
-                        <div class="num">
-                            <div class="updown"> 
-                                <div class="qty">	
-                                <a href="javascript:change_qty2('p')"><i class="fas fa-arrow-alt-circle-up up"></i></a>
-                                <input type="text" name="ct_qty" id="ct_qty" value="1" maxlength="2" width="2px" class="p_num" readonly="readonly">
-                                <a href="javascript:change_qty2('m')"><i class="fas fa-arrow-alt-circle-down down"></i></a>
-                            </div>
-                            </div>
-                        </div>
-                        
-                       <input name="p_price" id="total_amount" class="p_price"  th:with="cnt=${cartStat.count}-1" 
-                       th:value="${session.toppingPrice[cnt]}+${cart.price}" 
-                       style = "width:100px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">
+	<form name="orderform" id="orderform" class="orderform" >
+			
+	        <input type="hidden" name="payState" value="결재완료">
+	        <div class="basketdiv" id="basket">
+	            <div class="row head">
+	                <div class="subdiv">
+	                    <div class="seqnum">상품번호</div>
+	                    <div class="img">이미지</div>
+	                    <div class="pname">상품명</div>
+	                    
+	                </div>
+	                <div class="subdiv">
+	                    <div class="basketprice">가격</div>
+	                    <div class="num">수량</div>
+	                    <div class="sum">합계</div>
+	                </div>
+	                <div class="subdiv">
+	                 <div class="basketcmd">삭제</div>
+	                </div>
+	                <div class="split"></div>
+	            </div>
+	    
+	    		<div class="row data" th:each="cart:${session.cartList}" th:id="row+${cartStat.count}">
+	                <div class="subdiv">
+	               		<div class="seqnum"><input type="hidden" name="prodId" th:value="${cart.id}" th:text="${cartStat.count}" readonly="readonly"></div>
+	                    <div class="img"><img th:src="'/img/'+${cart.imgname}" width="20"></div>
+	                    <div class="pname">
+	                        <p th:text="${cart.name}"></p>
+	                    </div>
+	                </div>
+	                <div class="subdiv">
+	                    <div class="basketprice"><input type="hidden" th:id="price+${cnt+1}" class="price"  th:with="cnt=${cartStat.count}-1"
+	                    th:value="${session.toppingPrice[cnt]}+${cart.price}" th:text="${session.toppingPrice[cnt]}+${cart.price}"></div>
+	                    <div class="num">
+	                        <div class="updown"> 
+	                            <div class="qty">	
+	                            <a th:with="cnt=${cartStat.count}"
+	                             th:href="|javascript:change_qty2('p', ${cnt})|"><i class="fas fa-arrow-alt-circle-up up"></i></a>
+	                            <input type="text" name="amount" th:id="ct_qty+${cartStat.count}" value="1" maxlength="2" width="2px" class="p_num" readonly="readonly">
+	                            <a th:with="cnt=${cartStat.count}"
+	                            th:href="|javascript:change_qty2('m', ${cnt})|"><i class="fas fa-arrow-alt-circle-down down"></i></a>
+	                        </div>
+	                        </div>
+	                    </div>                    
+	                   <input name="odPrice" class="p_price"  th:with="cnt=${cartStat.count}-1" th:id="'total_amount'+${cnt+1}"
+	                   th:value="${session.toppingPrice[cnt]}+${cart.price}" 
+	                   style = "width:100px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">	
+	                </div>
+	                <div class="subdiv">
+	                    <div class="basketcmd "><a class="abutton" 
+	                    th:href="|javascript:product_delete(${cart.sessionNum})|">삭제</a></div>
+	                </div>
+	            </div>
+	
+	        </div>
+	          
+	         
+	       <div style='width:80px;float: left;' >
+	       총 금액:
+	       <input  name="sumprice" id="sumprice" class="alert alert-warning" style = "width:150px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">
+	       <input th:value="${session.count}" id="count" hidden="hidden">
+	       </div>
+	       
+	          
+	          
+	          
+			<div style='width:80px;float: right;'>
+			<a class="btn btn-success" id="prodpay"data-toggle="modal" 
+			data-target="#myModal">상품 결제</a>
+			
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+				
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h4 class="modal-title">선택해 주세요.</h4>
+				      </div>
+				      <div class="modal-body">
+				        <div id="mtchoose" class="row gx-6 gx-lg-10 row-cols-4 row-cols-md-4 row-cols-xl-3 justify-content-center" >                 		                  
+							<div class="col mb-3">
+								<a id="takein" class="producta">
+							     <div class="card h-70">
+							         <img class="card-img-top productinfo--img" src="/img/eattable.png"   width="10px" height="300px" />
+							         <div class="card-body p-4">
+							             <div class="text-center">
+							                 <h5 class="fw-bolder">매장식사</h5>
+							             </div>
+							         </div>
+							     </div>
+							    </a>
+							</div>							
+							<div class="col mb-3">
+								<a id="takeout" class="producta">
+							     <div class="card h-70">
+							         <img class="card-img-top productinfo--img" src="/img/takeaway.png"   width="10px" height="300px" />
+							         <div class="card-body p-4">
+							             <div class="text-center">
+							                 <h5 class="fw-bolder">포장주문</h5>
+							             </div>
+							         </div>
+							     </div>
+							    </a>
+							</div>
+						</div>
+						
 
-                    </div>
-                    <div class="subdiv">
-                        <div class="basketcmd "><a class="abutton" id="deletebtn" href="#">삭제</a></div>
-                    </div>
-                </div>
- 			
-            </div>
-              
-             
-           <div style='width:80px;float: left;' >
-           총 금액:
-           <input name="sumprice" id="sumprice" class="alert alert-warning" style = "width:150px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">
-           </div>
-           
-              
-             <div style='width:80px;float: right;'>
-             <a href="/mtchoose" class="btn btn-success" id="prodpay">상품 결제</a>
-              </div>  
-                
-        </form>
+						
+						<div id="payment" class="row gx-6 gx-lg-10 row-cols-4 row-cols-md-4 row-cols-xl-3 justify-content-center" >                 
+	                  	
+							<div class="col mb-3">
+								<a href="#" class="pay-info">
+								 <input type="radio" name="payInfo" value="신용카드" hidden=true>
+							     <div class="card h-70">
+							         <img class="card-img-top" src="/img/creditcard.png"  width="10px" height="300px" />
+							         <div class="card-body p-4">
+							             <div class="text-center">
+							                 <h5 class="fw-bolder">신용카드</h5>
+							             </div>
+							         </div>
+							     </div>
+							    </a>
+							</div>
+							
+							<div class="col mb-3">
+								<a href="#" class="pay-info">
+								 <input type="radio" name="payInfo" value="카카오페이" hidden=true>
+							     <div class="card h-70">
+							         <img class="card-img-top" src="/img/kakaopay.jpg"  width="10px" height="300px" />
+							         <div class="card-body p-4">
+							             <div class="text-center">
+							                 <h5 class="fw-bolder">카카오페이</h5>
+							             </div>
+							         </div>
+							     </div>
+							    </a>
+							    
+							</div>
+													
+						</div>
+						
+						<div id="userCheck" class="row gx-6 gx-lg-10 row-cols-4 row-cols-md-4 row-cols-xl-3 justify-content-center">
+							
+			      			<button type="button" class="btn btn-success" id="membership">Yes</button>
+							<input id="usersId" type="text" name=usersId placeholder="아이디를 입력해주세요." hidden=true>
+						</div>
+				      </div>
+				      <div class="modal-footer">
+				      	<span id="warningText"></span>
+				      	<button type="button" class="btn btn-success" id="nextOrder">Next</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				
+				  </div>
+				</div>			
+			</div>  
+	            
+	    </form>
 
 </body>
 
 
-</html>
+<script src="/js/orders.js" ></script>
 
 

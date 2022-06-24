@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.multisub.biz.OrdersBiz;
 import com.multisub.biz.OrdersDetailBiz;
@@ -132,13 +133,10 @@ public class SelectController {
 		List<ToppingVO> option = null;
 		List<ToppingVO> toast = null;
 		
-
-
 		ProductVO p = null;
 		m.addAttribute("empty","empty");
+		
 		try {
-
-
 			cheese = topbiz.selectMenu(330);
 			vegetable = topbiz.selectMenu(340);
 			sauce = topbiz.selectMenu(360);
@@ -184,16 +182,14 @@ public class SelectController {
 			hashMap.put("prod", prod);
 			hashMap.put("sauce", sauce);
 			hashMap.put("others", others);
-			
-			
+					
 			if(session.getAttribute("count") != null) {
 				num = (int) session.getAttribute("count") + 1;
 			}
 			
 			session.setAttribute("count", num);
 			session.setAttribute("topping"+num, hashMap);
-			System.out.println("numimpl  :: "+num);
-			System.out.println(session.getAttribute("topping"+num));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -202,5 +198,18 @@ public class SelectController {
 		m.addAttribute("center","center");
 		return "redirect:";
 		
+	}
+	@RequestMapping("deleteSessionItem")
+	public ModelAndView deleteSessionItem(int cnt,HttpSession session,Model m) {
+		
+		System.out.println("대박샷Gun!!! :: "+cnt);
+		System.out.println(session.getAttribute("topping"+cnt));
+		session.removeAttribute("topping"+cnt);
+		System.out.println(session.getAttribute("topping"+cnt));
+		
+		m.addAttribute("center","orderproductprice");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/?mapping=deleteSessionItem");
+		return mv;
 	}
 }

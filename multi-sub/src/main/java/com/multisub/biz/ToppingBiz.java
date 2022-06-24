@@ -45,5 +45,9 @@ public class ToppingBiz implements Biz<Integer, ToppingVO> {
 		return dao.selectMenu(k);
 				
 	}
+	
+	public int getPrice(Integer k) throws Exception {		
+		return dao.getPrice(k);
+	}
 
 }

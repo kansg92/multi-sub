@@ -3,7 +3,9 @@
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multisub.mapper.UsersMapper">
-	
+	<select id="checkUsers" parameterType="String" resultType="int">
+		SELECT count(*) as cnt FROM USERS WHERE ID=#{id}
+	</select>
 	<select id="select" parameterType="String" resultType="usersVO">
 		SELECT * FROM USERS WHERE ID=#{id}
 	</select>

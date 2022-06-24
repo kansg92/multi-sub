@@ -6,21 +6,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multisub.mapper.OrdersMapper">
 
 	<select id="select" parameterType="int" resultType="ordersVO">
-	SELECT o.id as id, o.price as price, o.payInfo, o.regdate as regdate, o.payState, 
+	SELECT o.id as id, o.price as sumprice, o.payInfo, o.regdate as regdate, o.payState, 
 	o.udate as udate, o.usersId as usersId FROM orders o
 	INNER JOIN users u ON o.usersId = u.id
 	WHERE o.id = #{id};
 	</select>
 	<select id="selectAll" resultType="ordersVO">
-	SELECT o.id as id, o.price as price, o.payInfo, o.regdate as regdate, o.payState, 
+	SELECT o.id as id, o.price as sumprice, o.payInfo, o.regdate as regdate, o.payState, 
 	o.udate as udate, o.usersId as usersId  FROM orders o
 	INNER JOIN users u ON o.usersId = u.id
 	</select>
-	<insert id="insert" parameterType="ordersVO">
-		INSERT INTO orders VALUES (NULL, #{price}, #{payInfo}, SYSDATE(),#{payState}, NULL, #{usersId})
+	<insert id="insert" parameterType="ordersVO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO orders VALUES (NULL, #{sumprice}, #{payInfo}, SYSDATE(),#{payState}, NULL, #{usersId})
 	</insert>
 	<update id="update" parameterType="ordersVO">
-		UPDATE orders SET PRICE=#{price}, PAYINFO=#{payInfo}, PAYSTATE=#{payState}, UDATE=sysdate(),
+		UPDATE orders SET PRICE=#{sumprice}, PAYINFO=#{payInfo}, PAYSTATE=#{payState}, UDATE=sysdate(),
 		USERSID=#{usersId} WHERE ID=#{id}
 	</update>
 	<delete id="delete" parameterType="int">
