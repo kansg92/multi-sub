@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM USERS
 	</select>
 	<insert id="insert" parameterType="usersVO">
-		INSERT INTO USERS VALUES (#{id}, #{pwd}, #{name}, #{email}, #{addr}, #{phone}, 1234 , 'membersip', CURDATE(), ${userTypeId});
+		INSERT INTO USERS VALUES (#{id}, #{pwd}, #{name}, #{email}, #{addr}, #{phone}, 0 , 'membersip', CURDATE(), ${userTypeId});
 	</insert>
 	<update id="update" parameterType="usersVO">
 		UPDATE USERS SET PWD=#{pwd}, NAME=#{name}, EMAIL=#{email}, ADDR=#{addr}, PHONE=#{phone}, POINT=${point} 
