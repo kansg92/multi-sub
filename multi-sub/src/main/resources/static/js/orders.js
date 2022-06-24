@@ -2,6 +2,15 @@
 
 $(document).ready(function(){
 	$('#main-menu').hide();
+	$('#main-menu2').hide();
+	
+	$('#deleteMenu').click(function(){
+		var deproduct = confirm("해당메뉴를 지우겠습니까?");
+		if(deproduct){
+			session.removeAttribute("topping"+num);
+		}
+	});
+		
 });
 
 
@@ -24,12 +33,10 @@ String.prototype.format = function(){
 	  return num.format();
 };
 	    
-	    
-	
-	
 
 function change_qty2(t){
-	  var price = parseInt($('input[name=p_price]').val());	
+	  var price = parseInt($('input[name=p_price]').val());
+	
 	  var min_qty = 1;
 	  var this_qty = $("#ct_qty").val()*1;
 	  var max_qty = '200'; // 현재 재고
@@ -49,19 +56,25 @@ function change_qty2(t){
 	    }
 	
 	  var show_total_amount = price * this_qty;
-	  
-	  
+
 	  
 	  $("#ct_qty").val(this_qty);
 	  $("#it_pay").val(show_total_amount);
 	  
-	  for(i=0; i <= cnt; i++){
-		var total =total_amount+i;
-		$(total).text(show_total_amount.format());
-	    $(total).attr("value",show_total_amount);
+	  $("#total_amount").attr("value",show_total_amount.format());
+	    
+	  var total = 0;
+ 	for(i=0;i<=this_qty;i++){
+		for(j=0; j <= price; j++){
+		total =show_total_amount + j;
 		}
+	  }
+	   
+	  $("#sumprice").attr("value",total.format());
+	  
 	  
 	}
+
 	
 	
 	
