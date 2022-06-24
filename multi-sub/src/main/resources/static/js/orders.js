@@ -3,6 +3,7 @@
 $(document).ready(function(){
 	$('#main-menu').hide();
 	$('#payment').hide();
+	$('#userCheck').hide();
 	$('#takein').click(function(){
 		showPay();
 	})
@@ -11,15 +12,107 @@ $(document).ready(function(){
 	})
 	
 	sumPriceUpdate();
+	
+	/*
+
+		
+	*/
+	
+	$('.pay-info').click(function(){
+		$('input:radio[name="payInfo"]').attr("checked",false)
+		$(this).children(0).attr("checked",true)
+	});
+	$('#nextOrder').click(function(){
+		if($('#mtchoose').css('display')=="flex"){
+			showPay();
+		}else if($('#payment').css('display')=="flex"){
+			$('#payment').hide();
+			$('#userCheck').show();
+			$('.modal-title').text("맴버십 적립을 하시겠어요??")
+		}else if($('#userCheck').css('display')=="flex"){
+			
+			var c = confirm("결재를 진행하시겠습니까?");
+			var id = $('#usersId').val();
+			if(c){
+				if(id == null | id==""){
+					$('#usersId').val("id01");
+					sumbitOrder();
+				}else{
+					$.ajax({
+						url:'checkUser',
+						data:{"userId":$('#usersId').val()},
+						success: function(data){
+							if(data){
+								sumbitOrder();
+							}else{
+								$('#warningText').text("존재하지 앟는 회원 입니다.")
+							}
+						}
+					});
+				}
+			}
+		}
+	});
+	
+	$('#membership').click(function(){
+		$('#usersId').attr("hidden",false);
+		$(this).hide();
+	});
+	
  	
 });
+
+function sumbitOrder(){
+	
+	var length = $('input[name="odPrice"]').length;
+	var prodIdArr = new Array(length);
+	var amountArr = new Array(length);
+	var odPriceArr = new Array(length);
+	
+	var sumprice = $('#sumprice').val();
+	var payInfo = $('input:radio[name="payInfo"]').val();
+	var payState = $('input[name="payState"]').val();
+	var usersId = $('input[name="usersId"]').val();
+	
+	for(var i=0; i<length; i++){
+		prodIdArr[i] = $('input[name="prodId"]').eq(i).val();
+		amountArr[i] = $('input[name="amount"]').eq(i).val();
+		odPriceArr[i] = $('input[name="odPrice"]').eq(i).val();
+	}
+	
+	$.ajax({
+		url:'ordersimpl',
+		data:{"prodIdArr":JSON.stringify(prodIdArr), 
+			  "amountArr":JSON.stringify(amountArr),
+			  "odPriceArr":JSON.stringify(odPriceArr),
+			  "sumprice":sumprice,
+			  "payInfo":payInfo,
+			  "payState":payState,
+			  "usersId":usersId,
+			},
+		success: function(data){
+			alert("결제가 완료되었습니다!");
+		}
+	});
+	
+	
+	/*$('#orderform').attr({
+		'method':'post',
+		'action':'ordersimpl'
+	});
+	$('#orderform').submit();*/
+}
 
 function sumPriceUpdate(){
 	var count = $('#count').val();
 	var sumprice = 0;
+	console.log(count);
 	for(i=0;i < count; i++){
-		sumprice += parseInt($('#total_amount'+(i+1)).val());
-		console.log(sumprice);
+		console.log($('#total_amount'+(i+1)).val());
+		if($('#total_amount'+(i+1)).val() != null){
+			sumprice += parseInt($('#total_amount'+(i+1)).val());
+			console.log(sumprice);
+		}
 	}
  	$('#sumprice').attr("value",sumprice);
 }
@@ -51,7 +144,7 @@ String.prototype.format = function(){
 	
 
 function change_qty2(t,cnt){
-	var price = parseInt($('#p_price'+cnt).val());
+	var price = parseInt($('#price'+cnt).val());
 	 	
 	var min_qty = 1;
 	var this_qty = $("#ct_qty"+cnt).val()*1;
@@ -82,7 +175,9 @@ function change_qty2(t,cnt){
   	
 }
 
-
+function product_delete(cnt){
+	location.href="deleteSessionItem?cnt="+cnt;
+}
 
 
 

@@ -15,7 +15,7 @@ class InsertTest {
 	
 	@Test
 	void contextLoads() {
-		ToppingDetailVO obj = new ToppingDetailVO(0,4,1000,1,1);
+		ToppingDetailVO obj = new ToppingDetailVO(1000,1,1);
 		
 		try {
 			biz.register(obj);

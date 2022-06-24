@@ -15,7 +15,7 @@ class UpdateTest {
 	
 	@Test
 	void contextLoads() {
-		ToppingDetailVO obj = new ToppingDetailVO(3,500,2000,1,1);
+		ToppingDetailVO obj = new ToppingDetailVO(2000,1,1);
 		
 		try {
 			biz.modify(obj);

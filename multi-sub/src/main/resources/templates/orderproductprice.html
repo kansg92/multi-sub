@@ -13,9 +13,9 @@
 </head>
 <body>
 
-	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
-	
-	        <input type="hidden" name="cmd" value="order">
+	<form name="orderform" id="orderform" class="orderform" >
+			
+	        <input type="hidden" name="payState" value="결재완료">
 	        <div class="basketdiv" id="basket">
 	            <div class="row head">
 	                <div class="subdiv">
@@ -35,34 +35,35 @@
 	                <div class="split"></div>
 	            </div>
 	    
-	    		<div class="row data" th:each="cart:${session.cartList}">
+	    		<div class="row data" th:each="cart:${session.cartList}" th:id="row+${cartStat.count}">
 	                <div class="subdiv">
-	               		<div class="seqnum"><input type="hidden" name="id" th:value="${cart.id}" th:text="${cartStat.count}" readonly="readonly"></div>
+	               		<div class="seqnum"><input type="hidden" name="prodId" th:value="${cart.id}" th:text="${cartStat.count}" readonly="readonly"></div>
 	                    <div class="img"><img th:src="'/img/'+${cart.imgname}" width="20"></div>
 	                    <div class="pname">
 	                        <p th:text="${cart.name}"></p>
 	                    </div>
 	                </div>
 	                <div class="subdiv">
-	                    <div class="basketprice"><input type="hidden" name="p_price" th:id="p_price+${cnt+1}" class="p_price"  th:with="cnt=${cartStat.count}-1"
+	                    <div class="basketprice"><input type="hidden" th:id="price+${cnt+1}" class="price"  th:with="cnt=${cartStat.count}-1"
 	                    th:value="${session.toppingPrice[cnt]}+${cart.price}" th:text="${session.toppingPrice[cnt]}+${cart.price}"></div>
 	                    <div class="num">
 	                        <div class="updown"> 
 	                            <div class="qty">	
 	                            <a th:with="cnt=${cartStat.count}"
 	                             th:href="|javascript:change_qty2('p', ${cnt})|"><i class="fas fa-arrow-alt-circle-up up"></i></a>
-	                            <input type="text" name="ct_qty" th:id="ct_qty+${cartStat.count}" value="1" maxlength="2" width="2px" class="p_num" readonly="readonly">
+	                            <input type="text" name="amount" th:id="ct_qty+${cartStat.count}" value="1" maxlength="2" width="2px" class="p_num" readonly="readonly">
 	                            <a th:with="cnt=${cartStat.count}"
 	                            th:href="|javascript:change_qty2('m', ${cnt})|"><i class="fas fa-arrow-alt-circle-down down"></i></a>
 	                        </div>
 	                        </div>
 	                    </div>                    
-	                   <input name="p_price" class="p_price"  th:with="cnt=${cartStat.count}-1" th:id="'total_amount'+${cnt+1}"
+	                   <input name="odPrice" class="p_price"  th:with="cnt=${cartStat.count}-1" th:id="'total_amount'+${cnt+1}"
 	                   th:value="${session.toppingPrice[cnt]}+${cart.price}" 
 	                   style = "width:100px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">	
 	                </div>
 	                <div class="subdiv">
-	                    <div class="basketcmd "><a class="abutton" id="deletebtn" href="#">삭제</a></div>
+	                    <div class="basketcmd "><a class="abutton" 
+	                    th:href="|javascript:product_delete(${cart.sessionNum})|">삭제</a></div>
 	                </div>
 	            </div>
 	
@@ -118,10 +119,14 @@
 							    </a>
 							</div>
 						</div>
+						
+
+						
 						<div id="payment" class="row gx-6 gx-lg-10 row-cols-4 row-cols-md-4 row-cols-xl-3 justify-content-center" >                 
-	                  
+	                  	
 							<div class="col mb-3">
-								<a href="#" class="producta">
+								<a href="#" class="pay-info">
+								 <input type="radio" name="payInfo" value="신용카드" hidden=true>
 							     <div class="card h-70">
 							         <img class="card-img-top" src="/img/creditcard.png"  width="10px" height="300px" />
 							         <div class="card-body p-4">
@@ -134,7 +139,8 @@
 							</div>
 							
 							<div class="col mb-3">
-								<a href="#" class="producta">
+								<a href="#" class="pay-info">
+								 <input type="radio" name="payInfo" value="카카오페이" hidden=true>
 							     <div class="card h-70">
 							         <img class="card-img-top" src="/img/kakaopay.jpg"  width="10px" height="300px" />
 							         <div class="card-body p-4">
@@ -144,11 +150,20 @@
 							         </div>
 							     </div>
 							    </a>
-							</div>						
+							    
+							</div>
+													
 						</div>
-				
+						
+						<div id="userCheck" class="row gx-6 gx-lg-10 row-cols-4 row-cols-md-4 row-cols-xl-3 justify-content-center">
+							
+			      			<button type="button" class="btn btn-success" id="membership">Yes</button>
+							<input id="usersId" type="text" name=usersId placeholder="아이디를 입력해주세요." hidden=true>
+						</div>
 				      </div>
 				      <div class="modal-footer">
+				      	<span id="warningText"></span>
+				      	<button type="button" class="btn btn-success" id="nextOrder">Next</button>
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				      </div>
 				    </div>

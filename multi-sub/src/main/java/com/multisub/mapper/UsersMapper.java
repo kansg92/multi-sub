@@ -17,4 +17,5 @@ public interface UsersMapper {
 	public UsersVO selectDetail(String obj) throws Exception;
 	public List<UsersVO> selectAll() throws Exception;
 	public List<UsersVO> selectDetailAll() throws Exception;
+	public int checkUsers(String id) throws Exception;
 }

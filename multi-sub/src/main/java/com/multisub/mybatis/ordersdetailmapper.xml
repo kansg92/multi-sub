@@ -38,10 +38,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectOrderBoxAll" resultType="OrdersDetailVO">
-	SELECT o.usersID, p.name AS pname, p.imgname AS pimgname, o.price, od.amount , od.id
-	FROM ordersdetail od
-	INNER JOIN orders o ON  od.ordersId=o.id
-	INNER JOIN product p ON od.prodId = p.id
+		SELECT o.usersID, p.name AS pname, p.imgname AS pimgname, o.price, od.amount , od.id
+		FROM ordersdetail od
+		INNER JOIN orders o ON  od.ordersId=o.id
+		INNER JOIN product p ON od.prodId = p.id
 	</select>
 	
 	<select id="selectOrderBoxCountAll" resultType="int">

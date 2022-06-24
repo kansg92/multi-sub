@@ -21,6 +21,9 @@ public class ProductVO {
 	private Date regdate;
 	private int cateId;
 	private int nutId;
+	
+	private int sessionNum;
+	
 	public ProductVO(int id, String name, int price, String imgname) {
 		this.id = id;
 		this.name = name;
