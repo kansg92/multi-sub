@@ -3,6 +3,10 @@ package com.multisub.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.Map;
+>>>>>>> han
 
 import javax.servlet.http.HttpSession;
 
@@ -45,6 +49,7 @@ public class OrderController {
 
 	private List<ProductVO> list;
 	
+<<<<<<< HEAD
 	@RequestMapping("/orderproductprice")
 	public String orderproductprice(Model m) {
 		
@@ -57,19 +62,71 @@ public class OrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+=======
+	
+	@RequestMapping("/orderproductprice")
+	public String orderproductprice(Model m) {
+		
+		List<ProductVO> list = null;
+		m.addAttribute("cart", list);
+>>>>>>> han
 		m.addAttribute("center","orderproductprice");
 		
 		return "/main";
 	}	
+<<<<<<< HEAD
 
 
 	@RequestMapping("orders")
 	public String orders(Model m, HttpSession session) {
 		
+=======
+	
+
+	@RequestMapping("orderproductdelete")
+	public String orderproductdelete(HttpSession session, String num) {
+		
+		session.removeAttribute("topping"+num);
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/payment")
+	public String payment(Model m) {
+		
+		m.addAttribute("empty","empty");
+		m.addAttribute("center","payment");
+		return "/main";
+	}
+
+	@RequestMapping("orders")
+	public String orders(Model m, HttpSession session) {
+		m.addAttribute("empty","empty");
+>>>>>>> han
 		m.addAttribute("center","orders");
 		return "main";
 	}
 	
 
+<<<<<<< HEAD
+=======
+	@RequestMapping("/mtchoose")
+	public String mtchoose(Model m) {
+		m.addAttribute("empty","empty");
+		m.addAttribute("center","mtchoose");
+		
+		return "/main";
+	
+	}
+	
+	@RequestMapping("/complete")
+	public String complete(Model m) {
+		m.addAttribute("empty","empty");
+		m.addAttribute("center","complete");
+		return "/main";
+	}
+	
+	
+>>>>>>> han
 	
 }

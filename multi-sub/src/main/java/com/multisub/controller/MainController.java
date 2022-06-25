@@ -202,11 +202,21 @@ public class MainController {
 		return "/main";
 	}
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> han
 	@RequestMapping("deleteSession")
 	public String deleteSession(HttpSession session) {
 		session.invalidate();
 		
 		return "redirect:/";
 	}
+<<<<<<< HEAD
 
+=======
+	
+	
+	
+>>>>>>> han
 }
