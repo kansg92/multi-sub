@@ -35,8 +35,6 @@ public class CouponController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//m.addAttribute("center","coupon/list");
-		//return "main";
 		return "redirect:detail?id="+latest.getId();
 	}
 	
@@ -59,9 +57,6 @@ public class CouponController {
 		List<CouponVO> clist = null;
 		try {
 			clist = biz.get();
-			/*for (CouponVO couponVO : clist) {
-				System.out.println(couponVO);
-			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,8 +74,6 @@ public class CouponController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//m.addAttribute("center","coupon/list");
-		//return "main";
 		return "redirect:list";
 	}	
 	
