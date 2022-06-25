@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.multisub.biz.OrdersBiz;
 import com.multisub.biz.OrdersDetailBiz;
@@ -50,60 +51,33 @@ public class OrderController {
 	
 
 	@RequestMapping("/orderproductprice")
-	public String orderproductprice(Model m) {
-		
-		List<OrdersDetailVO> list = null;
-		
-		try {
-			list = odbiz.getsoba();
-			m.addAttribute("odlist", list);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "/main";
-
-	}
-
-	@RequestMapping("orderproductdelete")
-	public String orderproductdelete(HttpSession session, String num) {
-		
-		session.removeAttribute("topping"+num);
-		
-		return "redirect:/";
-	}
+	public String orderproductprice(HttpSession session,Model m) {
 	
-	@RequestMapping("/payment")
-	public String payment(Model m) {
+		m.addAttribute("center","orderproductprice");
 		
-		m.addAttribute("empty","empty");
-		m.addAttribute("center","payment");
 		return "/main";
-	}
+	}	
+	
 
 	@RequestMapping("orders")
 	public String orders(Model m, HttpSession session) {
-		m.addAttribute("empty","empty");
-
+		
 		m.addAttribute("center","orders");
 		return "main";
 	}
 	
-	@RequestMapping("/mtchoose")
-	public String mtchoose(Model m) {
-		m.addAttribute("empty","empty");
-		m.addAttribute("center","mtchoose");
+	@RequestMapping("deleteSessionItem")
+	public ModelAndView deleteSessionItem(int cnt,HttpSession session,Model m) {
 		
-		return "/main";
-	
-	}
-	
-	@RequestMapping("/complete")
-	public String complete(Model m) {
-		m.addAttribute("empty","empty");
-		m.addAttribute("center","complete");
-		return "/main";
+		System.out.println("대박샷Gun!!! :: "+cnt);
+		System.out.println(session.getAttribute("topping"+cnt));
+		session.removeAttribute("topping"+cnt);
+		System.out.println(session.getAttribute("topping"+cnt));
+		
+		m.addAttribute("center","orderproductprice");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/?mapping=deleteSessionItem");
+		return mv;
 	}
 	
 	

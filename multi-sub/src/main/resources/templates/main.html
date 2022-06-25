@@ -89,32 +89,32 @@
 			    	<a href="/sandwitch" class="sub-green sub-menu">Sandwitch</a>
 		    	</li>
 		    	
-		   
+		    	</li>
   				    <li th:if="${#httpServletRequest.servletPath == '/salad' }" th:class="sub-active">
 			    	<a href="/salad" class="sub-green sub-menu">Salad</a>
 		    	</li>
 		    	
- 			  
+ 			    </li>
   				    <li th:unless="${#httpServletRequest.servletPath == '/salad' }">
 			    	<a href="/salad" class="sub-green sub-menu">Salad</a>
 		    	</li>
 		    	
-   			    
+   			    </li>
   				    <li th:if="${#httpServletRequest.servletPath == '/lab' }" th:class="sub-active">
 			    	<a href="/lab" class="sub-green sub-menu">Lab</a>
 		    	</li>
 		    	
- 			    
+ 			    </li>
   				    <li th:unless="${#httpServletRequest.servletPath == '/lab' }">
 			    	<a href="/lab" class="sub-green sub-menu">Lab</a>
 		    	</li>
 		    	
-  	   			
+  	   			</li>
   				    <li th:if="${#httpServletRequest.servletPath == '/side' }" th:class="sub-active">
 			    	<a href="/side" class="sub-green sub-menu">Side</a>
 		    	</li>
 		    	
- 			  
+ 			    </li>
   				    <li th:unless="${#httpServletRequest.servletPath == '/side' }">
 			    	<a href="/side" class="sub-green sub-menu">Side</a>
 		    	</li>
@@ -126,21 +126,11 @@
   			  	<li><h2 class="sub-green sub-menu ">STEP3</h2></li>
   			  	<li><h2 class="sub-green sub-menu ">STEP4</h2></li>
   			  	<li><h2 class="sub-green sub-menu ">STEP5</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP6</h2></li>
+  			  	<li><h2 class="sub-green sub-menu ">STEP5</h2></li>
   			  </ul>
   			  
+			  
 			</div>
-			
-			<div class="container px-1 px-lg-4 mt-4" >
-			  <ul class="nav nav-pills" id="order-page" th:unless="${#strings.isEmpty(empty)}">
-  			  	<li><h2 class="sub-green sub-menu ">STEP1(주문 상세)</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP2(먹을 장소 선택)</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP3(결제 수단 선택)</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP4(결제 완료)</h2></li>
-  			  </ul>
-  			 </div>
-			
-			
 		  	<div class="container px-4 px-lg-5 mt-5" th:insert="${center} ? ${center} : center">	
 		  	<!-- center page -->  
 		  	

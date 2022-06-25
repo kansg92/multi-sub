@@ -77,6 +77,7 @@ public class SelectController {
 			m.addAttribute("toast",toast);
 
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -96,9 +97,11 @@ public class SelectController {
 		List<ToppingVO> toast = null;
 		
 
+
 		ProductVO p = null;
 		m.addAttribute("empty","empty");
 		try {
+
 
 			cheese = topbiz.selectMenu(330);
 			vegetable = topbiz.selectMenu(340);
@@ -134,10 +137,6 @@ public class SelectController {
 		m.addAttribute("empty","empty");
 		
 		try {
-<<<<<<< HEAD
-
-=======
->>>>>>> han
 			cheese = topbiz.selectMenu(330);
 			vegetable = topbiz.selectMenu(340);
 			sauce = topbiz.selectMenu(360);
@@ -190,12 +189,6 @@ public class SelectController {
 			
 			session.setAttribute("count", num);
 			session.setAttribute("topping"+num, hashMap);
-<<<<<<< HEAD
-			System.out.println("numimpl  :: "+num);
-			System.out.println(session.getAttribute("topping"+num));
-			
-=======
->>>>>>> han
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -206,31 +199,5 @@ public class SelectController {
 		return "redirect:";
 		
 	}
-<<<<<<< HEAD
 	
-	@RequestMapping("orderproductdelete")
-	public String orderproductdelete(HttpSession session, int num) {
-		ProductVO product = null;
-		
-		session.removeAttribute("topping"+num);
-		System.out.println("1.1. topping delete:: "+session.getAttribute("topping"+num));
-		
-		return "redirect:/orderproductprice";
-	}
-	
-=======
-	@RequestMapping("deleteSessionItem")
-	public ModelAndView deleteSessionItem(int cnt,HttpSession session,Model m) {
-		
-		System.out.println("대박샷Gun!!! :: "+cnt);
-		System.out.println(session.getAttribute("topping"+cnt));
-		session.removeAttribute("topping"+cnt);
-		System.out.println(session.getAttribute("topping"+cnt));
-		
-		m.addAttribute("center","orderproductprice");
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/?mapping=deleteSessionItem");
-		return mv;
-	}
->>>>>>> han
 }

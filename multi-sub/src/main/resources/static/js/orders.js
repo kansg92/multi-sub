@@ -1,10 +1,7 @@
-
-
 $(document).ready(function(){
 	$('#main-menu').hide();
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$('#payment').hide();
+	$('#userCheck').hide();
 	$('#takein').click(function(){
 		showPay();
 	})
@@ -14,63 +11,133 @@ $(document).ready(function(){
 	
 	sumPriceUpdate();
 	
-
-	
-	$('#deleteMenu').click(function(){
-		var id = $('input[name="id"]').val();
-		var deproduct = confirm("상품을 지우겠습니까?");
-		
-		if(deproduct){
-			for(i=0; i<id ;i++){
-			console.log("ok");
-		}
-		location.href="orderproductdelete";
-	}
+	$('.pay-info').click(function(){
+		$('input:radio[name="payInfo"]').attr("checked",false)
+		$(this).children(0).attr("checked",true)
 	});
+	$('#nextOrder').click(function(){
+		if($('#mtchoose').css('display')=="flex"){
+			showPay();
+		}else if($('#payment').css('display')=="flex"){
+			$('#payment').hide();
+			$('#userCheck').show();
+			$('.modal-title').text("맴버십 적립을 하시겠어요??")
+		}else if($('#userCheck').css('display')=="flex"){
+			
+			var c = confirm("결재를 진행하시겠습니까?");
+			var id = $('#usersId').val();
+			if(c){
+				if(id == null | id==""){
+					$('#usersId').val("id01");
+					sumbitOrder();
+				}else{
+					$.ajax({
+						url:'checkUser',
+						data:{"userId":$('#usersId').val()},
+						success: function(data){
+							if(data){
+								sumbitOrder();
+							}else{
+								$('#warningText').text("존재하지 앟는 회원 입니다.")
+							}
+						}
+					});
+				}
+			}
+		}
+	});
+	
+	$('#membership').click(function(){
+		$('#usersId').attr("hidden",false);
+		$(this).hide();
+	});
+	
  	
-=======
-=======
->>>>>>> han
-	$('#main-menu2').hide();
-	
-	$('#deleteMenu').click(function(){
-		var deproduct = confirm("해당메뉴를 지우겠습니까?");
-		if(deproduct){
-			session.removeAttribute("topping"+num);
-		}
-	});
-		
-<<<<<<< HEAD
->>>>>>> han
-=======
->>>>>>> han
 });
 
+function sumbitOrder(){
+	
+	var length = $('input[name="odPrice"]').length;
+	var prodIdArr = new Array(length);
+	var amountArr = new Array(length);
+	var odPriceArr = new Array(length);
+	
+	var sumprice = $('#sumprice').val();
+	var payInfo = $('input:radio[name="payInfo"]').val();
+	var payState = $('input[name="payState"]').val();
+	var usersId = $('input[name="usersId"]').val();
+	
+	for(var i=0; i<length; i++){
+		prodIdArr[i] = $('input[name="prodId"]').eq(i).val();
+		amountArr[i] = $('input[name="amount"]').eq(i).val();
+		odPriceArr[i] = $('input[name="odPrice"]').eq(i).val();
+	}
+	
+	$.ajax({
+		url:'ordersimpl',
+		data:{"prodIdArr":JSON.stringify(prodIdArr), 
+			  "amountArr":JSON.stringify(amountArr),
+			  "odPriceArr":JSON.stringify(odPriceArr),
+			  "sumprice":sumprice,
+			  "payInfo":payInfo,
+			  "payState":payState,
+			  "usersId":usersId,
+			},
+		success: function(data){
+			alert("결제가 완료되었습니다!");
+		}
+	});
+	
+	
+	/*$('#orderform').attr({
+		'method':'post',
+		'action':'ordersimpl'
+	});
+	$('#orderform').submit();*/
+}
+
+function sumPriceUpdate(){
+	var count = $('#count').val();
+	var sumprice = 0;
+	console.log(count);
+	for(i=0;i < count; i++){
+		console.log($('#total_amount'+(i+1)).val());
+		if($('#total_amount'+(i+1)).val() != null){
+			sumprice += parseInt($('#total_amount'+(i+1)).val());
+			console.log(sumprice);
+		}
+	}
+ 	$('#sumprice').attr("value",sumprice);
+}
+
+function showPay(){
+	$('#mtchoose').hide();
+	$('#payment').show();
+}
 
 Number.prototype.format = function(){
-	  if(this==0) return 0;
-
-	  var reg = /(^[+-]?\d+)(\d{3})/;
-	  var n = (this + '');
-
-	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
-
-	  return n;
-	};
+	if(this==0) return 0;
+	
+	var reg = /(^[+-]?\d+)(\d{3})/;
+	var n = (this + '');
+	
+	while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+	
+	return n;
+};
 	 
 
 String.prototype.format = function(){
-<<<<<<< HEAD
 	var num = parseFloat(this);
 	if( isNaN(num) ) return "0";
 	
 	return num.format();
 };
-<<<<<<< HEAD
 	    	
+	
 
 function change_qty2(t,cnt){
-	var price = parseInt($('#p_price'+cnt).val());
+	var price = parseInt($('#price'+cnt).val());
 	 	
 	var min_qty = 1;
 	var this_qty = $("#ct_qty"+cnt).val()*1;
@@ -92,69 +159,15 @@ function change_qty2(t,cnt){
 	var show_total_amount = price * this_qty;
 	  
 	$("#ct_qty"+cnt).val(this_qty);
+	//$("#it_pay").val(show_total_amount);
 	  
 	$('#total_amount'+cnt).text(show_total_amount.format());
 	$('#total_amount'+cnt).attr("value",show_total_amount);
-=======
-=======
-	  var num = parseFloat(this);
-	  if( isNaN(num) ) return "0";
+	
+	sumPriceUpdate();	
+  	
+}
 
-	  return num.format();
-};
->>>>>>> han
-	    
-
-function change_qty2(t){
-	  var price = parseInt($('input[name=p_price]').val());
-	
-	  var min_qty = 1;
-	  var this_qty = $("#ct_qty").val()*1;
-	  var max_qty = '200'; // 현재 재고
-	  if(t=="m"){
-	    this_qty -= 1;
-	    if(this_qty<min_qty){
-	      alert("수량은 1개 이상 입력해 주십시오.");
-	      return;
-	      }
-	    }
-	    else if(t=="p"){
-	      this_qty += 1;
-	      if(this_qty>max_qty){
-	        alert("죄송합니다. 재고가 부족합니다.");
-	        return;
-	        }
-	    }
-	
-	  var show_total_amount = price * this_qty;
-
-	  
-	  $("#ct_qty").val(this_qty);
-	  $("#it_pay").val(show_total_amount);
-	  
-	  $("#total_amount").attr("value",show_total_amount.format());
-	    
-	  var total = 0;
- 	for(i=0;i<=this_qty;i++){
-		for(j=0; j <= price; j++){
-		total =show_total_amount + j;
-		}
-	  }
-	   
-	  $("#sumprice").attr("value",total.format());
-	  
-	  
-	}
-
-<<<<<<< HEAD
->>>>>>> han
-=======
->>>>>>> han
-	
-	
-	
-	
-	
-	
-	
-	
+function product_delete(cnt){
+	location.href="deleteSessionItem?cnt="+cnt;
+}

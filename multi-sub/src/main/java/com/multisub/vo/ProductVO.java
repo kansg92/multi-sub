@@ -39,10 +39,4 @@ public class ProductVO {
 		this.nutId = nutId;
 	}
 
-	
-	
-	
-	
-	
-	
 }

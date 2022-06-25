@@ -8,7 +8,6 @@ $(document).ready(function(){
 	$('#select-vegetable').hide();
 	$('#select-sauce').hide();
 	$('#select-others').hide();
-	$('#order-page').hide();
 
 	$('#testBtn').click(function(){
 		/*
