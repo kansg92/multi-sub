@@ -48,4 +48,8 @@ public class UsersBiz implements Biz<String, UsersVO>{
 		return dao.selectDetailAll();
 	}
 	
+	public int checkUsers(String id) throws Exception {
+		return dao.checkUsers(id);
+	}
+	
 }

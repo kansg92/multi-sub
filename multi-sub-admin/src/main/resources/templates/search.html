@@ -1,0 +1,132 @@
+<meta charset="utf-8"/>
+
+
+<div class="container col-sm-10" th:unless="${#lists.isEmpty(clist)}">    
+<br>
+  <h2>쿠폰 검색 결과</h2>
+  <br>       
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>쿠폰명</th>
+        <th>할인율(%)</th>
+        <th>등록일</th>
+        <th>사용기한</th>-
+        <th>사용가능여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="c : ${clist}">
+        <td th:text="${c.id}"></td>
+        <td><a href="" th:text="${c.name}" th:href="@{detail(id=${c.id})}"></a></td>
+        <td th:text="${c.discount}"></td>
+        <td th:text="${#dates.format(c.regdate,'yyyy/MM/dd')}"></td>
+        <td th:text="${c.expirDate}"></td> 
+        <td th:if="${c.expirYN==false}">불가능</td> 
+        <td th:unless="${c.expirYN==false}">가능</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="container col-sm-10" th:unless="${#lists.isEmpty(ulist)}">     
+<br>  
+  <h2 th:if="${userTypeId==200}">고객 검색 결과</h2>
+  <h2 th:if="${userTypeId==300}">직원 검색 결과</h2>
+  <br>       
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>이메일</th>
+        <th>주소</th>
+        <th>등록일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="u : ${ulist}">
+        <td><a href="" th:text="${u.id}" th:href="@{detail(id=${u.id})}"></a></td>
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.phone}"></td>
+        <td th:text="${u.email}"></td>
+        <td th:text="${u.addr}"></td>
+        <td th:text="${#dates.format(u.regdate,'yyyy/MM/dd')}"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 
+
+<div class="container col-sm-10" th:unless="${#lists.isEmpty(plist)}">     
+<br>
+  <h2>제품 검색 결과</h2>     
+  
+ <div th:each="cate : ${catelist}" th:unless="${cate.pid==null}"> 
+ <br> <br> <br>
+  <h4 th:text="${cate.name}"></h4>
+  <br>  
+  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th class="col-sm-2">가격</th>
+        <th class="col-sm-2">등록일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="p : ${plist}" th:if="${p.cateId==cate.id}">
+        <td><a href="" th:text="${p.name}" th:href="@{/product/detail(id=${p.id})}"></a></td>
+        <td th:text="${p.price}"></td>
+        <td th:text="${#dates.format(p.regdate,'yyyy/MM/dd')}"></td>                           
+      </tr>
+    </tbody>
+  </table>
+  </div>  
+</div>
+ -->
+
+
+ 
+<div class="container" th:unless="${#lists.isEmpty(plist)}">     
+<br>
+  <h2>제품 검색 결과</h2>     
+  
+ <div th:each="cate : ${catelist}" th:unless="${cate.pid==null}"> 
+ <br> <br> <br>
+  <h4 th:text="${cate.name}"></h4>
+  <br>  
+  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th class="col-sm-2">가격</th>
+        <th class="col-sm-2">등록일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="p : ${plist}" th:if="${p.cateId==cate.id}">
+        <td><a href="" th:text="${p.name}" th:href="@{/product/detail(id=${p.id})}"></a></td>
+        <td th:text="${p.price}"></td>
+        <td th:text="${#dates.format(p.regdate,'yyyy/MM/dd')}"></td>                           
+      </tr>
+    </tbody>
+  </table>
+  </div>  
+</div>
+
+
+
+
+
+<div class="container col-sm-10" th:if="${#lists.isEmpty(plist)} and ${#lists.isEmpty(ulist)} and ${#lists.isEmpty(clist)}">     
+<br> <br> 
+	<h2 class="text-center">검색 결과를 찾을수 없습니다.</h2> 
+</div>
+

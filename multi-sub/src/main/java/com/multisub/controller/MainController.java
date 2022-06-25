@@ -52,7 +52,7 @@ public class MainController {
 		List<ProductVO> cartList = new ArrayList<>();
 		List<Integer> toppingSum = new ArrayList<>();
 		Integer num = 0;
-		int sumprice = 0;
+		
 		if(session.getAttribute("count") != null) {
 			
 			num = (int) session.getAttribute("count");
@@ -93,7 +93,6 @@ public class MainController {
 						product = pbiz.get(prod);
 						cartList.add(product);
 						toppingSum.add(topSumPrice);
-						sumprice += product.getPrice()+topSumPrice;
 						
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -106,7 +105,8 @@ public class MainController {
 		}
 		session.setAttribute("cartList",cartList);
 		session.setAttribute("toppingPrice",toppingSum);
-		session.setAttribute("sumprice",sumprice);
+		m.addAttribute("toppingPrice",toppingSum);
+		m.addAttribute("cartList",cartList);
 		// 토핑셀렉츠 정보 가져오기. -end
 		
 		m.addAttribute("center","center");
@@ -213,8 +213,12 @@ public class MainController {
 		return "redirect:/";
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+	
+>>>>>>> han
 	
 	
 	

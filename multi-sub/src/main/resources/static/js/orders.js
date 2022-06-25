@@ -3,6 +3,7 @@
 $(document).ready(function(){
 	$('#main-menu').hide();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$('#payment').hide();
 	$('#takein').click(function(){
 		showPay();
@@ -28,6 +29,8 @@ $(document).ready(function(){
 	});
  	
 =======
+=======
+>>>>>>> han
 	$('#main-menu2').hide();
 	
 	$('#deleteMenu').click(function(){
@@ -37,37 +40,27 @@ $(document).ready(function(){
 		}
 	});
 		
+<<<<<<< HEAD
+>>>>>>> han
+=======
 >>>>>>> han
 });
 
-function sumPriceUpdate(){
-	var count = $('#count').val();
-	var sumprice = 0;
-	for(i=0;i < count; i++){
-		sumprice += parseInt($('#total_amount'+(i+1)).val());
-		console.log(sumprice);
-	}
- 	$('#sumprice').attr("value",sumprice);
-}
-
-function showPay(){
-	$('#mtchoose').hide();
-	$('#payment').show();
-}
 
 Number.prototype.format = function(){
-	if(this==0) return 0;
-	
-	var reg = /(^[+-]?\d+)(\d{3})/;
-	var n = (this + '');
-	
-	while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
-	
-	return n;
-};
+	  if(this==0) return 0;
+
+	  var reg = /(^[+-]?\d+)(\d{3})/;
+	  var n = (this + '');
+
+	  while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+	  return n;
+	};
 	 
 
 String.prototype.format = function(){
+<<<<<<< HEAD
 	var num = parseFloat(this);
 	if( isNaN(num) ) return "0";
 	
@@ -103,6 +96,13 @@ function change_qty2(t,cnt){
 	$('#total_amount'+cnt).text(show_total_amount.format());
 	$('#total_amount'+cnt).attr("value",show_total_amount);
 =======
+=======
+	  var num = parseFloat(this);
+	  if( isNaN(num) ) return "0";
+
+	  return num.format();
+};
+>>>>>>> han
 	    
 
 function change_qty2(t){
@@ -146,15 +146,15 @@ function change_qty2(t){
 	  
 	}
 
+<<<<<<< HEAD
+>>>>>>> han
+=======
 >>>>>>> han
 	
-	sumPriceUpdate();	
-  	
-}
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
