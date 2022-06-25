@@ -11,6 +11,20 @@ $(document).ready(function(){
 	})
 	
 	sumPriceUpdate();
+	
+
+	
+	$('#deleteMenu').click(function(){
+		var id = $('input[name="id"]').val();
+		var deproduct = confirm("상품을 지우겠습니까?");
+		
+		if(deproduct){
+			for(i=0; i<id ;i++){
+			console.log("ok");
+		}
+		location.href="orderproductdelete";
+	}
+	});
  	
 });
 
@@ -48,7 +62,6 @@ String.prototype.format = function(){
 	return num.format();
 };
 	    	
-	
 
 function change_qty2(t,cnt){
 	var price = parseInt($('#p_price'+cnt).val());
@@ -73,7 +86,6 @@ function change_qty2(t,cnt){
 	var show_total_amount = price * this_qty;
 	  
 	$("#ct_qty"+cnt).val(this_qty);
-	//$("#it_pay").val(show_total_amount);
 	  
 	$('#total_amount'+cnt).text(show_total_amount.format());
 	$('#total_amount'+cnt).attr("value",show_total_amount);

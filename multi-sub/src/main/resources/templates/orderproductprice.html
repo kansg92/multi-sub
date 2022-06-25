@@ -62,7 +62,7 @@
 	                   style = "width:100px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">	
 	                </div>
 	                <div class="subdiv">
-	                    <div class="basketcmd "><a class="abutton" id="deletebtn" href="#">삭제</a></div>
+	                    <div class="basketcmd"><a class="abutton" th:id="deleteMenu" th:value="${cart.id}">삭제</a></div>
 	                </div>
 	            </div>
 	
@@ -71,16 +71,12 @@
 	         
 	       <div style='width:80px;float: left;' >
 	       총 금액:
-	       <input  name="sumprice" id="sumprice" class="alert alert-warning" style = "width:150px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">
+	       <input  name="sumprice" id="sumprice" class="alert alert-warning" style="width:150px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">
 	       <input th:value="${session.count}" id="count" hidden="hidden">
 	       </div>
 	       
-	          
-	          
-	          
 			<div style='width:80px;float: right;'>
-			<a class="btn btn-success" id="prodpay"data-toggle="modal" 
-			data-target="#myModal">상품 결제</a>
+			<a class="btn btn-success" id="prodpay"data-toggle="modal" data-target="#myModal">상품 결제</a>
 			
 				<!-- Modal -->
 				<div id="myModal" class="modal fade" role="dialog">

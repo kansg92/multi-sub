@@ -76,7 +76,6 @@ public class SelectController {
 			m.addAttribute("toast",toast);
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -100,7 +99,6 @@ public class SelectController {
 		ProductVO p = null;
 		m.addAttribute("empty","empty");
 		try {
-
 
 			cheese = topbiz.selectMenu(330);
 			vegetable = topbiz.selectMenu(340);
@@ -137,7 +135,6 @@ public class SelectController {
 		ProductVO p = null;
 		m.addAttribute("empty","empty");
 		try {
-
 
 			cheese = topbiz.selectMenu(330);
 			vegetable = topbiz.selectMenu(340);
@@ -194,6 +191,8 @@ public class SelectController {
 			session.setAttribute("topping"+num, hashMap);
 			System.out.println("numimpl  :: "+num);
 			System.out.println(session.getAttribute("topping"+num));
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -203,4 +202,15 @@ public class SelectController {
 		return "redirect:";
 		
 	}
+	
+	@RequestMapping("orderproductdelete")
+	public String orderproductdelete(HttpSession session, int num) {
+		ProductVO product = null;
+		
+		session.removeAttribute("topping"+num);
+		System.out.println("1.1. topping delete:: "+session.getAttribute("topping"+num));
+		
+		return "redirect:/orderproductprice";
+	}
+	
 }

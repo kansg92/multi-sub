@@ -11,6 +11,8 @@ $(document).ready(function(){
 		}
 	});
 	
+	
+	
 	$('#goOrder').click(function(){
 		location.href="orders";
 		

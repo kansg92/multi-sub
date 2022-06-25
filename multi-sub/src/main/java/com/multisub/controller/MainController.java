@@ -202,24 +202,6 @@ public class MainController {
 		return "/main";
 	}
 	
-	@RequestMapping("/orderproductprice")
-	public String orderproductprice(Model m) {
-		
-		List<OrdersDetailVO> list = null;
-		
-		try {
-			list = odbiz.getsoba();
-			m.addAttribute("odlist", list);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		m.addAttribute("center","orderproductprice");
-		
-		return "/main";
-	}	
-	
-
 	@RequestMapping("deleteSession")
 	public String deleteSession(HttpSession session) {
 		session.invalidate();
@@ -227,15 +209,4 @@ public class MainController {
 		return "redirect:/";
 	}
 
-
-	@RequestMapping("orders")
-	public String orders(Model m, HttpSession session) {
-		
-		m.addAttribute("center","orders");
-		return "main";
-	}
-	
-
-	
-	
 }
