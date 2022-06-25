@@ -1,7 +1,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 
-<h1 class="h3 mb-0 text-gray-800">장바구니</h1><hr>
+<h1 class="h3 mb-0 text-gray-800">주문 목록</h1><hr>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
@@ -37,52 +37,55 @@
 	    
 	    		<div class="row data" th:each="cart:${session.cartList}" th:id="row+${cartStat.count}">
 	                <div class="subdiv">
-	               		<div class="seqnum"><input type="hidden" name="prodId" th:value="${cart.id}" th:text="${cartStat.count}" readonly="readonly"></div>
-	                    <div class="img"><img th:src="'/img/'+${cart.imgname}" width="20"></div>
+	               		<div class="seqnum"><input type="hidden" name="prodId" th:value="${cart.id}" style="text-align:center"th:text="${cartStat.count}"></div>
+	                    <div class="img"><img th:src="'/img/'+${cart.imgname}"  width ="80%" height= "40px"
+	                    style="text-align: center;"></div>
 	                    <div class="pname">
-	                        <p th:text="${cart.name}"></p>
+	                        <span th:text="${cart.name}"></span>
 	                    </div>
 	                </div>
 	                <div class="subdiv">
-	                    <div class="basketprice"><input type="hidden" th:id="price+${cnt+1}" class="price"  th:with="cnt=${cartStat.count}-1"
-	                    th:value="${session.toppingPrice[cnt]}+${cart.price}" th:text="${session.toppingPrice[cnt]}+${cart.price}"></div>
+	                    <div class="basketprice"><input type="hidden" th:id="price+${cnt+1}" class="p_price" th:with="cnt=${cartStat.count}-1"
+	                    th:value="${session.toppingPrice[cnt]}+${cart.price}" th:text="${session.toppingPrice[cnt]}+${cart.price}+원"></div>
 	                    <div class="num">
 	                        <div class="updown"> 
 	                            <div class="qty">	
 	                            <a th:with="cnt=${cartStat.count}"
-	                             th:href="|javascript:change_qty2('p', ${cnt})|"><i class="fas fa-arrow-alt-circle-up up"></i></a>
-	                            <input type="text" name="amount" th:id="ct_qty+${cartStat.count}" value="1" maxlength="2" width="2px" class="p_num" readonly="readonly">
+	                             th:href="|javascript:change_qty2('p', ${cnt})|"><i class="fas fa-plus-circle up"></i></a>
+	                            <input type="text" name="amount" th:id="ct_qty+${cartStat.count}" value="1" maxlength="2" width="5px" class="p_num" readonly="readonly">
 	                            <a th:with="cnt=${cartStat.count}"
-	                            th:href="|javascript:change_qty2('m', ${cnt})|"><i class="fas fa-arrow-alt-circle-down down"></i></a>
+	                            th:href="|javascript:change_qty2('m', ${cnt})|"><i class="fas fa-minus-circle down"></i></a>
 	                        </div>
 	                        </div>
-	                    </div>                    
+	                    </div> 
+	                     
+	                                 
 	                   <input name="odPrice" class="p_price"  th:with="cnt=${cartStat.count}-1" th:id="'total_amount'+${cnt+1}"
 	                   th:value="${session.toppingPrice[cnt]}+${cart.price}" 
-	                   style = "width:100px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">	
+	                   style = "width:80px;height:30px;text-align:center;vertical-align: middle;line-height: 3.0 !important;" readonly="readonly" >
+      				
 	                </div>
 	                <div class="subdiv">
-	                    <div class="basketcmd "><a class="abutton" 
-	                    th:href="|javascript:product_delete(${cart.sessionNum})|">삭제</a></div>
+	                    <div class="basketcmd"><a class="btn btn-primary btn-block" 
+	                    th:href="|javascript:product_delete(${cart.sessionNum})|" id="deletebtn">삭제</a></div>
 	                </div>
 	            </div>
 	
 	        </div>
 	          
 	         
-	       <div style='width:80px;float: left;' >
-	       총 금액:
-	       <input  name="sumprice" id="sumprice" class="alert alert-warning" style = "width:150px;height:30px;text-align:center;vertical-align: middle;" readonly="readonly">
+	       <div class="bigtext center-align box green summoney">
+	       총 합계금액
+	       <input name="sumprice" id="sumprice" class="alert alert-warning" style = "margin-bottom: 17px;color: #5e5e5e; font-size: 13px;  
+	       padding-top: 20px; " readonly="readonly">
 	       <input th:value="${session.count}" id="count" hidden="hidden">
 	       </div>
 	       
 	          
-	          
-	          
-			<div style='width:80px;float: right;'>
-			<a class="btn btn-success" id="prodpay"data-toggle="modal" 
+	          <a id="prodpay"data-toggle="modal" 
 			data-target="#myModal">상품 결제</a>
-			
+	          
+			<div style='width:80px;float: center;'>
 				<!-- Modal -->
 				<div id="myModal" class="modal fade" role="dialog">
 				  <div class="modal-dialog">
