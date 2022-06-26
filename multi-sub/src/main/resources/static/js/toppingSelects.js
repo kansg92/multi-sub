@@ -10,16 +10,23 @@ $(document).ready(function(){
 	$('#select-sauce').hide();
 	$('#select-others').hide();
 	$('#ordersPage').hide();
+	$('#prevBtn').css("visibility","hidden");
+	$('#testBtn').hide();
 
 	
 	
 	$('#testBtn').click(function(){
-
-		$('#topping-select').attr({
-			'method' : 'post',
-			'action' : 'toppingaddimpl'
-		})
-		$('#topping-select').submit();
+		if($('input:checkbox[name=others]').is(":checked")){
+			
+			$('#topping-select').attr({
+				'method' : 'post',
+				'action' : 'toppingaddimpl'
+			})
+			$('#topping-select').submit();
+		}else{
+			alert("토핑을 선택해주세요.");
+		}
+		
 	});
 	
 	$('.top-bread').click(function(){
@@ -78,43 +85,90 @@ $(document).ready(function(){
 	
 	$('#nextBtn').click(function(){
 		if($('input:radio[name=bread]').is(":checked") == false){
-			alert("pleas click bread")
-		}else{
+			alert("pleas choose bread")
+		}else if ($('#select-bread').css("display") == 'flex'){
 			$('#select-bread').hide();
 			$('#select-option').show();
+			$('#prevBtn').css("visibility","visible");
 		}
 		
 		if($('input:radio[name=cm]').is(":checked") == false){
-		}else{
-			console.log("toast where you")
-			console.log($('#select-toast'))
+		}else if ($('#select-option').css("display") == 'flex'){
 			$('#select-option').hide();
 			$('#select-toast').show();	
 		}
-		
 		if($('input:radio[name=toast]').is(":checked") == false){
-		}else{
+		}else if($('#select-toast').css("display") == 'flex'){
 			$('#select-toast').hide();
 			$('#select-cheese').show();	
 		}
 		
 		if($('input:radio[name=cheese]').is(":checked") == false){
-		}else{
+		}else if($('#select-cheese').css("display") == 'flex'){
 			$('#select-cheese').hide();
 			$('#select-vegetable').show();	
 		}
 		if($('input:checkbox[name=vegetable]').is(":checked") == false){
-		}else{
+		}else if($('#select-vegetable').css("display") == 'flex'){
 			$('#select-vegetable').hide();
 			$('#select-sauce').show();	
 		}
 		
 		if($('input:checkbox[name=sauce]').is(":checked") == false){
-		}else{
+		}else if($('#select-sauce').css("display") == 'flex'){
 			$('#select-sauce').hide();
 			$('#select-others').show();	
+			$('#testBtn').show();
+			$('#nextBtn').hide();
 		}
 	
 	});
+	
+	$('#prevBtn').click(function(){
+		console.log($('#select-option').css('display'))
+		if($('#select-option').css('display') == "flex"){
+			$('#select-bread').show();
+			$('#select-option').hide();
+			$('#prevBtn').css("visibility","hidden");
+			$('input:radio[name=cm]').attr("checked",false)
+			$('.option').removeClass("selectedbox");
+			
+		}
+		if($('#select-toast').css("display") == 'flex'){
+			$('#select-option').show();
+			$('#select-toast').hide();	
+			$('input:radio[name=toast]').attr("checked",false)
+			$('.toasting').removeClass("selectedbox");	
+		}
+		if($('#select-cheese').css("display") == 'flex'){
+			$('#select-toast').show();
+			$('#select-cheese').hide();
+			$('input:radio[name=cheese]').attr("checked",false)
+			$('.cheese').removeClass("selectedbox");
+		}
+		if($('#select-vegetable').css("display") == 'flex'){
+			$('input:checkbox[name=vegetable]').attr("checked",false)
+			$('.vegetable').removeClass("selectedbox");	
+			$('#select-cheese').show();
+			$('#select-vegetable').hide();	
+		
+		}
+		
+		if($('#select-sauce').css("display") == 'flex'){
+			$('input:checkbox[name=sauce]').attr("checked",false)
+			$('.sauce').removeClass("selectedbox");	
+			$('#select-vegetable').show();
+			$('#select-sauce').hide();	
+
+		}
+		if($('#select-others').css("display") == 'flex'){
+			$('#select-sauce').show();
+			$('#select-others').hide();	
+			$('input:checkbox[name=others]').attr("checked",false)
+			$('.sauce').removeClass("selectedbox");	
+			$('#testBtn').hide();
+			$('#nextBtn').show();
+		}
+	})
 	
 });

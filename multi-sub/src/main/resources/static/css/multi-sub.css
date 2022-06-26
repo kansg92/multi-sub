@@ -74,14 +74,40 @@
 	color:var(--sub-green);
 }
 
-
 .productinfo--img {
-	width: inherit;
-	height: 180px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
 }
 
 .mealmethod--img{
 	height: 300px;
+}
+
+.topping--select{
+	margin: 25px;
+    text-align: center;
+}
+.detail--main--div{
+	margin-left: 3px;
+    width: 100%;
+    text-align: center;
+}
+ 
+.detail--div{
+	display: inline-block;
+    width: 50%;
+}
+
+.detail--txt{
+	width: 50%;
+    text-align: left;
+}
+
+.detail--img{
+	width: 100%;
+    height: 100%;
+    padding: 10px;
 }
 
 
@@ -89,3 +115,20 @@
 	border: 3px solid var(--sub-green);
 }
 
+#detailBtnBox{
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#main--screen{
+	display:flex;
+	flex-direction:column;
+	height:vh100;
+	
+}
+
+#ordersPage{
+	border-top: 3px dashed #0092236b;
+	padding-top: 30px
+}

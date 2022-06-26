@@ -1,15 +1,14 @@
 
 <meta charset="UTF-8">
 <link href="css/multi-sub.css" rel="stylesheet" />
-<div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-1 row-cols-xl-1
-		justify-content-space-between"  > 
-   <div class="card border-left-primary h-100 py-5">
+<div class="col-xl-12 col-md-12 mb-12"  > 
+   <div class="card border-left-primary h-100 py-2">
       <div class="card-body"  >
           <div class="row no-gutters align-items-center">
-              <div class="col-lg-3"  id ="imgbox">
-                  <img id="main" src='/img/a1.jpg' th:src="@{/img/}+ ${prod.imgname}">
+              <div class="col-xl-4 detail--div"  id ="imgbox">
+                  <img id="main" class=" detail--img" src='/img/a1.jpg' th:src="@{/img/}+ ${prod.imgname}">
               </div>
-              <div class="col-xl-8">
+              <div class="col-xl-8 detail--txt">
                   <div class="h5 font-weight-bold text-gray mb-0" th:text="'Name: '+${prod.name}">
                       Customer Count</div>
                   <div class="h6 mb-0 font-weight-bold text-gray-800" th:text="'Price: '+${prod.price}">
@@ -21,16 +20,14 @@
       </div>
   </div>
 </div>
-
-<h1> Select Topping</h1>
-
-<form id="topping-select ">
+<h3 class="topping--select">SELECT TOPPING</h3>
+<form id="topping-select">
     <input type="hidden" th:value="${prod.id}" name="prod">     
     
     
 	<!-- select bread page -->
 	<div class="row gx-4 gx-lg-5 row-cols-3 row-cols-md-3 row-cols-xl-3
-		justify-content-space-between" id = "select-bread"> 
+		justify-content-space-between detail--main--div" id = "select-bread"> 
 	<!-- product info page -->
 			<div class="col mb-5 " th:each="b:${bread}" id="selectBox">
 				<a  class="producta top-bread" >
@@ -132,7 +129,7 @@
 			<div class="col mb-5" th:each="b:${vegetable}" id="selectBox">
 				<a  class="producta top-vegetable" >
 				 <input  type="checkbox" name="vegetable" th:value="${b.id}" hidden>	
-			     <div class="card h-100 radio--select">
+			     <div class="card h-100 radio--select vegetable ">
 			         <!-- Product image-->
 			         <img class="card-img-top productinfo--img" th:src="@{'/img/'+${b.imgname}}" alt="..." />
 			         <!-- Product details-->
@@ -172,7 +169,7 @@
 		<div class="col mb-5" th:each="b:${others}" id="selectBox">
 			<a  class="producta top-others">
 			<input type="checkbox" name="others" th:value="${b.id}" hidden>
-		     <div class="card h-100 radio--select">
+		     <div class="card h-100 radio--select others">
 		         <!-- Product image-->
 		         <img class="card-img-top productinfo--img" th:src="@{'/img/'+${b.imgname}}" alt="..." />
 		         <!-- Product details-->
@@ -185,7 +182,17 @@
 		    </a>
 		</div>
 	</div>
+	
 </form>
-<button id="testBtn">test button</button>
-<button id="nextBtn">NEXT button</button>
+<div id="detailBtnBox">
+	<button id="prevBtn" class="btn btn-outline-success bi bi-chevron-compact-left"
+	 style="color: #198754;border-color: #198754;float: left; margin-left: 15px;">이전</button>
+	<div>
+		<a href="/" class="btn btn-success">주문취소</a>
+	</div>
+	<button id="nextBtn" class="btn btn-outline-success bi bi-chevron-compact-right" 
+	style="color: #198754;border-color: #198754;float: right; margin-right: 15px;">다음</button>
+	<a class="btn btn-outline-success" id="testBtn" style="color: #198754;border-color: #198754; float: right;">
+		<i class="bi bi-basket2 me-1 sub-green"></i>상품담기</a>
+</div>
 <script src="/js/toppingSelects.js"></script>

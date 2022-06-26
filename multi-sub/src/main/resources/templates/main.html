@@ -25,8 +25,9 @@
         
         
     </head>
-    <body>
-        <!-- Navigation-->
+    <body id="main--screen">
+    	
+        <!-- Navigation
         <nav class="navbar navbar-expand-sm navbar-light bg-light" id="main-nav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/">
@@ -54,12 +55,13 @@
                                 <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                             </ul>
                         </li>
-                     -->    
+                        
                     </ul>
                              
                 </div>
             </div>
         </nav>
+         -->
         <!-- Header-->
         <header class="py-5" id="main-header">
             <div class="container px-4 px-lg-5 my-5">
@@ -75,10 +77,12 @@
   
 			<div class="container px-4 px-lg-5 mt-1" >
 			  <ul class="nav nav-pills" id="main-menu" th:if="${#strings.isEmpty(empty)}">
-			    <li th:if="${#httpServletRequest.servletPath == '/promotion' }" th:class="sub-active">
+			    <li th:if="${#httpServletRequest.servletPath == '/promotion' ||
+			    #httpServletRequest.servletPath == '/'  }" th:class="sub-active">
 			    	<a href="/promotion" class="sub-green sub-menu">Promotion</a>
 		    	</li>
-			    <li th:unless="${#httpServletRequest.servletPath == '/promotion'}" >
+			    <li th:unless="${#httpServletRequest.servletPath == '/promotion'  ||
+			    #httpServletRequest.servletPath == '/'  }" >
 			    	<a href="/promotion" class="sub-green sub-menu">Promotion</a>
 		    	</li>		    	
 
@@ -120,29 +124,25 @@
 		    	</li>
 
 			  </ul>
-  			  <ul class="nav nav-pills" id="main-menu2" th:unless="${#strings.isEmpty(empty)}">
-  			  	<li><h2 class="sub-green sub-menu ">STEP1</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP2</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP3</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP4</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP5</h2></li>
-  			  	<li><h2 class="sub-green sub-menu ">STEP5</h2></li>
-  			  </ul>
-  			  
-			  
 			</div>
 		  	<div class="container px-4 px-lg-5 mt-5" th:insert="${center} ? ${center} : center">	
 		  	<!-- center page -->  
 		  	
 		  	
 		  	</div>
-         
          	<!-- orders page -->  
 			<div class="container px-4 px-lg-5 mt-5 ordercart" id="ordersPage" >
-				<h3>orders info</h3>
-
+				<span class="h3">장바구니</span> 
+				<!-- <button id="sessionBtn" class="btn btn-success">비우기</button>--> 
+				<div style="float: right; margin-bottom: 15px;">
+					<a class="btn btn-outline-success" id="sessionBtn" type="submit" style="color: #198754;border-color: #198754;">
+	                <i class="bi bi-basket3 me-1 sub-green"></i>비우기</a>
+							
+					<a class="btn btn-outline-success" id="cart-btn" type="submit" href='/orderproductprice' style="color: #198754;border-color: #198754;">
+	                <i class="bi bi-basket2 me-1 sub-green"></i>상품결제</a>		
+				</div>
 				<div class="row gx-4 gx-lg-5 row-cols-3 row-cols-md-3 row-cols-xl-3 
-				justify-content-space-between ">
+				justify-content-space-between " style="clear: both;">
 					
 					<div class="order-box" th:each="cart:${session.cartList}">
 						<div class="col mb-5">
@@ -152,22 +152,19 @@
 					         th:src="'/img/'+${cart.imgname}" alt="..." />
 					         <!-- Product details-->
 					         <div class="card-body p-4">
-					             <div class="text-left" >
+					             <div class="text-center" >
 					                 <!-- Product name-->
-					                 <h5 class="fw-bolder" th:text="'제품명: '+${cart.name}"></h5>
+					                 <h5 class="fw-bolder" th:text="${cart.name}"></h5>
 					                 <!-- Product price-->
-					                 	상품금액: <span  th:with="cnt=${cartStat.count}-1"
-					                 			th:text="${session.toppingPrice[cnt]}+${cart.price}"></span>원
+					                 	<span  th:with="cnt=${cartStat.count}-1"
+					                 			th:text="${session.toppingPrice[cnt]}+${cart.price}"></span>Won
 					             </div>
 					         </div>
 					     </div>
 						</div>
 					</div>
 					
-				</div>
-				<button id="sessionBtn">비우기</button>		
-				<a class="btn" id="cart-btn" type="submit" href='/orderproductprice'>
-                <i class="bi-cart-fill me-1"></i>상품결제</a>					
+				</div>			
 			</div>
         
             
