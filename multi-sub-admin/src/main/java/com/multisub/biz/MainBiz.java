@@ -34,4 +34,28 @@ public class MainBiz {
 		return dao.searchproduct(str);	
 	}
 	
+	public int getCouponCnt() throws Exception {
+		return dao.getcouponcnt();
+	}
+	
+	public int getCustomerCnt() throws Exception {
+		return dao.getcustomercnt();
+	}
+	
+	public int getEmployeeCnt() throws Exception {
+		return dao.getemployeecnt();
+	}
+	
+	public int getNutritionCnt() throws Exception {
+		return dao.getnutritioncnt();
+	}
+	
+	public int getProductCnt() throws Exception {
+		return dao.getproductcnt();
+	}
+	
+	public int getToppingCnt() throws Exception {
+		return dao.gettoppingcnt();
+	}
+	
 }

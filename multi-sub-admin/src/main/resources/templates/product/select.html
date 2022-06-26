@@ -1,0 +1,47 @@
+<meta charset="UTF-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+	td > img {
+		width:50px;
+	}
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800 text-center">Product Tables</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4" style="display:contents">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>PRICE</th>
+                        <th>IMG</th>
+                        <th>REGDATE</th>
+                        <th>CATEGORY</th>
+                        <th>NUTRITION</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+       		       <tr th:each="p:${plist}">
+                        <td><a href="" th:text="${p.id}" th:href="@{detail(id=${p.id})}">1006</a></td>
+                        <td th:text="${p.name}">NAME</td>
+                        <td th:text="${p.price}">PRICE</td>
+                        <td>
+                    		<img th:src="@{'/img/'+${p.imgname}}">
+                    	</td>
+                        <td th:text="${#dates.format(p.regdate,'yyyy/MM/dd')}">REGDATE</td>
+                        <td th:text="${p.cateId}">CATEGORY</td>
+                        <td th:text="${p.nutId}">NUTRITION</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

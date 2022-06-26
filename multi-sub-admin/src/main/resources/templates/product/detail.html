@@ -1,0 +1,89 @@
+<meta charset="UTF-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<script>
+$(document).ready(function(){
+	$('#deletebtn').click(function(){
+		var id = $('input[name="id"]').val();
+		var c = confirm('삭제하시겠습니까?');
+		if(c == true){
+			location.href='delete?id='+id;
+		};
+	});
+});
+	
+$(document).ready(function(){
+	$('#updatebtn').click(function(){
+		$('.user').attr({
+			'enctype':'multipart/form-data',
+			'method':'post',
+			'action':'updateimpl'
+		});
+		$('.user').submit();
+	});
+});
+
+</script>
+
+<style>
+.form-group > img{
+	width:200px;
+}
+</style>
+<div class="col-lg-6">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Product Information</h1>
+        </div>
+        
+        <form class="user">
+            <div class="form-group">
+            	<img th:src="@{'/img/'+${p.imgname}}">
+            	<input type="hidden" name="imgname" th:value="${p.imgname}">
+            </div>
+            <div class="form-group">
+            	<input type="file" class="form-control form-control-item" name="mf">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="id" value="1" th:value="${p.id}" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="name" value="avocado" th:value="${p.name}">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="price" value="10000" th:value="${p.price}">
+            </div>
+           
+            <div class="form-group">
+                <input type="text" class="form-control form-control-item"
+                    name="regdate" value="22/06/09" th:value="${#dates.format(p.regdate,'yyyy/MM/dd')}">
+            </div>
+            <div class="form-group">
+             <select name="cateId" class="form-control form-control-item">
+            	<option th:each="c:${clist}" 
+            			th:if="${c.pid != 0}"
+            			th:value="${c.id}" 
+            			th:text="${c.name}"
+            			th:selected="${c.id} == ${p.cateId}">
+            	</option>
+             </select>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="nutId" value="1" th:value="${p.nutId}">
+            </div>
+           
+            <a id="updatebtn" href="#" class="btn btn-primary btn-user btn-block">
+                UPDATE
+            </a>
+            <a id="deletebtn" href="#" class="btn btn-primary btn-user btn-block">
+                DELETE
+            </a>
+        
+        </form>
+        
+    </div>
+</div>
