@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
 	$('#main-menu').hide();
 	$('#payment').hide();
@@ -12,11 +10,6 @@ $(document).ready(function(){
 	})
 	
 	sumPriceUpdate();
-	
-	/*
-
-		
-	*/
 	
 	$('.pay-info').click(function(){
 		$('input:radio[name="payInfo"]').attr("checked",false)
@@ -178,8 +171,3 @@ function change_qty2(t,cnt){
 function product_delete(cnt){
 	location.href="deleteSessionItem?cnt="+cnt;
 }
-
-
-
-
-
