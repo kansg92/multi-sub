@@ -41,8 +41,8 @@ CREATE TABLE category(
 ALTER TABLE category
 ADD FOREIGN KEY (pid) REFERENCES category (id);
 
-INSERT INTO category VALUES(1000,"샌드위치",NULL); 
-INSERT INTO category VALUES(400,"야채",NULL); 
+INSERT INTO category VALUES(1,"test",NULL); 
+INSERT INTO category VALUES(2,"test2",NULL); 
 
 -- CREATE product table
 CREATE TABLE product (
@@ -61,7 +61,7 @@ ALTER TABLE product
 ADD FOREIGN KEY (cateid) REFERENCES category (id);
 
 
-INSERT INTO product VALUES(NULL,"샌드위치1",5000,"샌드위치1",sysdate(),1000,1);
+INSERT INTO product VALUES(NULL,"샌드위치1",5000,"샌드위치1",sysdate(),1,1);
 
 
 -- create topping table
@@ -76,8 +76,8 @@ CREATE TABLE topping (
 ALTER TABLE topping
 ADD FOREIGN KEY (cateid) REFERENCES category (id);
 
-INSERT INTO topping VALUES(NULL,"야채",0,"야채사진",400);
-INSERT INTO topping VALUES(NULL,"야채2",0,"야채사진",400);
+INSERT INTO topping VALUES(NULL,"야채",0,"야채사진",2);
+INSERT INTO topping VALUES(NULL,"야채2",0,"야채사진",1);
 
 
 
@@ -111,7 +111,7 @@ CREATE TABLE users(
 ALTER TABLE users
 ADD FOREIGN KEY (userTypeId) REFERENCES usersType (id);
 
-INSERT INTO users VALUES ("id01","pwd01","lee","email","seoul","010-1234-5678","0","M-100-12345",sysdate(),200);
+INSERT INTO users VALUES ("id01","pwd01","비회원계정","email","seoul","010-1234-5678","0","M-100-12345",sysdate(),100);
 
 
 
@@ -185,7 +185,7 @@ INSERT INTO couponDetail VALUES (NULL,"미사용",NULL,"id01",1,1);
 -- crete toppingDetail table
 CREATE TABLE toppingDetail(
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    amount INT NOT NULL,
+    amount INT ,
 	tdPrice INT NOT NULL,
     toppingId INT,
     ordersDId INT
@@ -215,5 +215,7 @@ SELECT od.id, od.ordersId, od.amount, c.name as cateName, p.name as prodName,
 	INNER JOIN product p ON p.id = od.prodId
 	INNER JOIN category c ON p.cateid = c.id;
 
+
+select * from product;
 ```
 

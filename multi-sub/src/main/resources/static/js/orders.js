@@ -11,6 +11,12 @@ $(document).ready(function(){
 	
 	sumPriceUpdate();
 	
+<<<<<<< HEAD
+	$('#ordersPage').hide();
+
+	
+=======
+>>>>>>> refs/remotes/origin/master
 	$('.pay-info').click(function(){
 		$('input:radio[name="payInfo"]').attr("checked",false)
 		$(this).children(0).attr("checked",true)
@@ -85,6 +91,7 @@ function sumbitOrder(){
 			},
 		success: function(data){
 			alert("결제가 완료되었습니다!");
+			location.href="/"
 		}
 	});
 	

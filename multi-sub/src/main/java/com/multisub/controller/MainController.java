@@ -120,7 +120,7 @@ public class MainController {
 			
 			return "/main";
 		}else {
-			m.addAttribute("center","center");
+			m.addAttribute("center","promotion");
 
 			System.out.println("main--------------End");
 			

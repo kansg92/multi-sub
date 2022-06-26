@@ -1,6 +1,4 @@
-function saveInputValue(){
-	
-}
+
 
  
 $(document).ready(function(){
@@ -11,16 +9,12 @@ $(document).ready(function(){
 	$('#select-vegetable').hide();
 	$('#select-sauce').hide();
 	$('#select-others').hide();
+	$('#ordersPage').hide();
 
+	
+	
 	$('#testBtn').click(function(){
-		/*
-		$.ajax({
-			url:"test",
-			success:function(data){
-				alert(data);
-			}
-		})
-		*/
+
 		$('#topping-select').attr({
 			'method' : 'post',
 			'action' : 'toppingaddimpl'
@@ -29,24 +23,31 @@ $(document).ready(function(){
 	});
 	
 	$('.top-bread').click(function(){
-		$('input:radio[name="bread"]').attr("checked",false)
-		$(this).children(0).attr("checked",true)
+		$('.bread').removeClass("selectedbox");
+		$('input:radio[name="bread"]').attr("checked",false);
+		$(this).children(0).attr("checked",true);
+		$(this).children(1).toggleClass("selectedbox");
 	});
 	$('.top-option').click(function(){
-		console.log( $(this).children(0));
-		$('input:radio[name="cm"]').attr("checked",false)
-		$(this).children(0).attr("checked",true)
+		$('.option').removeClass("selectedbox");
+		$('input:radio[name="cm"]').attr("checked",false);
+		$(this).children(0).attr("checked",true);
+		$(this).children(1).toggleClass("selectedbox");
 	});
 	$('.top-toast').click(function(){
 		$('input:radio[name="toast"]').attr("checked",false)
 		$(this).children(0).attr("checked",true)
+		$('.toasting').removeClass("selectedbox");
+		$(this).children(1).toggleClass("selectedbox");
 	});
 	$('.top-cheese').click(function(){
-		console.log( $(this).children(0));
+		$('.cheese').removeClass("selectedbox");
 		$('input:radio[name="cheese"]').attr("checked",false)
 		$(this).children(0).attr("checked",true)
+		$(this).children(1).toggleClass("selectedbox");
 	});	
 	$('.top-vegetable').click(function(){
+		$(this).children(1).toggleClass("selectedbox");
 		if($(this).children(0).attr("checked")){
 			$(this).children(0).attr("checked",false)
 		}else{
@@ -54,6 +55,7 @@ $(document).ready(function(){
 		}
 	});
 	$('.top-sauce').click(function(){
+		$(this).children(1).toggleClass("selectedbox");
 		if($(this).children(0).attr("checked")){
 			$(this).children(0).attr("checked",false)
 		}else{
@@ -61,6 +63,7 @@ $(document).ready(function(){
 		}
 	});
 	$('.top-others').click(function(){
+		$(this).children(1).toggleClass("selectedbox");
 		if($(this).children(0).attr("checked")){
 			$(this).children(0).attr("checked",false)
 		}else{
@@ -83,6 +86,8 @@ $(document).ready(function(){
 		
 		if($('input:radio[name=cm]').is(":checked") == false){
 		}else{
+			console.log("toast where you")
+			console.log($('#select-toast'))
 			$('#select-option').hide();
 			$('#select-toast').show();	
 		}

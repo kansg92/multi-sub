@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-
+<link href="css/multi-sub.css" rel="stylesheet" />
 <div class="col-xl-12 col-md-12 mb-12"  > 
    <div class="card border-left-primary h-100 py-2">
       <div class="card-body"  >
@@ -36,8 +36,8 @@
 	<!-- product info page -->
 		<div class="col mb-5" th:each="b:${cheese}" id="selectBox">
 			<a  class="producta top-cheese" >
-			<input  type="radio" name="cheese" th:value="${b.id}" >
-		     <div class="card h-100 radio--select">
+			<input  type="radio" name="cheese" th:value="${b.id}" hidden>
+		     <div class="card h-100 radio--select cheese">
 		         <!-- Product image-->
 		         <img class="card-img-top productinfo--img" th:src="@{'/img/'+${b.imgname}}" alt="..." />
 		         <!-- Product details-->
@@ -51,8 +51,8 @@
 		</div>
 		<div class="col mb-5"  id="selectBox">
 			<a  class="producta top-cheese" >
-			<input  type="radio" name="cheese" value="999" >
-		     <div class="card h-100 radio--select">
+			<input  type="radio" name="cheese" value="999" hidden>
+		     <div class="card h-100 radio--select cheese	">
 		         <!-- Product image-->
 		         <img class="card-img-top productinfo--img" src="/img/noselect.png" alt="..." />
 		         <!-- Product details-->
@@ -72,7 +72,7 @@
 	<!-- product info page -->
 			<div class="col mb-5" th:each="b:${vegetable}" id="selectBox">
 				<a  class="producta top-vegetable" >
-				 <input  type="checkbox" name="vegetable" th:value="${b.id}" >	
+				 <input  type="checkbox" name="vegetable" th:value="${b.id}" hidden>	
 			     <div class="card h-100 radio--select">
 			         <!-- Product image-->
 			         <img class="card-img-top productinfo--img" th:src="@{'/img/'+${b.imgname}}" alt="..." />
@@ -92,7 +92,7 @@
 	<!-- product info page -->
 		<div class="col mb-5" th:each="b:${sauce}" id="selectBox">
 			<a  class="producta top-sauce">
-			<input type="checkbox" name="sauce" th:value="${b.id}" >
+			<input type="checkbox" name="sauce" th:value="${b.id}" hidden>
 		     <div class="card h-100 radio--select">
 		         <!-- Product image-->
 		         <img class="card-img-top productinfo--img" th:src="@{'/img/'+${b.imgname}}" alt="..." />
@@ -112,7 +112,7 @@
 	<!-- product info page -->
 		<div class="col mb-5" th:each="b:${others}" id="selectBox">
 			<a  class="producta top-others">
-			<input type="checkbox" name="others" th:value="${b.id}" >
+			<input type="checkbox" name="others" th:value="${b.id}" hidden>
 		     <div class="card h-100 radio--select">
 		         <!-- Product image-->
 		         <img class="card-img-top productinfo--img" th:src="@{'/img/'+${b.imgname}}" alt="..." />
