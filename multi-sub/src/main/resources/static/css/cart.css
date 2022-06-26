@@ -161,12 +161,11 @@ h1{
         }
   
        .basketdiv .img{
-        width: 40%;
+        width: 30%;
         line-height: 5.0 !important;
         font-size: 1.2em;
         font-weight: 800;
-        
-        text-align: center !important;
+        text-align: right !important;
         }
         
        .basketdiv .pname{
@@ -174,7 +173,7 @@ h1{
         line-height: 5.0 !important;
         font-size: 1.2em;
         font-weight: 800;
-        text-align: center !important;
+        text-align: right !important;
        }
     
        .basketdiv .basketprice {
@@ -232,11 +231,11 @@ h1{
        }
    
        .basketdiv .data .pname {
-        text-align: center !important;
-        vertical-align: middle;
+        text-align: left !important;
         font-size: 1.0em;
         font-weight: 800;
-        line-height: 10.0 !important;
+        line-height: 0.1em; 
+        word-spacing: 5px;
        }
        
        .basketdiv .data .price, .basketdiv .data .sum, .basketdiv .data .point {
