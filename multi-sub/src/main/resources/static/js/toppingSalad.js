@@ -1,33 +1,26 @@
-function saveInputValue(){
-	
-}
 
- 
 $(document).ready(function(){
 
 	$('#select-vegetable').hide();
 	$('#select-sauce').hide();
 	$('#select-others').hide();
-
 	$('#ordersPage').hide();
-	
+	$('#prevBtn').css("visibility","hidden");
+	$('#testBtn').hide();
 	
 	$('#testBtn').click(function(){
-		/*
-		$.ajax({
-			url:"test",
-			success:function(data){
-				alert(data);
-			}
-		})
-		*/
-		$('#topping-select').attr({
-			'method' : 'post',
-			'action' : 'toppingaddimpl'
-		})
-		$('#topping-select').submit();
+		if($('input:checkbox[name=others]').is(":checked")){
+			
+			$('#topping-select').attr({
+				'method' : 'post',
+				'action' : 'toppingaddimpl'
+			})
+			$('#topping-select').submit();
+		}else{
+			alert("토핑을 선택해주세요.");
+		}
+		
 	});
-	
 
 	$('.top-cheese').click(function(){
 		$('.cheese').removeClass("selectedbox");
@@ -67,23 +60,51 @@ $(document).ready(function(){
 	$('#nextBtn').click(function(){
 
 		if($('input:radio[name=cheese]').is(":checked") == false){
-			alert("click cheese")
-		}else{
+		}else if($('#select-cheese').css("display") == 'flex'){
 			$('#select-cheese').hide();
 			$('#select-vegetable').show();	
 		}
 		if($('input:checkbox[name=vegetable]').is(":checked") == false){
-		}else{
+		}else if($('#select-vegetable').css("display") == 'flex'){
 			$('#select-vegetable').hide();
 			$('#select-sauce').show();	
 		}
 		
 		if($('input:checkbox[name=sauce]').is(":checked") == false){
-		}else{
+		}else if($('#select-sauce').css("display") == 'flex'){
 			$('#select-sauce').hide();
 			$('#select-others').show();	
+			$('#testBtn').show();
+			$('#nextBtn').hide();
 		}
 	
 	});
+	
+	$('#prevBtn').click(function(){
+		if($('#select-vegetable').css("display") == 'flex'){
+			$('input:checkbox[name=vegetable]').attr("checked",false)
+			$('.vegetable').removeClass("selectedbox");	
+			$('#select-cheese').show();
+			$('#select-vegetable').hide();
+			$('#prevBtn').css("visibility","hidden");	
+		
+		}
+		
+		if($('#select-sauce').css("display") == 'flex'){
+			$('input:checkbox[name=sauce]').attr("checked",false)
+			$('.sauce').removeClass("selectedbox");	
+			$('#select-vegetable').show();
+			$('#select-sauce').hide();	
+
+		}
+		if($('#select-others').css("display") == 'flex'){
+			$('#select-sauce').show();
+			$('#select-others').hide();	
+			$('input:checkbox[name=others]').attr("checked",false)
+			$('.sauce').removeClass("selectedbox");	
+			$('#testBtn').hide();
+			$('#nextBtn').show();
+		}
+	})
 	
 });

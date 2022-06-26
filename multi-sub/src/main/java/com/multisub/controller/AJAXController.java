@@ -144,8 +144,11 @@ public class AJAXController {
 			throw new Exception();
 		}
 		System.out.println("ordersimpl---------end");
+		session.invalidate();
 		return "plz";
 	}
+	
+	
 	public HashMap<String, Object> toppingCheck(HttpSession session, HashMap<String, Object> hashMap, int num) {
 
 		num++;
