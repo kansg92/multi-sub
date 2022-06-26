@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+	td > img {
+		width:50px;
+	}
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800 text-center">Nutrition Tables</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4" style="display:contents">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Kcal</th>
+                        <th>Gram</th>
+                        <th>Protein</th>
+                        <th>Fat</th>
+                        <th>Sugar</th>
+                        <th>Salt</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+       		       <tr th:each="n:${nlist}">
+                        <td><a href="" th:text="${n.id}" th:href="@{detail(id=${n.id})}">1</a></td>
+                        <td th:text="${n.kcal}">Kcal</td>
+                        <td th:text="${n.gram}">Gram</td>
+                        <td th:text="${n.protein}">Protein</td>
+                        <td th:text="${n.fat}">Fat</td>
+                        <td th:text="${n.sugar}">Sugar</td>
+                        <td th:text="${n.salt}">Salt</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

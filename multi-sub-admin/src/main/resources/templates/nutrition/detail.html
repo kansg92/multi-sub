@@ -1,0 +1,79 @@
+<meta charset="UTF-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<script>
+$(document).ready(function(){
+	$('#deletebtn').click(function(){
+		var id = $('input[name="id"]').val();
+		var c = confirm('삭제하시겠습니까?');
+		if(c == true){
+			location.href='delete?id='+id;
+		};
+	});
+});
+	
+$(document).ready(function(){
+	$('#updatebtn').click(function(){
+		$('.user').attr({
+			'enctype':'multipart/form-data',
+			'method':'post',
+			'action':'updateimpl'
+		});
+		$('.user').submit();
+	});
+});
+
+</script>
+
+<style>
+.form-group > img{
+	width:200px;
+}
+</style>
+<div class="col-lg-6">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Nutrition Information</h1>
+        </div>
+        
+        <form class="user">
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="id" value="1" th:value="${n.id}" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="kcal" value="300" th:value="${n.kcal}">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="gram" value="200" th:value="${n.gram}">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="protein" value="1" th:value="${n.protein}">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="fat" value="1" th:value="${n.fat}">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="sugar" value="1" th:value="${n.sugar}">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control form-control-item"
+                    name="salt" value="1" th:value="${n.salt}">
+            </div>
+           
+            <a id="updatebtn" href="#" class="btn btn-primary btn-user btn-block">
+                UPDATE
+            </a>
+            <a id="deletebtn" href="#" class="btn btn-primary btn-user btn-block">
+                DELETE
+            </a>
+        
+        </form>
+        
+    </div>
+</div>

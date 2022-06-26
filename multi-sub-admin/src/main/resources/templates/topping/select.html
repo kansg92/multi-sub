@@ -1,0 +1,43 @@
+<meta charset="UTF-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+	td > img {
+		width:50px;
+	}
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800 text-center">Topping Tables</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4" style="display:contents">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>PRICE</th>
+                        <th>IMG</th>
+                        <th>CATEGORY</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+       		       <tr th:each="t:${tlist}">
+                        <td><a href="" th:text="${t.id}" th:href="@{detail(id=${t.id})}">ID</a></td>
+                        <td th:text="${t.name}">NAME</td>
+                        <td th:text="${t.price}">PRICE</td>
+                        <td>
+                    		<img th:src="@{'/img/'+${t.imgname}}">
+                    	</td>
+                        <td th:text="${t.cateId}">CATEGORY</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

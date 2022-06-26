@@ -1,0 +1,54 @@
+<meta charset="UTF-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script>
+
+$(document).ready(function(){
+	
+	$('#registerbtn').click(function(){
+		$('.user').attr({
+			'enctype':'multipart/form-data',
+			'method':'post',
+			'action':'registerimpl'
+		});
+		$('.user').submit();
+	});
+});
+
+</script>
+<div class="col-lg-6">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Product Register</h1>
+        </div>
+        <form class="user">
+            <div class="form-group">
+             NAME: </span><input type="text" class="form-control form-control-item" name="name">
+            </div>
+            <div class="form-group">
+             PRICE: <input type="number" class="form-control form-control-item" name="price">
+            </div>
+            <div class="form-group">
+             IMG: <input type="file" class="form-control form-control-item" name="mf">
+            </div>
+            <div class="form-group">
+             CATEGORY: 
+             <select name="cateId" class="form-control form-control-item">
+            	<option th:each="c:${clist}" 
+            			th:value="${c.id}" 
+            			th:text="${c.name}">
+            	</option>
+             </select>
+            </div>
+            <div class="form-group">
+             NUTRITION: </span><input type="number" class="form-control form-control-item" name="nutId">
+            </div>
+            
+            
+            <a id="registerbtn" href="#" class="btn btn-primary btn-user btn-block">
+             REGISTER
+            </a>
+        
+        </form>
+        
+    </div>
+</div>

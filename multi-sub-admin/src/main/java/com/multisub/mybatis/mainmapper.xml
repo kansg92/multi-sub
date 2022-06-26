@@ -21,4 +21,27 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM product WHERE name LIKE CONCAT('%',#{srchtext},'%')
 	</select>
 	
+	<select id="getcouponcnt" resultType="int">
+		SELECT count(*) FROM COUPON
+	</select>
+	
+	<select id="getcustomercnt" resultType="int">
+		SELECT count(*) FROM USERS
+	</select>
+	
+	<select id="getemployeecnt" resultType="int">
+		SELECT count(*) FROM USERS WHERE ID=300
+	</select>
+	
+	<select id="getnutritioncnt" resultType="int">
+		SELECT count(*) FROM NUTRITION
+	</select>
+	
+	<select id="getproductcnt" resultType="int">
+		SELECT count(*) FROM PRODUCT
+	</select>
+	
+	<select id="gettoppingcnt" resultType="int">
+		SELECT count(*) FROM TOPPING
+	</select>
 </mapper>
