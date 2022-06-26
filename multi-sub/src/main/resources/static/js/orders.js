@@ -13,10 +13,8 @@ $(document).ready(function(){
 	
 	sumPriceUpdate();
 	
-	/*
+	$('#ordersPage').hide();
 
-		
-	*/
 	
 	$('.pay-info').click(function(){
 		$('input:radio[name="payInfo"]').attr("checked",false)
@@ -92,6 +90,7 @@ function sumbitOrder(){
 			},
 		success: function(data){
 			alert("결제가 완료되었습니다!");
+			location.href="/"
 		}
 	});
 	

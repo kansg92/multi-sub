@@ -84,4 +84,6 @@
 	height: 300px;
 }
 
-
+.selectedbox{
+	border: 3px solid var(--sub-green);
+}

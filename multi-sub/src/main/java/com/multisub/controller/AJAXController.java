@@ -87,7 +87,7 @@ public class AJAXController {
 	        int num = 1;
 	        //orderDetail insert...
 	        for(int i=0; i<prodIdList.size(); i++) {
-
+	        	
 				OrdersDetailVO ordersDetail = new OrdersDetailVO();
 
 	        	ordersDetail.setOrdersId(order.getId());
@@ -99,44 +99,41 @@ public class AJAXController {
 	        	
 	            //토핑 디테일 정보 인서트...
 	    		if(session.getAttribute("count") != null) {
-	    			num++;
 	    			
     				HashMap<String, Object> hashMap = new HashMap<String, Object>();
-    				hashMap = (HashMap<String, Object>) session.getAttribute("topping"+Integer.valueOf(num));
+    				hashMap = toppingCheck(session, hashMap,  num);
     				
     				System.out.println("hashMap  :: "+hashMap);
-    				if(hashMap == null) {
-    					num++;
-    					hashMap = (HashMap<String, Object>) session.getAttribute("topping"+Integer.valueOf(num));
+    				if(hashMap != null)  {
+						int bread = (int) hashMap.get("bread");
+						int toast = (int) hashMap.get("toast");
+						int cm = (int) hashMap.get("cm");
+						int cheese = (int) hashMap.get("cheese");
+						List<Integer> vegetable = (List<Integer>) hashMap.get("vegetable");
+						List<Integer> sauce = (List<Integer>) hashMap.get("sauce");
+						List<Integer> others = (List<Integer>) hashMap.get("others");
+						System.out.println("others  :: "+others);
+						try {
+							
+								toppigInsert("nope", bread, ordersDetail.getId()); 
+								toppigInsert("nope", toast, ordersDetail.getId()); 
+								toppigInsert("nope", cheese, ordersDetail.getId()); 
+								toppigInsert("get", cm, ordersDetail.getId()); 
+								for(int othersID : others) { 
+									toppigInsert("get", othersID, ordersDetail.getId()); 
+								}
+								for(int vegetableId : vegetable) { 
+									toppigInsert("nope", vegetableId, ordersDetail.getId()); 
+								} 
+								for(int sauceId : sauce) { 
+									toppigInsert("nope", sauceId, ordersDetail.getId()); 
+								}
+							 
+	
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
     				}
-					int bread = (int) hashMap.get("bread");
-					int toast = (int) hashMap.get("toast");
-					int cm = (int) hashMap.get("cm");
-					int cheese = (int) hashMap.get("cheese");
-					List<Integer> vegetable = (List<Integer>) hashMap.get("vegetable");
-					List<Integer> sauce = (List<Integer>) hashMap.get("sauce");
-					List<Integer> others = (List<Integer>) hashMap.get("others");
-					System.out.println("others  :: "+others);
-					try {
-						
-							toppigInsert("nope", bread, ordersDetail.getId()); 
-							toppigInsert("nope", toast, ordersDetail.getId()); 
-							toppigInsert("nope", cheese, ordersDetail.getId()); 
-							toppigInsert("get", cm, ordersDetail.getId()); 
-							for(int othersID : others) { 
-								toppigInsert("get", othersID, ordersDetail.getId()); 
-							}
-							for(int vegetableId : vegetable) { 
-								toppigInsert("nope", vegetableId, ordersDetail.getId()); 
-							} 
-							for(int sauceId : sauce) { 
-								toppigInsert("nope", sauceId, ordersDetail.getId()); 
-							}
-						 
-
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
     				
 	    		}	        	
 	        }
@@ -150,7 +147,20 @@ public class AJAXController {
 		System.out.println("ordersimpl---------end");
 		return "plz";
 	}
-	
+	public HashMap<String, Object> toppingCheck(HttpSession session, HashMap<String, Object> hashMap, int num) {
+
+		num++;
+		hashMap = (HashMap<String, Object>) session.getAttribute("topping"+Integer.valueOf(num));
+		
+		if(hashMap == null)  {
+			if(Integer.parseInt(session.getAttribute("count").toString()) > num) {
+				toppingCheck(session,hashMap,num);
+			}
+		}
+		return hashMap;
+	}
+		
+		
 	//토핑 인서트...
 	public void toppigInsert(String type, int toppingId, int ordersDId) {
 

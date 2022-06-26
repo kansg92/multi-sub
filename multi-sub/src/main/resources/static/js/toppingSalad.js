@@ -9,6 +9,9 @@ $(document).ready(function(){
 	$('#select-sauce').hide();
 	$('#select-others').hide();
 
+	$('#ordersPage').hide();
+	
+	
 	$('#testBtn').click(function(){
 		/*
 		$.ajax({
@@ -27,11 +30,13 @@ $(document).ready(function(){
 	
 
 	$('.top-cheese').click(function(){
-		console.log( $(this).children(0));
+		$('.cheese').removeClass("selectedbox");
 		$('input:radio[name="cheese"]').attr("checked",false)
 		$(this).children(0).attr("checked",true)
+		$(this).children(1).toggleClass("selectedbox");
 	});	
 	$('.top-vegetable').click(function(){
+		$(this).children(1).toggleClass("selectedbox");
 		if($(this).children(0).attr("checked")){
 			$(this).children(0).attr("checked",false)
 		}else{
@@ -39,6 +44,7 @@ $(document).ready(function(){
 		}
 	});
 	$('.top-sauce').click(function(){
+		$(this).children(1).toggleClass("selectedbox");
 		if($(this).children(0).attr("checked")){
 			$(this).children(0).attr("checked",false)
 		}else{
@@ -46,6 +52,7 @@ $(document).ready(function(){
 		}
 	});
 	$('.top-others').click(function(){
+		$(this).children(1).toggleClass("selectedbox");
 		if($(this).children(0).attr("checked")){
 			$(this).children(0).attr("checked",false)
 		}else{
@@ -55,12 +62,6 @@ $(document).ready(function(){
 	
 	
 	
-	$('#sessionBtn').click(function(){
-		var result = confirm("장바구니를 비우겠습니까?");
-		if(result){
-		    session.invalidate();
-		}
-	});
 	
 	
 	$('#nextBtn').click(function(){
