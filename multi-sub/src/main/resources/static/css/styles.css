@@ -7638,6 +7638,7 @@ textarea.form-control-lg {
 
 .fw-bolder {
   font-weight: bolder !important;
+  text-align: center;
 }
 
 .lh-1 {

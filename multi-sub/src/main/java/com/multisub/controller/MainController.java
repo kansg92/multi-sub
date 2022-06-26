@@ -120,7 +120,16 @@ public class MainController {
 			
 			return "/main";
 		}else {
-			m.addAttribute("center","center");
+			List<ProductVO> list = null;
+			try {
+				list = pbiz.selectMenu(140);
+				m.addAttribute("prodlist",list);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			m.addAttribute("center","promotion");
 
 			System.out.println("main--------------End");
 			
