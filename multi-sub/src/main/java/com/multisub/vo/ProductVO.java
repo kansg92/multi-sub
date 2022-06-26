@@ -38,6 +38,7 @@ public class ProductVO {
 		this.cateId = cateId;
 		this.nutId = nutId;
 	}
+<<<<<<< HEAD
 	public ProductVO(int id, String name, int price, String imgname, Date regdate, int cateId, int nutId) {
 		this.id = id;
 		this.name = name;
@@ -50,3 +51,7 @@ public class ProductVO {
 	
 	
 }
+=======
+
+}
+>>>>>>> refs/remotes/origin/master

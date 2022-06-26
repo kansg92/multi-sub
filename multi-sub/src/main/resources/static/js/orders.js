@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
 	$('#main-menu').hide();
 	$('#payment').hide();
@@ -13,9 +11,12 @@ $(document).ready(function(){
 	
 	sumPriceUpdate();
 	
+<<<<<<< HEAD
 	$('#ordersPage').hide();
 
 	
+=======
+>>>>>>> refs/remotes/origin/master
 	$('.pay-info').click(function(){
 		$('input:radio[name="payInfo"]').attr("checked",false)
 		$(this).children(0).attr("checked",true)
@@ -177,8 +178,3 @@ function change_qty2(t,cnt){
 function product_delete(cnt){
 	location.href="deleteSessionItem?cnt="+cnt;
 }
-
-
-
-
-

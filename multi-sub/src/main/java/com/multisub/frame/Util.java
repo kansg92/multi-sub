@@ -9,12 +9,10 @@ public class Util {
 		String imgname = mf.getOriginalFilename();
 		try {
 			data = mf.getBytes();
-			FileOutputStream adminfo = 
-					new FileOutputStream(admindir+imgname);
+			FileOutputStream adminfo = new FileOutputStream(admindir+imgname);
 			adminfo.write(data);
 			adminfo.close();
-			FileOutputStream userfo = 
-					new FileOutputStream(userdir+imgname);
+			FileOutputStream userfo = new FileOutputStream(userdir+imgname);
 			userfo.write(data);
 			userfo.close();
 		}catch(Exception e) {

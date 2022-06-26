@@ -213,15 +213,7 @@ public class MainController {
 		m.addAttribute("center","side");
 		return "/main";
 	}
-	
-	@RequestMapping("/orderproductprice")
-	public String orderproductprice(HttpSession session,Model m) {
-	
-		m.addAttribute("center","orderproductprice");
 		
-		return "/main";
-	}	
-	
 
 	@RequestMapping("deleteSession")
 	public String deleteSession(HttpSession session) {
@@ -229,15 +221,6 @@ public class MainController {
 		
 		return "redirect:/";
 	}
-
-
-	@RequestMapping("orders")
-	public String orders(Model m, HttpSession session) {
-		
-		m.addAttribute("center","orders");
-		return "main";
-	}
-	
 
 	
 	

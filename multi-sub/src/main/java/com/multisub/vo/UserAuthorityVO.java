@@ -36,7 +36,5 @@ public class UserAuthorityVO {
 		this.userType = userType;
 		this.regdate = regdate;
 	}	
-	
-	
-	
+		
 }

@@ -1,3 +1,55 @@
+#prodpay{
+	overflow: hidden;
+    display: block;
+    width: 50%;
+    height: 42px;
+    background: #3e3d3c;
+    border: 1px solid #3e3d3c;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 36px;
+    margin: auto;
+    font-size: 15px;
+	
+}
+
+#deletebtn{
+	background-color: #383838;
+    border: 1px solid #888888;
+    color: #ffffff;
+        cursor: pointer;
+        letter-spacing: normal;
+        padding: 3px 5px;
+        margin: 7px 9px;
+        width: 70%;
+        height: 70%;
+        word-break: keep-all;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1.0em;
+        display: inline-block;
+  
+}
+
+.subdiv.p_price{
+	text-align: center !important;
+     vertical-align: middle;
+      line-height: 3.0 !important;
+}
+
+#amount_price{
+	width:20%;
+	height:30px; 
+	text-align: center;
+   
+   line-height: 3.0 !important;
+}
+
 .basketdiv {
     width: 100%;
     border-top: 1px solid #e0e0e0;
@@ -12,7 +64,7 @@
         font-weight: 500;
     }
     .basketdiv .data {
-        border-bottom: 1px dashed #888;
+        border-bottom: 2px dashed #888;
         box-sizing: border-box;
         cursor: pointer;
         float: left;
@@ -47,54 +99,67 @@
         padding: 12px 0;
     }
     .basketdiv .row.data > div > div {
-        height: 60px;
-        line-height: 60px;
+        height: 70px;
+        line-height: 70px;
     }
+    
+  
         .basketdiv .data .num .updown {
             color: #0075ff;
             font-size: 1.0em;
             letter-spacing: 1px;
         }
         .basketdiv .seqnum {
-        text-align: center;
-    	width: 20%;
-    	font-size: 1.0em;
+    	width: 15%;
+    	text-align: center !important;
+        vertical-align: middle;
+        line-height: 3.0 !important;
             
         }
   
     .basketdiv .img{
-        width: 30%;
+        width: 35%;
+        line-height: 3.0 !important;
     }
     .basketdiv .pname{
-        width: 40%;
+        width: 50%;
+         line-height: 3.0 !important;
     }
     
-
     .basketdiv .basketprice {
-        width: 25%;
+        width: 40%;
+        text-align: center !important;
+        vertical-align: middle;
+        line-height: 3.0 !important;
     }
+    
     .basketdiv .num {
         width: 30%;
-      min-width: 100px;
+      
+      text-align: left !important;
+      line-height: 3.0 !important;
     }
     .basketdiv .sum {
-        width: 35%;
-      max-width: 300px;
+        width: 30%;
+   
+      	text-align: left !important;
+        line-height: 3.0 !important;
         color: #0000aa;
     }
     .basketdiv .point {
         width: 50%;
     }
 
-    .basketdiv .couponch{
-        width: 50%;
-    }
     .basketdiv .basketcmd{
-        width: 50%;
+        width: 80%;
+        text-align: left !important;
+        line-height: 3.0 !important;
     }
     .basketdiv .data .pname {
-        text-align: center !important;
-      line-height: 1.2 !important;
+      text-align: center !important;
+      vertical-align: middle;
+      line-height: 3.0 !important;
+      
     }
     .basketdiv .data .price, .basketdiv .data .sum, .basketdiv .data .point {
         text-align: center;
@@ -125,17 +190,20 @@
 
     .abutton, .abutton:link, .abutton:visited, .abutton:active, input[type=button] {
         background-color: #383838;
-        border: 1px solid #888888;
+        border: 2px solid #888888;
         color: #ffffff;
         cursor: pointer;
+        
         letter-spacing: normal;
-        padding: 3px 5px;
-        margin: 2px 3px;
-        width: auto;
+        padding: 5px 8px;
+        margin: 7px 10px;
+        width: 100px;
         word-break: keep-all;
         border-radius: 5px;
         text-decoration: none;
         font-size: 1.0em;
+        position:  absolute;
+        
     }
 
 .abutton-alt {
@@ -179,7 +247,7 @@
 
 .orderform .p_num {
     text-align: center;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     font-size: 1.5em;
 }

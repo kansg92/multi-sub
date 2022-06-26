@@ -199,17 +199,5 @@ public class SelectController {
 		return "redirect:";
 		
 	}
-	@RequestMapping("deleteSessionItem")
-	public ModelAndView deleteSessionItem(int cnt,HttpSession session,Model m) {
-		
-		System.out.println("대박샷Gun!!! :: "+cnt);
-		System.out.println(session.getAttribute("topping"+cnt));
-		session.removeAttribute("topping"+cnt);
-		System.out.println(session.getAttribute("topping"+cnt));
-		
-		m.addAttribute("center","orderproductprice");
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/?mapping=deleteSessionItem");
-		return mv;
-	}
+	
 }

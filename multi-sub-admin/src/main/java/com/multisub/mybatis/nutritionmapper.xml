@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="update" parameterType="NutritionVO">
-		UPDATE nutrition SET CAL=#{kcal},GRAM=#{gram},PROTEIN=#{protein},
+		UPDATE nutrition SET KCAL=#{kcal},GRAM=#{gram},PROTEIN=#{protein},
 							FAT=#{fat},SUGAR=#{sugar},SALT=#{salt} 
 							WHERE ID=#{id}
 	</update>

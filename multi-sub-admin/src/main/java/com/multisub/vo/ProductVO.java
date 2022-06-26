@@ -2,6 +2,8 @@ package com.multisub.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ public class ProductVO {
 	private Date regdate;
 	private int cateId;
 	private int nutId;
+	private MultipartFile mf;
 	public ProductVO(int id, String name, int price, String imgname) {
 		this.id = id;
 		this.name = name;
@@ -35,7 +38,16 @@ public class ProductVO {
 		this.cateId = cateId;
 		this.nutId = nutId;
 	}
-
+	public ProductVO(int id, String name, int price, String imgname, Date regdate, int cateId, int nutId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.imgname = imgname;
+		this.regdate = regdate;
+		this.cateId = cateId;
+		this.nutId = nutId;
+	}
 	
 	
 	

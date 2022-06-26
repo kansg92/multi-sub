@@ -27,10 +27,4 @@ public class ToppingDetailVO {
 		this.ordersDId = ordersDId;
 	}
 	
-	
-
-	
-	
-	
-	
 }

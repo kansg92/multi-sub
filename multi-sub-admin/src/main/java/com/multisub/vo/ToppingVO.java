@@ -1,5 +1,7 @@
 package com.multisub.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +19,5 @@ public class ToppingVO {
 	private int Price;
 	private String imgname;
 	private int cateId;
+	private MultipartFile mf;
 }

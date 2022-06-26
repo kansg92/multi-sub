@@ -18,5 +18,11 @@ public interface MainMapper {
 	public List<UsersVO> searchemployee(String str) throws Exception;	
 	public List<ProductVO> searchproduct(String str) throws Exception;
 
+	public int getcouponcnt() throws Exception;
+	public int getcustomercnt() throws Exception;
+	public int getemployeecnt() throws Exception;
+	public int getnutritioncnt() throws Exception;
+	public int getproductcnt() throws Exception;
+	public int gettoppingcnt() throws Exception;
 	
 }
