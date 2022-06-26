@@ -34,7 +34,7 @@
 	<div th:if="${session.loginadmin == null}">
 	 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="/" ><b>Multi-Sub test</b></a>            
+            <a class="navbar-brand ps-3" href="/" ><b>Multi-Sub Admin</b></a>            
         </nav>
         <div id="layoutSidenav_content"> 
            <div th:insert="${login} ? ${login} : login"></div> 
@@ -58,10 +58,10 @@
 	                <div class="input-group"> 	
                 	<div class="input-group-btn">
                      	<select name="srchselect" id="srchselect" class="form-control">
-  	  						<option th:value="customer" th:text="고객" selected></option>
-  	 						<option th:value="employee" th:text="직원"></option>  	  
-  	 						<option th:value="coupon" th:text="쿠폰"></option>
-  	 						<option th:value="product" th:text="제품"></option>  
+  	  						<option th:value="customer" th:text="customer" selected></option>
+  	 						<option th:value="employee" th:text="employee"></option>  	  
+  	 						<option th:value="coupon" th:text="coupon"></option>
+  	 						<option th:value="product" th:text="product"></option>  
   						</select>	
   					</div>			               
                     <input name="srchtext" class="form-control" type="text" placeholder="" 
@@ -102,24 +102,48 @@
                             
                                                    
                          	<div class="sb-sidenav-menu-heading">Product Management</div>                                    	
-                         	
  	
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                샌드위치
+ 							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                            	data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Product
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                샐러드
+                            
+                            <div class="collapse" id="collapseProducts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/product/register">Product Register</a>
+                                    <a class="nav-link" href="/product/select">Product Select</a>
+                                </nav>
+                            </div>
+                            
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                            	data-bs-target="#collapseTopping" aria-expanded="false" aria-controls="collapseTopping">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Topping
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                랩
+                            
+                            <div class="collapse" id="collapseTopping" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/topping/register">Topping Register</a>
+                                    <a class="nav-link" href="/topping/select">Topping Select</a>
+                                </nav>
+                            </div>
+                            
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
+                            	data-bs-target="#collapseNutritions" aria-expanded="false" aria-controls="collapseNutritions">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Nutrition
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                사이드
-                            </a>
+                            
+                            <div class="collapse" id="collapseNutritions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/nutrition/register">Nutrition Register</a>
+                                    <a class="nav-link" href="/nutrition/select">Nutrition Select</a>
+                                </nav>
+                            </div>
                             
                             
                             
@@ -128,14 +152,14 @@
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
                             	data-bs-target="#collapseCoupons" aria-expanded="false" aria-controls="collapseCoupons">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                쿠폰관리
+                                Coupon
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             
                             <div class="collapse" id="collapseCoupons" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/coupon/add">쿠폰등록</a>
-                                    <a class="nav-link" href="/coupon/list">쿠폰목록</a>
+                                    <a class="nav-link" href="/coupon/add">Coupon Register</a>
+                                    <a class="nav-link" href="/coupon/list">Coupon Select</a>
                                 </nav>
                             </div>                          
                                                         
@@ -144,14 +168,14 @@
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
                             	data-bs-target="#collapseCustomers" aria-expanded="false" aria-controls="collapseCustomers">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                고객관리
+                                Customer
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             
                             <div class="collapse" id="collapseCustomers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/customer/add">고객등록</a>
-                                    <a class="nav-link" href="/customer/list">고객목록</a>
+                                    <a class="nav-link" href="/customer/add">Customer Register</a>
+                                    <a class="nav-link" href="/customer/list">Customer Select</a>
                                 </nav>
                             </div>                              
                                          
@@ -160,14 +184,14 @@
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" 
                             	data-bs-target="#collapseEmployees" aria-expanded="false" aria-controls="collapseEmployees">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                직원관리
+                                Employee
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             
                             <div class="collapse" id="collapseEmployees" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/employee/add">직원등록</a>
-                                    <a class="nav-link" href="/employee/list">직원목록</a>
+                                    <a class="nav-link" href="/employee/add">Employee Register</a>
+                                    <a class="nav-link" href="/employee/list">Employee Select</a>
                                 </nav>
                             </div>                          
                     </div>

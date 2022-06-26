@@ -14,6 +14,7 @@ import com.multisub.biz.CouponBiz;
 import com.multisub.biz.MainBiz;
 import com.multisub.biz.UsersBiz;
 import com.multisub.vo.CategoryVO;
+import com.multisub.vo.ChartVO;
 import com.multisub.vo.CouponVO;
 import com.multisub.vo.ProductVO;
 import com.multisub.vo.UsersVO;
@@ -38,6 +39,30 @@ public class MainController {
 	public String main(Model m) {
 		m.addAttribute("login","login");
 		m.addAttribute("center","center");
+
+		int couponcnt = 0;
+		int customercnt = 0;
+		int employeecnt= 0;
+		int nutritioncnt = 0;
+		int productcnt = 0;
+		int toppingcnt = 0;
+		
+		try {
+			couponcnt = mbiz.getCouponCnt();
+			customercnt = mbiz.getCustomerCnt();
+			employeecnt = mbiz.getEmployeeCnt();
+			nutritioncnt = mbiz.getNutritionCnt();
+			productcnt = mbiz.getProductCnt();
+			toppingcnt = mbiz.getToppingCnt();
+			m.addAttribute("couponcnt", couponcnt);
+			m.addAttribute("customercnt", customercnt);
+			m.addAttribute("employeecnt", employeecnt);
+			m.addAttribute("nutritioncnt", nutritioncnt);
+			m.addAttribute("productcnt", productcnt);
+			m.addAttribute("toppingcnt", toppingcnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "main";		
 	}
 	
@@ -145,6 +170,7 @@ public class MainController {
 		return "main";
 	}//search
 	
-
+	
+	
 	
 }
