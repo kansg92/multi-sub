@@ -132,7 +132,7 @@
 
 ### 5. ERD 설계
 
-![MultiSubWay (1) - 복사본](README.assets/MultiSubWay (1) - 복사본-16563057712121.png)
+[MultiSubWay (1) - 복사본](README.assets/MultiSubWay (1) - 복사본-16563057712121.png)
 
 ### 
 
@@ -140,7 +140,7 @@
 
 #### 6-1 키오스크 동작 로직
 
-![image-20220627141215008](README.assets/image-20220627141215008.png)
+![MultiSubWay (1) - 복사본-16563057712121](README.assets/MultiSubWay (1) - 복사본-16563057712121.png)
 
 
 
