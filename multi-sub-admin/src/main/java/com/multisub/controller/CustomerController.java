@@ -27,7 +27,17 @@ public class CustomerController {
 	@RequestMapping("addimpl")
 	public String addimpl(Model m, UsersVO uvo) {
 		try {
+			char ch = 0 ;
+		    for (int i = 1; i <= 5; i++) {
+		        ch = (char) ((Math.random() * 26) + 65);
+		      }		    
+		    int num = (int)(Math.random() * (99999 - 10000 + 1)) + 10000;		    
+		    String member = ch + "-" + num;		    
+		    
+		    uvo.setPoint(0);
+		    uvo.setMembersip(member);
 			uvo.setUserTypeId(200); //회원
+			
 			biz.register(uvo);
 		} catch (Exception e) {
 			e.printStackTrace();

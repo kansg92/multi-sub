@@ -14,6 +14,7 @@ import com.multisub.biz.CouponBiz;
 import com.multisub.biz.MainBiz;
 import com.multisub.biz.UsersBiz;
 import com.multisub.vo.CategoryVO;
+import com.multisub.vo.ChartVO;
 import com.multisub.vo.CouponVO;
 import com.multisub.vo.ProductVO;
 import com.multisub.vo.UsersVO;
@@ -169,6 +170,7 @@ public class MainController {
 		return "main";
 	}//search
 	
-
+	
+	
 	
 }
