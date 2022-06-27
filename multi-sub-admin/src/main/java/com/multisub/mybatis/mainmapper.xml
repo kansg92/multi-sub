@@ -36,6 +36,53 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="getnutritioncnt" resultType="int">
 		SELECT count(*) FROM NUTRITION
 	</select>
+
+	<select id="getorderchartdata" resultType="ChartVO">
+	select DATE_FORMAT(sc.REGDATE, '%b. %Y') AS sdate, 
+		sum(case when usertype=100 then sales end) as userType100,
+ 	   sum(case when usertype=200 then sales end) as userType200,
+ 	   sum(sales) as sales
+	from(
+		select SUM(O.PRICE) AS sales, O.REGDATE, U.USERTYPEID AS USERTYPE
+		FROM ORDERS O inner JOIN USERS U ON O.USERSID = U.ID 
+		WHERE O.REGDATE BETWEEN DATE_ADD(NOW(), INTERVAL -6 MONTH) AND NOW()
+		group by O.REGDATE, USERTYPE 
+		) sc 
+	group by sdate order by sc.REGDATE  
+	</select>	
+	
+	<select id="getpaychartdata" resultType="ChartVO">	
+		select DATE_FORMAT(pc.REGDATE, '%b. %Y') AS sdate,
+			sum(case when payInfo='카드' then sp end) as picard, 
+			sum(case when payInfo='현금' then sp end) as picash, 
+			sum(case when payInfo='간편결제' then sp end) as pipay
+		from (
+			SELECT sum(price) as sp, REGDATE, payInfo  
+			from ORDERS 
+			WHERE REGDATE BETWEEN DATE_ADD(NOW(), INTERVAL -6 MONTH) AND NOW() 
+			group by REGDATE, payInfo ) pc 
+		group by sdate order by REGDATE asc
+	</select>
+	
+	<select id="gettotalchartdata" resultType="ChartVO">		
+		SELECT DATE_FORMAT(REGDATE, '%b. %Y') AS sdate, 
+				sum(price) as sales, count(*) as ordercnt
+		from ORDERS 			
+		WHERE REGDATE BETWEEN DATE_ADD(NOW(), INTERVAL -6 MONTH) AND NOW() 
+		group by DATE_FORMAT(REGDATE, '%b. %Y') order by REGDATE asc     
+	</select>
+	
+	<select id="getcatechartdata" resultType="ChartVO">	
+		select sum(o.odPrice) as sales, pr.catename as catename
+		from ordersdetail o
+		inner join (
+			select p.id as prid, p.name as name, p.price as price, 
+				   p.cateid as cateid, c.name as catename, c.pid as cpid
+			from product p inner join category c on p.cateid = c.id
+			where p.cateid in (110, 120, 130, 210, 220, 230, 240)
+		) pr 
+		on o.prodId = pr.prid group by pr.catename    
+	</select>
 	
 	<select id="getproductcnt" resultType="int">
 		SELECT count(*) FROM PRODUCT

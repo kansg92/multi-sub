@@ -1,3 +1,310 @@
+<meta charset="utf-8" />
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script>
+
+function display_sales(data){
+	Highcharts.chart('saleschart', {
+	    chart: {
+	        type: 'bar'
+	    },
+	    title: {
+	        text: '최근 6개월간 회원/비회원별 매출'
+	    },
+	    xAxis: {
+	        categories: data.sdatearr	
+	    },
+	    yAxis: {
+	        min: 0,
+	        title: {
+	            text: '금액(원)'
+	        }
+	    },
+	    legend: {
+	        reversed: true
+	    },
+	    plotOptions: {
+	        series: {
+	            stacking: 'normal'
+	        }
+	    },
+	    series: [{
+	        name: '비회원',
+	        data: data.usertypearr100       
+	    }, {
+	        name: '회원',
+	        data: data.usertypearr200 	        	   
+	    }]
+	});
+}
+
+function display_pay(data){
+	Highcharts.chart('paychart', {
+	    title: {
+	        text: '최근 6개월간 결제수단별 매출'
+	    },
+	    xAxis: {
+	        categories: data.sdatearr 
+	    },
+	    labels: {
+	        items: [{
+	            //html: 'Total fruit consumption',
+	            style: {
+	                left: '50px',
+	                top: '18px',
+	                color: ( // theme
+	                    Highcharts.defaultOptions.title.style &&
+	                    Highcharts.defaultOptions.title.style.color
+	                ) || 'black'
+	            }
+	        }]
+	    },
+	    series: [{
+	        type: 'column',
+	        name: '카드',
+	        data: data.picardarr  
+	    }, {
+	        type: 'column',
+	        name: '현금',
+	        data: data.picasharr  
+	    }, {
+	        type: 'column',
+	        name: '간편결제',
+	        data: data.pipayarr  
+	    }  /* , {
+	        type: 'spline',
+	        name: 'Average',
+	        data: [3, 2.67, 3, 6.33, 3.33],
+	        marker: {
+	            lineWidth: 2,
+	            lineColor: Highcharts.getOptions().colors[3],
+	            fillColor: 'white'
+	        }
+	    }, {
+	        type: 'pie',
+	        name: 'Total consumption',
+	        data: [{
+	            name: '카드',
+	            y: function(data.picardarr){
+	            	var arr = data.picardarr;
+	            	var sum =0; 
+	            		for (let i = 0; i < arr.length; i++) {
+	            	    	sum += data.picardarr[i];
+	            			}//for
+	            	},
+	            color: Highcharts.getOptions().colors[0] 
+	        }, {
+	            name: '현금',
+	            y: function(data.picasharr){
+	            	var arr = data.picasharr;
+	            	var sum =0; 
+            		for (let i = 0; i < arr.length; i++) {
+            	    	sum += data.picardarr[i];
+            			}//for          			
+        			},
+	            color: Highcharts.getOptions().colors[1] 
+	        }, {
+	            name: '간편결제',
+	            y: function(data.pipayarr){
+	            	var arr = data.pipayarr;
+	            	var sum =0; 
+            		for (let i = 0; i < arr.length; i++) {
+            	    	sum += data.picardarr[i];
+            			}//for
+            		},
+	            color: Highcharts.getOptions().colors[2] 
+	        }],
+	        center: [100, 80],  size: 100,
+	        showInLegend: false,
+	        dataLabels: {
+	            enabled: false
+	        }
+	    }  */ ]
+	});
+
+}
+function display_total(data){
+	Highcharts.chart('totalchart', {
+	    chart: {
+	        zoomType: 'xy'
+	    },
+	    title: {
+	        text: '최근 6개월간 월별 총매출/총주문수'
+	    },
+/* 	    subtitle: {
+	        text: 'Source: WorldClimate.com'
+	    }, */
+	    xAxis: [{
+	        categories: data.sdatearr 
+	    	, crosshair: true
+	    }],
+	    yAxis: [{ // Primary yAxis
+	        labels: {
+	            format: '{value}건',
+	            style: {
+	                color: Highcharts.getOptions().colors[1]
+	            }
+	        },
+	        title: {
+	            text: '주문건수',
+	            style: {
+	                color: Highcharts.getOptions().colors[1]
+	            }
+	        }
+	    }, { // Secondary yAxis
+	        title: {
+	            text: '매출금액',
+	            style: {
+	                color: Highcharts.getOptions().colors[0]
+	            }
+	        },
+	        labels: {
+	            format: '{value} 원',
+	            style: {
+	                color: Highcharts.getOptions().colors[0]
+	            }
+	        },
+	        opposite: true
+	    }],
+	    tooltip: {
+	        shared: true
+	    },
+	    legend: {
+	        layout: 'vertical',
+	        align: 'left',
+	        x: 120,
+	        verticalAlign: 'top',
+	        y: 100,
+	        floating: true,
+	        backgroundColor:
+	            Highcharts.defaultOptions.legend.backgroundColor || // theme
+	            'rgba(255,255,255,0.25)'
+	    },
+	    series: [{
+	        name: '매출금액',
+	        type: 'column',
+	        yAxis: 1,
+	        data: data.salesarr,
+	        tooltip: {
+	            valueSuffix: '원'
+	        }
+
+	    }, {
+	        name: '주문건수',
+	        type: 'spline',
+	        data: data.ordercntarr,
+	        tooltip: {
+	            valueSuffix: '건'
+	        }
+	    }]
+	});	
+}
+
+function display_cate(data){
+	Highcharts.chart('catechart', {
+	    chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: false,
+	        type: 'pie'
+	    },
+	    title: {
+	        text: '최근 6개월간 메뉴 카테고리별 매출'
+	    },
+	    tooltip: {
+	        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	    },
+	    accessibility: {
+	        point: {
+	            valueSuffix: '%'
+	        }
+	    },
+	    plotOptions: {
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            dataLabels: {
+	                enabled: true,
+	                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+	            }
+	        }
+	    },
+	    series: [{
+	        name: 'Brands',
+	        colorByPoint: true,
+	        data: [{
+	            name: data.catenamearr[0] ,
+	            y: data.salesarr[0] 
+	        }, {
+	            name: data.catenamearr[1],
+	            y: data.salesarr[1]
+	        }, {
+	            name: data.catenamearr[2],
+	            y: data.salesarr[2]
+	        }, {
+	            name: data.catenamearr[3],
+	            y: data.salesarr[3]
+	        }, {
+	            name: data.catenamearr[4],
+	            y: data.salesarr[4]
+	        }, {
+	            name: data.catenamearr[5],
+	            y: data.salesarr[5]
+	        }, {
+	            name: data.catenamearr[6],
+	            y: data.salesarr[6]
+	        }]
+	    }]
+	});
+}
+
+function getPayChart(){		
+	$.ajax({
+		url:'display_pay',
+		success:function(data){
+			display_pay(data);
+		}
+	});
+};
+
+function getSalesChart(){		
+	$.ajax({
+		url:'display_sales',
+		success:function(data){
+			display_sales(data);
+		}
+	});
+};
+
+function getTotalChart(){		
+	$.ajax({
+		url:'display_total',
+		success:function(data){
+			display_total(data);
+		}
+	});
+};
+
+function getCateChart(){		
+	$.ajax({
+		url:'display_cate',
+		success:function(data){
+			display_cate(data);
+		}
+	});
+};
+
+
+$(document).ready(function(){
+	getSalesChart();
+	getPayChart();
+	getTotalChart();
+	getCateChart();
+});
+</script>
 
                 <main>
                     <div class="container-fluid px-4">
@@ -66,19 +373,51 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
+                        </div>      
+                  </div>
+ 
+ 
+                        
+                        
+                        
+                        <div class="row"> <!-- start of charts -->                        
+                        
+                            <div class="col-xl-6"> 
                                 <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
+                                    <div class="card-body">
+                                    	<div id="totalchart"></div>
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                                 </div>
+
                             </div>
                           </div>
-                    </div>
+                            
+                            
+                             <div class="col-xl-6"> 
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                    	<div id="catechart"></div>
+                                    </div>
+                                </div>
+                            </div>                             
+                            
+                            <div class="col-xl-6"> 
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                    	<div id="saleschart"></div>
+                                    </div>
+                                </div>
+                            </div>                         
+                                                        
+                             <div class="col-xl-6"> 
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                    	<div id="paychart"></div>
+                                    </div>
+                                </div>
+                            </div> 
+                           
+                          
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

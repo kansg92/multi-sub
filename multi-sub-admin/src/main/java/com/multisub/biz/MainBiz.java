@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.multisub.mapper.MainMapper;
+import com.multisub.vo.ChartVO;
 import com.multisub.vo.CouponVO;
 import com.multisub.vo.ProductVO;
 import com.multisub.vo.UsersVO;
@@ -56,6 +57,22 @@ public class MainBiz {
 	
 	public int getToppingCnt() throws Exception {
 		return dao.gettoppingcnt();
+	}
+	
+	public List<ChartVO> getorderchartdata() throws Exception {
+		return dao.getorderchartdata();		
+	}
+	
+	public List<ChartVO> getpaychartdata() throws Exception {
+		return dao.getpaychartdata();		
+	}	
+	
+	public List<ChartVO> gettotalchartdata() throws Exception {
+		return dao.gettotalchartdata();		
+	}
+	
+	 public List<ChartVO> getcatechartdata() throws Exception { 
+		 return dao.getcatechartdata(); 
 	}
 	
 }
