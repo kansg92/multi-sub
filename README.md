@@ -1,6 +1,6 @@
 # 💎Multi-Sub Kiosk Project 💎
 
-## 3. 깃 규칙
+## 깃 규칙
 
 - main  merge는 간승기, 한규정 
 - 작업은 각자 브랜치에서만 커밋한다.
