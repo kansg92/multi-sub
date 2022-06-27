@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM COUPON WHERE ID=#{id}
 	</select>
 	<select id="selectall" resultType="couponVO">
-		SELECT * FROM COUPON ;
+		SELECT * FROM COUPON;
 	</select>
 	<insert id="insert" parameterType="couponVO">
 		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, 1)
@@ -20,9 +20,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		DELETE FROM COUPON WHERE ID=#{id}
 	</delete>
-	
-	<!-- -->
-	
+
 	<select id="selectlatest" resultType="couponVO">
 		select * from coupon order by id desc limit 1;
 	</select>

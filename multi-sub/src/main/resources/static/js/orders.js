@@ -164,7 +164,6 @@ function change_qty2(t,cnt){
 	var show_total_amount = price * this_qty;
 	  
 	$("#ct_qty"+cnt).val(this_qty);
-	//$("#it_pay").val(show_total_amount);
 	  
 	$('#total_amount'+cnt).text(show_total_amount.format());
 	$('#total_amount'+cnt).attr("value",show_total_amount);
