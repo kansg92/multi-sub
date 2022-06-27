@@ -63,6 +63,7 @@ $(document).ready(function(){
 		}else if($('#select-cheese').css("display") == 'flex'){
 			$('#select-cheese').hide();
 			$('#select-vegetable').show();	
+			$('#prevBtn').css("visibility","visible");
 		}
 		if($('input:checkbox[name=vegetable]').is(":checked") == false){
 		}else if($('#select-vegetable').css("display") == 'flex'){
