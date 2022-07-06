@@ -5,32 +5,32 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multisub.mapper.UserAuthorityMapper">
 	
 	<select id="select" parameterType="int" resultType="userauthorityVO">
-		SELECT * FROM USERSTYPE WHERE ID=#{id}
+		SELECT * FROM userType WHERE ID=#{id}
 	</select>
 	<select id="selectDetail" parameterType="int" resultType="userauthorityVO">
 		SELECT ut.id, ut.userType, ut.regdate, 
 		us.id AS usid , us.name AS usname, us.email AS usemail, us.addr AS usaddr, us.phone AS usphone 
-		FROM userstype ut
+		FROM userType ut
 		INNER JOIN users us ON ut.id = us.userTypeId
 		WHERE ut.id = #{id};
 	</select>
 	<select id="selectAll" resultType="userauthorityVO">
-		SELECT * FROM USERSTYPE
+		SELECT * FROM userType
 	</select>
 	<select id="selectDetailAll" resultType="userauthorityVO">
 		SELECT ut.id, ut.userType, ut.regdate, 
 		us.id AS usid , us.name AS usname, us.email AS usemail, us.addr AS usaddr, us.phone AS usphone 
-		FROM userstype ut
+		FROM userType ut
 		INNER JOIN users us ON ut.id = us.userTypeId
 	</select>
 	<insert id="insert" parameterType="userauthorityVO">
 		INSERT INTO usersType VALUES (#{id},#{userType},CURDATE())
 	</insert>
 	<update id="update" parameterType="userauthorityVO">
-		UPDATE USERSTYPE SET USERTYPE=#{userType} WHERE ID = #{id}
+		UPDATE USERSTYPE SET userType=#{userType} WHERE ID = #{id}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM USERSTYPE WHERE ID=#{id}
+		DELETE FROM userType WHERE ID=#{id}
 	</delete>
 	
 </mapper>

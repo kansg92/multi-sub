@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="searchcustomer" parameterType="String" resultType="UsersVO">
-		SELECT * FROM users WHERE UserTypeId=200 and name LIKE CONCAT('%',#{srchtext},'%')
+		SELECT * FROM users WHERE userTypeId=200 and name LIKE CONCAT('%',#{srchtext},'%')
 	</select>
 	
 	<select id="searchemployee" parameterType="String" resultType="UsersVO">
-		SELECT * FROM users WHERE UserTypeId=300 and name LIKE CONCAT('%',#{srchtext},'%')
+		SELECT * FROM users WHERE userTypeId=300 and name LIKE CONCAT('%',#{srchtext},'%')
 	</select>
 	
 	<select id="searchproduct" parameterType="String" resultType="ProductVO">
@@ -22,33 +22,34 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getcouponcnt" resultType="int">
-		SELECT count(*) FROM COUPON
+		SELECT count(*) FROM coupon
 	</select>
 	
 	<select id="getcustomercnt" resultType="int">
-		SELECT count(*) FROM USERS
+		SELECT count(*) FROM users
 	</select>
 	
 	<select id="getemployeecnt" resultType="int">
-		SELECT count(*) FROM USERS WHERE ID=300
+		SELECT count(*) FROM users WHERE ID=300
 	</select>
 	
 	<select id="getnutritioncnt" resultType="int">
-		SELECT count(*) FROM NUTRITION
+		SELECT count(*) FROM nutrition
 	</select>
 
 	<select id="getorderchartdata" resultType="ChartVO">
 	select DATE_FORMAT(sc.REGDATE, '%b. %Y') AS sdate, 
-		sum(case when usertype=100 then sales end) as userType100,
- 	   sum(case when usertype=200 then sales end) as userType200,
+		sum(case when userType=100 then sales end) as userType100,
+ 	   sum(case when userType=200 then sales end) as userType200,
  	   sum(sales) as sales
 	from(
 		select SUM(O.PRICE) AS sales, O.REGDATE, U.USERTYPEID AS USERTYPE
-		FROM ORDERS O inner JOIN USERS U ON O.USERSID = U.ID 
+		FROM orders O 
+		inner JOIN users U ON O.USERSID = U.ID 
 		WHERE O.REGDATE BETWEEN DATE_ADD(NOW(), INTERVAL -6 MONTH) AND NOW()
-		group by O.REGDATE, USERTYPE 
+		group by O.REGDATE, userType 
 		) sc 
-	group by sdate order by sc.REGDATE  
+	group by sdate
 	</select>	
 	
 	<select id="getpaychartdata" resultType="ChartVO">	
@@ -58,23 +59,23 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			sum(case when payInfo='간편결제' then sp end) as pipay
 		from (
 			SELECT sum(price) as sp, REGDATE, payInfo  
-			from ORDERS 
+			from orders 
 			WHERE REGDATE BETWEEN DATE_ADD(NOW(), INTERVAL -6 MONTH) AND NOW() 
 			group by REGDATE, payInfo ) pc 
-		group by sdate order by REGDATE asc
+		group by sdate
 	</select>
 	
 	<select id="gettotalchartdata" resultType="ChartVO">		
 		SELECT DATE_FORMAT(REGDATE, '%b. %Y') AS sdate, 
 				sum(price) as sales, count(*) as ordercnt
-		from ORDERS 			
+		from orders 			
 		WHERE REGDATE BETWEEN DATE_ADD(NOW(), INTERVAL -6 MONTH) AND NOW() 
-		group by DATE_FORMAT(REGDATE, '%b. %Y') order by REGDATE asc     
+		group by DATE_FORMAT(REGDATE, '%b. %Y')  
 	</select>
 	
 	<select id="getcatechartdata" resultType="ChartVO">	
 		select sum(o.odPrice) as sales, pr.catename as catename
-		from ordersdetail o
+		from ordersDetail o
 		inner join (
 			select p.id as prid, p.name as name, p.price as price, 
 				   p.cateid as cateid, c.name as catename, c.pid as cpid
@@ -85,10 +86,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getproductcnt" resultType="int">
-		SELECT count(*) FROM PRODUCT
+		SELECT count(*) FROM product
 	</select>
 	
 	<select id="gettoppingcnt" resultType="int">
-		SELECT count(*) FROM TOPPING
+		SELECT count(*) FROM topping
 	</select>
 </mapper>

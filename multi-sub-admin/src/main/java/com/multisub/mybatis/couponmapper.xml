@@ -5,20 +5,20 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multisub.mapper.CouponMapper">
 	
 	<select id="select" parameterType="int" resultType="couponVO">
-		SELECT * FROM COUPON WHERE ID=#{id}
+		SELECT * FROM coupon WHERE ID=#{id}
 	</select>
 	<select id="selectall" resultType="couponVO">
-		SELECT * FROM COUPON;
+		SELECT * FROM coupon;
 	</select>
 	<insert id="insert" parameterType="couponVO">
-		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, 1)
+		INSERT INTO coupon VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, 1)
 	</insert>
 	<update id="update" parameterType="couponVO">
-		UPDATE COUPON SET NAME=#{name}, DISCOUNT=#{discount}, EXPIRDATE=#{expirDate}, EXPIRYN=#{expirYN} 
+		UPDATE coupon SET NAME=#{name}, DISCOUNT=#{discount}, EXPIRDATE=#{expirDate}, EXPIRYN=#{expirYN} 
 		WHERE ID = #{id}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM COUPON WHERE ID=#{id}
+		DELETE FROM coupon WHERE ID=#{id}
 	</delete>
 
 	<select id="selectlatest" resultType="couponVO">

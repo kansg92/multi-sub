@@ -4,10 +4,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multisub.mapper.UsersMapper">
 	<select id="checkUsers" parameterType="String" resultType="int">
-		SELECT count(*) as cnt FROM USERS WHERE ID=#{id}
+		SELECT count(*) as cnt FROM users WHERE ID=#{id}
 	</select>
 	<select id="select" parameterType="String" resultType="usersVO">
-		SELECT * FROM USERS WHERE ID=#{id}
+		SELECT * FROM users WHERE ID=#{id}
 	</select>
 	<select id="selectDetail" parameterType="String" resultType="usersVO">
 		SELECT u.id, u.pwd, u.name, u.email, u.addr, u.phone, u.point, u.membersip, u.regdate, u.userTypeId, 
@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE u.id=#{id}
 	</select>
 	<select id="selectAll" resultType="usersVO">
-		SELECT * FROM USERS
+		SELECT * FROM users
 	</select>
 	<select id="selectDetailAll" resultType="usersVO">
 		SELECT u.id, u.pwd, u.name, u.email, u.addr, u.phone, u.point, u.membersip, u.regdate, u.userTypeId, 
@@ -34,13 +34,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN userstype ut ON u.userTypeId = ut.id
 	</select>
 	<insert id="insert" parameterType="usersVO">
-		INSERT INTO USERS VALUES (#{id}, #{pwd}, #{name}, #{email}, #{addr}, #{phone}, #{point}, #{membersip}, CURDATE(),#{userTypeId});
+		INSERT INTO users VALUES (#{id}, #{pwd}, #{name}, #{email}, #{addr}, #{phone}, #{point}, #{membersip}, CURDATE(),#{userTypeId});
 	</insert>
 	<update id="update" parameterType="usersVO">
-		UPDATE USERS SET PWD=#{pwd}, NAME=#{name}, EMAIL=#{email}, ADDR=#{addr}, PHONE=#{phone}, POINT=#{point}, MEMBERSIP=#{membersip}, userTypeId=#{userTypeId} WHERE ID = #{id}
+		UPDATE users SET PWD=#{pwd}, NAME=#{name}, EMAIL=#{email}, ADDR=#{addr}, PHONE=#{phone}, POINT=#{point}, MEMBERSIP=#{membersip}, userTypeId=#{userTypeId} WHERE ID = #{id}
 	</update>
 	<delete id="delete" parameterType="String">
-		DELETE FROM USERS WHERE ID=#{id}
+		DELETE FROM users WHERE ID=#{id}
 	</delete>
 	
 </mapper>
