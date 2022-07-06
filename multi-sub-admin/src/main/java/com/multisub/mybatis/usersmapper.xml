@@ -6,29 +6,29 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	
 	<select id="select" parameterType="String" resultType="usersVO">
-		SELECT * FROM USERS WHERE ID=#{id}
+		SELECT * FROM users WHERE ID=#{id}
 	</select>
 	<select id="selectall" resultType="usersVO">
-		SELECT * FROM USERS
+		SELECT * FROM users
 	</select>
 	<insert id="insert" parameterType="usersVO">
-		INSERT INTO USERS VALUES (#{id}, #{pwd}, #{name}, #{email}, #{addr}, #{phone}, #{point} , #{membersip}, CURDATE(), #{userTypeId});
+		INSERT INTO users VALUES (#{id}, #{pwd}, #{name}, #{email}, #{addr}, #{phone}, #{point} , #{membersip}, CURDATE(), #{userTypeId});
 	</insert>
 	<update id="update" parameterType="usersVO">
-		UPDATE USERS SET PWD=#{pwd}, NAME=#{name}, EMAIL=#{email}, ADDR=#{addr}, PHONE=#{phone}, POINT=#{point} 
+		UPDATE users SET PWD=#{pwd}, NAME=#{name}, EMAIL=#{email}, ADDR=#{addr}, PHONE=#{phone}, POINT=#{point} 
 		WHERE ID = #{id}	
 	</update>
 	<delete id="delete" parameterType="String">
-		DELETE FROM USERS WHERE ID=#{id}
+		DELETE FROM users WHERE ID=#{id}
 	</delete>
 	
 	<!-- 회원 정보 select -->
-	<select id="selectcustomer" parameterType="String" resultType="usersVO">
+	<select id="selectcustomer" resultType="usersVO">
 		SELECT * FROM users where userTypeId=200;
 	</select>
 	
 	<!-- 직원 정보 select -->
-	<select id="selectemployee" parameterType="String" resultType="usersVO">
+	<select id="selectemployee"  resultType="usersVO">
 		SELECT * FROM users where userTypeId=300;
 	</select>
 	

@@ -5,10 +5,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multisub.mapper.CouponMapper">
 	
 	<select id="select" parameterType="int" resultType="couponVO">
-		SELECT * FROM COUPON WHERE ID=#{id}
+		SELECT * FROM coupon WHERE ID=#{id}
 	</select>
 	<select id="selectAll" resultType="couponVO">
-		SELECT * FROM COUPON
+		SELECT * FROM coupon
 	</select>
 	<select id="selectBoxAll" resultType="couponVO">
 		SELECT c.name , cd.state AS cdstate, c.discount, 
@@ -23,13 +23,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN coupondetail cd ON c.id = cd.couponId
 	</select>
 	<insert id="insert" parameterType="couponVO">
-		INSERT INTO COUPON VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, #{expirYN})
+		INSERT INTO coupon VALUES (NULL, #{name}, #{discount}, CURDATE(), #{expirDate}, #{expirYN})
 	</insert>
 	<update id="update" parameterType="couponVO">
-		UPDATE COUPON SET NAME=#{name}, DISCOUNT=#{discount}, EXPIRDATE=#{expirDate}, EXPIRYN=#{expirYN} WHERE ID = #{id}
+		UPDATE coupon SET NAME=#{name}, DISCOUNT=#{discount}, EXPIRDATE=#{expirDate}, EXPIRYN=#{expirYN} WHERE ID = #{id}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM COUPON WHERE ID=#{id}
+		DELETE FROM coupon WHERE ID=#{id}
 	</delete>
 	
 </mapper>

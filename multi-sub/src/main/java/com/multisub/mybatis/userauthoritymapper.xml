@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE ut.id = #{id};
 	</select>
 	<select id="selectAll" resultType="userauthorityVO">
-		SELECT * FROM USERSTYPE
+		SELECT * FROM usersType
 	</select>
 	<select id="selectDetailAll" resultType="userauthorityVO">
 		SELECT ut.id, ut.userType, ut.regdate, 
@@ -27,10 +27,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INSERT INTO usersType VALUES (#{id},#{userType},CURDATE())
 	</insert>
 	<update id="update" parameterType="userauthorityVO">
-		UPDATE USERSTYPE SET USERTYPE=#{userType} WHERE ID = #{id}
+		UPDATE USERSTYPE SET usersType=#{userType} WHERE ID = #{id}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM USERSTYPE WHERE ID=#{id}
+		DELETE FROM usersType WHERE ID=#{id}
 	</delete>
 	
 </mapper>
